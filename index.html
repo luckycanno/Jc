@@ -217,25 +217,6 @@
         </div>
     </header>
 
-    <!-- LIVE NEWS TICKER MARQUEE BAR -->
-    <div class="bg-navy-950/90 border-b border-goldAccent/25 px-4 py-1.5 overflow-hidden flex items-center space-x-3 text-xs shadow-inner">
-        <div class="flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-goldAccent text-navy-950 font-oswald font-bold uppercase text-[10px] shrink-0 tracking-wider">
-            <i class="fa-solid fa-bolt text-navy-950"></i>
-            <span>INFO LIVE</span>
-        </div>
-        <div class="overflow-hidden w-full relative">
-            <div class="animate-marquee font-roboto text-gray-200 text-xs tracking-wide">
-                <span>🏆 Selamat datang di <strong>GAWANG MINI JONG CANNO CUP U19 - SEASON 2 2026</strong> &nbsp;•&nbsp; ⚡ Integrasi Digital Realtime Cloud Sync &nbsp;•&nbsp; ⚽ Junjung Tinggi Sportivitas & Kehormatan &nbsp;•&nbsp; 📊 Perhitungan Top Skor Dimulai dari Babak 32 Besar &nbsp;•&nbsp; 📱 Akses Dari Mana Saja di Perangkat HP, Tablet & PC!</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cloud Info Banner -->
-    <div id="cloud-info-banner" class="bg-gradient-to-r from-emerald-950/90 via-navy-900 to-emerald-950/90 border-b border-emerald-500/30 px-4 py-2 text-center text-xs text-emerald-300 font-roboto flex items-center justify-center space-x-2 shadow-md">
-        <i class="fa-solid fa-tower-broadcast animate-pulse text-emerald-400 text-sm"></i>
-        <span><strong>Sistem Cloud Aktif:</strong> Terhubung secara <i>Real-time</i>. Input & update data dari Admin otomatis muncul secara instan di semua HP/Perangkat tanpa perlu reload!</span>
-    </div>
-
     <!-- SIDEBAR NAVIGATION DRAWER OVERLAY -->
     <div id="navOverlay" onclick="closeNavDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
 
@@ -1076,80 +1057,54 @@
 
             seedInitialCloudDataIfEmpty();
 
+            let isInitialTeamsSync = true;
             onSnapshot(getCollectionRef('teams'), (snapshot) => {
-                if (!snapshot.empty) {
+                if (!snapshot.empty || !isInitialTeamsSync) {
                     const teamsArr = [];
                     snapshot.forEach(docSnap => teamsArr.push({ id: docSnap.id, ...docSnap.data() }));
                     window.appState.teams = teamsArr;
                     syncLocalStorageCache();
                 }
+                isInitialTeamsSync = false;
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }, (error) => console.warn("Teams sync warning:", error));
 
+            let isInitialPlayersSync = true;
             onSnapshot(getCollectionRef('players'), (snapshot) => {
-                if (!snapshot.empty) {
+                if (!snapshot.empty || !isInitialPlayersSync) {
                     const playersArr = [];
                     snapshot.forEach(docSnap => playersArr.push({ id: docSnap.id, ...docSnap.data() }));
                     window.appState.players = playersArr;
                     syncLocalStorageCache();
                 }
+                isInitialPlayersSync = false;
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }, (error) => console.warn("Players sync warning:", error));
 
+            let isInitialMatchesSync = true;
             onSnapshot(getCollectionRef('matches'), (snapshot) => {
-                if (!snapshot.empty) {
+                if (!snapshot.empty || !isInitialMatchesSync) {
                     const matchesArr = [];
                     snapshot.forEach(docSnap => matchesArr.push({ id: docSnap.id, ...docSnap.data() }));
                     window.appState.matches = matchesArr;
                     syncLocalStorageCache();
                 }
+                isInitialMatchesSync = false;
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }, (error) => console.warn("Matches sync warning:", error));
 
+            let isInitialAnnSync = true;
             onSnapshot(getCollectionRef('announcements'), (snapshot) => {
-                if (!snapshot.empty) {
+                if (!snapshot.empty || !isInitialAnnSync) {
                     const annArr = [];
                     snapshot.forEach(docSnap => annArr.push({ id: docSnap.id, ...docSnap.data() }));
                     window.appState.announcements = annArr;
                     syncLocalStorageCache();
                 }
+                isInitialAnnSync = false;
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }, (error) => console.warn("Announcements sync warning:", error));
         }
-
-        // Global Share & QR Modal Helpers
-        window.openShareModal = function() {
-            const shareModal = document.getElementById('shareModal');
-            const urlInput = document.getElementById('share-url-input');
-            const qrImg = document.getElementById('share-qr-img');
-            const currentUrl = window.location.href;
-
-            if (urlInput) urlInput.value = currentUrl;
-            if (qrImg) {
-                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}&color=0f3460&bg=ffffff`;
-            }
-            if (shareModal) shareModal.classList.remove('hidden');
-        };
-
-        window.closeShareModal = function() {
-            const shareModal = document.getElementById('shareModal');
-            if (shareModal) shareModal.classList.add('hidden');
-        };
-
-        window.copyShareUrl = function() {
-            const urlInput = document.getElementById('share-url-input');
-            if (urlInput) {
-                urlInput.select();
-                document.execCommand('copy');
-                if (typeof window.showToast === 'function') {
-                    window.showToast("Link Cloud Turnamen Berhasil Disalin!");
-                }
-            }
-        };
-
-        window.shareTournamentLink = function() {
-            window.openShareModal();
-        };
 
         window.dbSaveTeam = async function(teamData) {
             if (db && currentUser) {
