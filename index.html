@@ -91,13 +91,13 @@
             100% { transform: translate(30px, 40px) scale(1.1); }
         }
 
-        /* Glassmorphism Card Style - Modernized Deep Navy Glass */
+        /* Glassmorphism Card Style - Navy Deep Theme */
         .glass-card {
-            background: rgba(13, 22, 44, 0.65);
+            background: rgba(15, 25, 48, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(254, 190, 16, 0.22);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -127,7 +127,7 @@
             border-radius: 999px;
         }
 
-        /* Ambient Glow & Neon Shadows */
+        /* Neon Glow Effects */
         .glow-score {
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 15px rgba(254, 190, 16, 0.7), 0 0 5px rgba(254, 190, 16, 0.9);
         }
@@ -136,23 +136,7 @@
             text-shadow: 0 0 18px rgba(254, 190, 16, 0.75);
         }
 
-        /* Ticker Marquee Animation */
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .animate-marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
-        }
-
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-
-        /* Subtle Background Grid Texture */
+        /* Background Grid Pattern */
         .bg-pattern {
             background-image: radial-gradient(rgba(254, 190, 16, 0.12) 1px, transparent 1px);
             background-size: 28px 28px;
@@ -177,12 +161,12 @@
     <!-- STICKY HEADER CONTAINER -->
     <header class="sticky top-0 z-40 w-full glass-card border-b border-goldAccent/30 px-3 sm:px-6 py-2.5 flex items-center justify-between shadow-2xl">
         <div class="flex items-center space-x-3">
-            <!-- Sidebar Drawer Toggle Toggle Button -->
-            <button onclick="toggleNavDrawer()" class="p-2 rounded-xl bg-navy-800/90 hover:bg-goldAccent/25 border border-goldAccent/40 text-goldAccent transition duration-200 hover:scale-105 active:scale-95 shadow-md">
+            <!-- Sidebar Drawer Toggle Button -->
+            <button onclick="toggleNavDrawer()" class="p-2 rounded-xl bg-navy-800/90 hover:bg-goldAccent/25 border border-goldAccent/40 text-goldAccent transition duration-200 hover:scale-105 active:scale-95 shadow-md" aria-label="Buka Menu Navigasi">
                 <i class="fa-solid fa-bars text-lg"></i>
             </button>
 
-            <!-- Event Brand Logo & Title -->
+            <!-- Event Brand Logo & Title (Klik untuk kembali ke Beranda) -->
             <a href="javascript:void(0)" onclick="switchView('beranda')" class="flex items-center space-x-2.5 group">
                 <img src="https://iili.io/KhDMwdb.png" alt="Jong Canno Icon" class="w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_10px_rgba(254,190,16,0.5)] group-hover:scale-110 transition duration-300 transform">
                 <div class="flex flex-col">
@@ -194,16 +178,16 @@
 
         <!-- Realtime Clock & Admin Trigger -->
         <div class="flex items-center space-x-3">
-            <!-- Cloud Status Indicator -->
-            <div title="Multi-Device Cloud Sync Aktif" class="hidden md:flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 shadow-sm">
-                <span class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
-                <span id="cloud-status-text" class="text-xs font-bold font-oswald uppercase tracking-wider">Cloud Connected</span>
-            </div>
+            <!-- Cloud Realtime Status Indicator -->
+    <div title="Multi-Device Live Cloud Sync (Apps Script / Firestore Active)" class="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 shadow-sm">
+        <span class="relative flex h-2.5 w-2.5">
+            <span id="cloud-ping-dot" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span id="cloud-solid-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <span id="cloud-status-text" class="text-xs font-bold font-oswald uppercase tracking-wider">Cloud Synchronized</span>
+    </div>
 
-            <!-- Realtime Clock Display -->
+            <!-- Realtime Clock Display (Hari, Tanggal, Bulan, Tahun | Jam:Menit:Detik WIB) -->
             <div class="hidden sm:flex flex-col items-end text-right border-r border-gray-700/60 pr-3">
                 <span id="header-date" class="text-[11px] font-roboto text-goldAccent font-medium tracking-wide">--</span>
                 <span id="header-clock" class="text-xs font-oswald font-bold text-white tracking-widest">00:00:00 WIB</span>
@@ -254,12 +238,12 @@
                     <i class="fa-solid fa-people-group text-goldAccent w-5 text-center"></i>
                     <span>TIM KONTESTAN</span>
                 </button>
-                <a href="https://drive.google.com/file/d/1mQ3zfdWQQISzyM1Yx-UdcMM7iTGxl8b7/view" target="_blank" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                <a href="https://drive.google.com/file/d/1mQ3zfdWQQISzyM1Yx-UdcMM7iTGxl8b7/view" target="_blank" rel="noopener noreferrer" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
                     <i class="fa-solid fa-file-contract text-goldAccent w-5 text-center"></i>
                     <span>ATURAN PERTANDINGAN</span>
                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto text-gray-400"></i>
                 </a>
-                <a href="https://jongcannocup.my.canva.site/bagan-u19" target="_blank" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                <a href="https://jongcannocup.my.canva.site/bagan-u19" target="_blank" rel="noopener noreferrer" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
                     <i class="fa-solid fa-diagram-project text-goldAccent w-5 text-center"></i>
                     <span>BAGAN TURNAMEN</span>
                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto text-gray-400"></i>
@@ -273,7 +257,7 @@
                     <span>PENGUMUMAN</span>
                 </button>
                 
-                <!-- Admin Panel Navigation Link (Auto-unhide when logged in) -->
+                <!-- Admin Panel Navigation Link (Tampil otomatis jika sudah login Admin) -->
                 <button id="nav-admin-link" onclick="handleAdminIconClick()" class="hidden w-full items-center space-x-3 px-4 py-3 rounded-xl bg-goldAccent/20 border border-goldAccent/40 text-goldAccent transition text-left font-bold shadow-sm">
                     <i class="fa-solid fa-user-shield text-goldAccent w-5 text-center"></i>
                     <span>PANEL ADMIN</span>
@@ -562,7 +546,7 @@
                     <i class="fa-solid fa-user-shield text-goldAccent text-2xl"></i>
                     <div>
                         <h3 class="font-oswald font-bold text-lg text-white tracking-wider uppercase">PANEL CONTROL ADMIN</h3>
-                        <p class="text-[10px] text-goldAccent font-medium">Sistem Input & Sinkronisasi Real-time</p>
+                        <p class="text-[10px] text-goldAccent font-medium">Sistem Input & Sinkronisasi Real-time Cloud</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2">
@@ -582,6 +566,7 @@
                 <button onclick="switchAdminTab('hasil')" id="admin-tab-hasil" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Input Hasil</button>
                 <button onclick="switchAdminTab('tim')" id="admin-tab-tim" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Kelola Tim</button>
                 <button onclick="switchAdminTab('pengumuman')" id="admin-tab-pengumuman" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Pengumuman</button>
+                <button onclick="switchAdminTab('cloud')" id="admin-tab-cloud" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white"><i class="fa-solid fa-cloud mr-1"></i>Firebase Cloud</button>
             </div>
 
             <!-- Admin Body Scrollable Content -->
@@ -819,7 +804,7 @@
                         <div class="flex items-center space-x-2">
                             <i class="fa-solid fa-file-excel text-emerald-400 text-xl"></i>
                             <div>
-                                <h4 class="font-oswald font-bold text-sm text-emerald-400 uppercase">IMPORT DATAFACE TIM DARI FILE EXCEL</h4>
+                                <h4 class="font-oswald font-bold text-sm text-emerald-400 uppercase">IMPORT DATA TIM DARI FILE EXCEL</h4>
                                 <p class="text-[11px] text-gray-300">Unggah file Excel (.xlsx / .xls) berisi daftar nama tim dan link logo tim.</p>
                             </div>
                         </div>
@@ -898,6 +883,54 @@
                     </div>
                 </div>
 
+                <!-- TAB: KELOLA CLOUD FIREBASE -->
+                <div id="admin-panel-cloud" class="admin-panel-content hidden space-y-5">
+                    <!-- Google Apps Script Web App URL Section for Dynamic GitHub Pages -->
+                    <div class="glass-card-sm p-4 rounded-2xl border border-emerald-500/40 bg-emerald-950/20 space-y-3">
+                        <div class="flex items-center space-x-3 border-b border-gray-800 pb-3">
+                            <i class="fa-solid fa-file-csv text-emerald-400 text-2xl"></i>
+                            <div>
+                                <h4 class="font-oswald font-bold text-base text-emerald-400 uppercase">Google Apps Script Web App API URL (Google Sheets Backend)</h4>
+                                <p class="text-xs text-gray-300">Tempelkan URL Web App dari Apps Script agar GitHub Pages terhubung dinamis ke Google Sheets.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 font-medium mb-1">Web App API URL (script.google.com)</label>
+                            <input type="url" id="gas-web-app-url-input" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-xs text-emerald-400 font-mono outline-none focus:border-emerald-400">
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="saveGasWebAppUrl()" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-oswald font-bold text-xs uppercase rounded-xl transition">
+                                <i class="fa-solid fa-cloud-arrow-down mr-1"></i> Simpan & Tarik Data Sheets
+                            </button>
+                            <button onclick="clearGasWebAppUrl()" class="px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold text-xs uppercase rounded-xl transition">
+                                Hapus API URL
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card-sm p-4 rounded-2xl border border-goldAccent/30 space-y-4">
+                        <div class="flex items-center space-x-3 border-b border-gray-800 pb-3">
+                            <i class="fa-solid fa-cloud text-goldAccent text-2xl"></i>
+                            <div>
+                                <h4 class="font-oswald font-bold text-base text-white uppercase">Pengaturan Cloud Firestore (GitHub Pages Ready)</h4>
+                                <p class="text-xs text-gray-300">Konfigurasi database Cloud tersimpan otomatis dan aktif di semua perangkat host github.io.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 font-medium mb-1">Custom Firebase Configuration JSON (Opsional)</label>
+                            <textarea id="firebase-config-json-input" rows="6" placeholder='{"apiKey": "AIzaSy...", "authDomain": "...", "projectId": "..."}' class="w-full bg-navy-900 border border-gray-700 rounded-xl p-3 text-xs text-goldAccent font-mono outline-none focus:border-goldAccent"></textarea>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="saveCustomFirebaseConfig()" class="px-5 py-2.5 bg-goldAccent hover:bg-yellow-500 text-navy-950 font-oswald font-bold text-xs uppercase rounded-xl transition">
+                                Simpan Config Firebase
+                            </button>
+                            <button onclick="resetFirebaseConfigDefault()" class="px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold text-xs uppercase rounded-xl transition">
+                                Reset ke Default
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -915,19 +948,83 @@
         import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'jong-canno-cup-2026';
+
+        // Load custom Apps Script Web App Endpoint URL if saved in settings
+        window.GAS_WEB_APP_URL = localStorage.getItem('jcc_gas_web_app_url') || '';
+
+        // Function to fetch data dynamically from Google Apps Script Web App
+        window.fetchDataFromGAS = async function() {
+            if (!window.GAS_WEB_APP_URL) return;
+            try {
+                const res = await fetch(`${window.GAS_WEB_APP_URL}?action=GET_ALL`);
+                const json = await res.json();
+                if (json && json.status === "success" && json.data) {
+                    if (json.data.teams && json.data.teams.length > 0) window.appState.teams = json.data.teams;
+                    if (json.data.players && json.data.players.length > 0) window.appState.players = json.data.players;
+                    if (json.data.matches && json.data.matches.length > 0) window.appState.matches = json.data.matches;
+                    if (json.data.announcements && json.data.announcements.length > 0) window.appState.announcements = json.data.announcements;
+                    syncLocalStorageCache();
+                    if (typeof window.renderAllViews === 'function') window.renderAllViews();
+                }
+            } catch (err) {
+                console.warn("GAS GET_ALL Fetch Notice:", err);
+            }
+        };
+
+        window.saveGasWebAppUrl = async function() {
+            const inputVal = document.getElementById('gas-web-app-url-input')?.value.trim();
+            if (!inputVal) {
+                showToast("Masukkan Web App URL yang valid!");
+                return;
+            }
+            window.GAS_WEB_APP_URL = inputVal;
+            localStorage.setItem('jcc_gas_web_app_url', inputVal);
+            showToast("API Web App tersimpan! Menghubungkan ke Google Sheets...");
+            await window.fetchDataFromGAS();
+            showToast("Data Google Sheets berhasil disinkronkan!");
+        };
+
+        window.clearGasWebAppUrl = function() {
+            window.GAS_WEB_APP_URL = '';
+            localStorage.removeItem('jcc_gas_web_app_url');
+            const inputEl = document.getElementById('gas-web-app-url-input');
+            if (inputEl) inputEl.value = '';
+            showToast("API Web App URL dihapus.");
+        };
+
+        // Function to synchronize with Google Apps Script Backend Spreadsheet
+        window.syncWithGoogleAppsScript = async function(action, payload = {}) {
+            if (!window.GAS_WEB_APP_URL) return;
+            try {
+                await fetch(window.GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action, ...payload })
+                });
+            } catch (err) {
+                console.warn("Apps Script Sync Notice:", err);
+            }
+        };
+
+        let customSavedConfig = null;
+        try {
+            const raw = localStorage.getItem('jcc_custom_firebase_config');
+            if (raw) customSavedConfig = JSON.parse(raw);
+        } catch(e) {}
         
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+        const firebaseConfig = customSavedConfig || (typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
             apiKey: "AIzaSyDemoPlaceholderOnlyKey12345",
             authDomain: "jong-canno-cup.firebaseapp.com",
             projectId: "jong-canno-cup",
             storageBucket: "jong-canno-cup.appspot.com",
             messagingSenderId: "123456789",
             appId: "1:123456789:web:abcdef123456"
-        };
+        });
 
         let app, db, auth, currentUser = null;
 
-        // Default initial mockup datasets
+        // Default initial datasets
         const DEFAULT_TEAMS = [
             { id: 't1', name: 'JONG CANNO FC', logo: 'https://iili.io/KhDMwdb.png' },
             { id: 't2', name: 'HARIMAU MALUKU FC', logo: 'https://placehold.co/100x100/16213e/febe10?text=HM' },
@@ -985,13 +1082,40 @@
             isAdminLoggedIn: false
         };
 
-        // Helper to update LocalStorage Cache Backup
+        // BroadcastChannel to trigger instant cross-tab sync
+        const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('jcc_sync_channel') : null;
+
+        if (syncChannel) {
+            syncChannel.onmessage = (event) => {
+                if (event.data && event.data.type === 'STATE_UPDATE') {
+                    if (event.data.state) {
+                        window.appState.teams = event.data.state.teams || window.appState.teams;
+                        window.appState.players = event.data.state.players || window.appState.players;
+                        window.appState.matches = event.data.state.matches || window.appState.matches;
+                        window.appState.announcements = event.data.state.announcements || window.appState.announcements;
+                        if (typeof window.renderAllViews === 'function') window.renderAllViews();
+                    }
+                }
+            };
+        }
+
         function syncLocalStorageCache() {
             try {
                 localStorage.setItem('jcc_teams', JSON.stringify(window.appState.teams));
                 localStorage.setItem('jcc_players', JSON.stringify(window.appState.players));
                 localStorage.setItem('jcc_matches', JSON.stringify(window.appState.matches));
                 localStorage.setItem('jcc_announcements', JSON.stringify(window.appState.announcements));
+                if (syncChannel) {
+                    syncChannel.postMessage({
+                        type: 'STATE_UPDATE',
+                        state: {
+                            teams: window.appState.teams,
+                            players: window.appState.players,
+                            matches: window.appState.matches,
+                            announcements: window.appState.announcements
+                        }
+                    });
+                }
             } catch (e) {
                 console.warn("Local storage cache sync:", e);
             }
@@ -1020,6 +1144,8 @@
             });
         } catch (e) {
             console.warn("Firestore running in local fallback mode:", e);
+            const statusText = document.getElementById('cloud-status-text');
+            if (statusText) statusText.innerText = "Local Realtime Active";
         }
 
         function getCollectionRef(colName) {
@@ -1054,7 +1180,6 @@
 
         function setupRealtimeListeners() {
             if (!currentUser) return;
-
             seedInitialCloudDataIfEmpty();
 
             let isInitialTeamsSync = true;
@@ -1106,6 +1231,7 @@
             }, (error) => console.warn("Announcements sync warning:", error));
         }
 
+        // Database CRUD operations with Cloud Firestore & Apps Script Sync
         window.dbSaveTeam = async function(teamData) {
             if (db && currentUser) {
                 await addDoc(getCollectionRef('teams'), teamData);
@@ -1114,6 +1240,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SAVE_TEAM', { team: teamData });
         };
 
         window.dbUpdateTeam = async function(id, teamData) {
@@ -1125,6 +1252,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SAVE_TEAM', { team: { id, ...teamData } });
         };
 
         window.dbDeleteTeam = async function(id) {
@@ -1135,6 +1263,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('DELETE_TEAM', { id });
         };
 
         window.dbSavePlayer = async function(playerData) {
@@ -1145,6 +1274,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { players: window.appState.players });
         };
 
         window.dbUpdatePlayer = async function(id, playerData) {
@@ -1156,6 +1286,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { players: window.appState.players });
         };
 
         window.dbDeletePlayer = async function(id) {
@@ -1166,6 +1297,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { players: window.appState.players });
         };
 
         window.dbSaveMatch = async function(matchData) {
@@ -1176,6 +1308,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { matches: window.appState.matches });
         };
 
         window.dbUpdateMatch = async function(id, matchData) {
@@ -1187,6 +1320,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { matches: window.appState.matches });
         };
 
         window.dbDeleteMatch = async function(id) {
@@ -1197,6 +1331,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { matches: window.appState.matches });
         };
 
         window.dbSaveAnnouncement = async function(annData) {
@@ -1207,6 +1342,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { announcements: window.appState.announcements });
         };
 
         window.dbUpdateAnnouncement = async function(id, annData) {
@@ -1218,6 +1354,7 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { announcements: window.appState.announcements });
         };
 
         window.dbDeleteAnnouncement = async function(id) {
@@ -1228,12 +1365,13 @@
                 syncLocalStorageCache();
                 if (typeof window.renderAllViews === 'function') window.renderAllViews();
             }
+            window.syncWithGoogleAppsScript('SYNC_ALL', { announcements: window.appState.announcements });
         };
     </script>
 
     <!-- APPLICATION CONTROLLER & RENDER ENGINE SCRIPT -->
     <script>
-        // Realtime Clock Handler
+        // Realtime Clock Handler (Hari, Tanggal Bulan Tahun | Jam:Menit:Detik WIB)
         function initClock() {
             const monthsIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             const daysIndo = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
@@ -1343,7 +1481,7 @@
             renderAdminView();
         }
 
-        // 1. Render Beranda
+        // 1. Render Beranda View
         function renderBerandaView() {
             const annContainer = document.getElementById('beranda-announcement-list');
             if (!annContainer) return;
@@ -1365,7 +1503,7 @@
             `).join('');
         }
 
-        // 2. Render Jadwal & Hasil
+        // 2. Render Jadwal & Hasil View
         function switchJadwalTab(tabName) {
             window.appState.jadwalTab = tabName;
             const btnTerjadwal = document.getElementById('tab-btn-terjadwal');
@@ -1450,7 +1588,7 @@
             }).join('');
         }
 
-        // Custom Modern Broadcast-Style Match Card Item Renderer
+        // Custom Broadcast Match Score Card Renderer
         function renderMatchCardItem(m) {
             const homeTeam = (window.appState.teams || []).find(t => t.id === m.homeTeamId) || { name: m.homeTeamName || 'HOME', logo: 'https://placehold.co/100x100/16213e/febe10?text=HOME' };
             const awayTeam = (window.appState.teams || []).find(t => t.id === m.awayTeamId) || { name: m.awayTeamName || 'AWAY', logo: 'https://placehold.co/100x100/16213e/febe10?text=AWAY' };
@@ -1527,7 +1665,7 @@
 
                     </div>
 
-                    <!-- Mobile Scorers & Cards Summary (Visible on small screens) -->
+                    <!-- Mobile Scorers & Cards Summary -->
                     ${isFinished && (homeScorersList || awayScorersList) ? `
                         <div class="sm:hidden grid grid-cols-2 gap-2 pt-2 border-t border-gray-800 text-[10px] text-gray-400 font-roboto">
                             <div class="text-right border-r border-gray-800 pr-2">${homeScorersList}</div>
@@ -1554,7 +1692,7 @@
             `;
         }
 
-        // 3. Render Top Skor
+        // 3. Render Top Skor View
         function renderTopSkorView() {
             const podiumContainer = document.getElementById('topskor-podium');
             const tableBody = document.getElementById('topskor-table-body');
@@ -1639,7 +1777,7 @@
             `).join('');
         }
 
-        // 4. Render Tim Kontestan
+        // 4. Render Tim Kontestan View
         function renderTeamsView() {
             const grid = document.getElementById('teams-grid');
             if (!grid) return;
@@ -1724,7 +1862,7 @@
             document.getElementById('teamDetailModal').classList.add('hidden');
         }
 
-        // 5. Render Ulang Tahun Pemain
+        // 5. Render Ulang Tahun Pemain View
         function renderUltahView() {
             const tabsContainer = document.getElementById('ultah-month-tabs');
             const listContainer = document.getElementById('ultah-players-list');
@@ -1905,7 +2043,7 @@
             const targetTab = document.getElementById(`admin-panel-${tabName}`);
             if (targetTab) targetTab.classList.remove('hidden');
 
-            const tabs = ['pemain', 'jadwal', 'hasil', 'tim', 'pengumuman'];
+            const tabs = ['pemain', 'jadwal', 'hasil', 'tim', 'pengumuman', 'cloud'];
             tabs.forEach(t => {
                 const btn = document.getElementById(`admin-tab-${t}`);
                 if (btn) {
@@ -2320,7 +2458,7 @@
             renderAdminView();
         }
 
-        // Team Management & Excel Upload Handlers
+        // Team Management & Canvas Image Compress Handlers
         function previewUploadedLogo(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -2329,7 +2467,6 @@
             reader.onload = function(e) {
                 const img = new Image();
                 img.onload = function() {
-                    // Maximum dimensions for team logo avatar (200x200 px)
                     const maxDim = 200;
                     let width = img.width;
                     let height = img.height;
@@ -2352,7 +2489,6 @@
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
 
-                    // Compress to JPEG Data URL (quality 0.85) to keep payload under ~30KB
                     const compressedBase64 = canvas.toDataURL('image/jpeg', 0.85);
 
                     document.getElementById('team-logo-preview').src = compressedBase64;
@@ -2372,7 +2508,6 @@
             if (!logo) {
                 logo = `https://placehold.co/100x100/16213e/febe10?text=${encodeURIComponent(name.substring(0, 3))}`;
             } else if (logo.length > 800000) {
-                // Safety guard against oversized Base64 payloads exceeding Firestore 1MB limit
                 showToast("Ukuran logo terlalu besar! Menggunakan logo placeholder.");
                 logo = `https://placehold.co/100x100/16213e/febe10?text=${encodeURIComponent(name.substring(0, 3))}`;
             }
@@ -2442,7 +2577,6 @@
                         let name = null;
                         let logo = null;
 
-                        // Case-insensitive key detection
                         for (const key of Object.keys(row)) {
                             const cleanKey = key.trim().toLowerCase();
                             if (['nama tim', 'nama', 'team', 'name', 'nama_tim'].includes(cleanKey)) {
@@ -2563,6 +2697,26 @@
             `).join('');
         }
 
+        // Firebase Custom Config Handler for GitHub Pages
+        function saveCustomFirebaseConfig() {
+            const val = document.getElementById('firebase-config-json-input')?.value;
+            if (!val) return;
+            try {
+                JSON.parse(val);
+                localStorage.setItem('jcc_custom_firebase_config', val);
+                showToast("Konfigurasi Firebase Tersimpan! Memuat ulang...");
+                setTimeout(() => window.location.reload(), 1200);
+            } catch (err) {
+                showToast("Format JSON Firebase tidak valid!");
+            }
+        }
+
+        function resetFirebaseConfigDefault() {
+            localStorage.removeItem('jcc_custom_firebase_config');
+            showToast("Konfigurasi Firebase di-reset. Memuat ulang...");
+            setTimeout(() => window.location.reload(), 1200);
+        }
+
         // Global Scope Declarations for HTML Event Handlers
         window.initClock = initClock;
         window.toggleNavDrawer = toggleNavDrawer;
@@ -2606,6 +2760,8 @@
         window.editAnnItem = editAnnItem;
         window.cancelEditAnn = cancelEditAnn;
         window.deleteAnnItem = deleteAnnItem;
+        window.saveCustomFirebaseConfig = saveCustomFirebaseConfig;
+        window.resetFirebaseConfigDefault = resetFirebaseConfigDefault;
 
         window.renderTeamsView = renderTeamsView;
         window.renderUltahView = renderUltahView;
@@ -2615,6 +2771,9 @@
         // Initialize on Window Load
         window.onload = function() {
             initClock();
+            if (window.GAS_WEB_APP_URL) {
+                window.fetchDataFromGAS();
+            }
             renderAllViews();
         };
     </script>
