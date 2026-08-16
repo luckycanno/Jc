@@ -1,268 +1,2667 @@
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>GAWANG MINI JONG CANNO CUP U19 - Season 2 2026</title>
-  <meta name="description" content="Website Resmi Turnamen Gawang Mini Jong Canno Cup U19 Season 2 2026 - Maluku.">
-  
-  <link rel="icon" type="image/png" href="https://iili.io/KhDMwdb.png">
-  <meta property="og:title" content="GAWANG MINI JONG CANNO CUP U19 - Season 2 2026">
-  <meta property="og:description" content="Jadwal, Hasil Pertandingan, Klasemen Top Skor, Data Tim & Pemain Jong Canno Cup U19.">
-  <meta property="og:image" content="https://iili.io/KhDMwdb.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GAWANG MINI JONG CANNO CUP U19 - SEASON 2 2026</title>
 
-  <!-- Google Fonts: Oswald & Roboto -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navyDark: '#1a1a2e',
-              navyDeep: '#16213e',
-              navyMid: '#0f3460',
-              gold: '#febe10',
-              goldHover: '#e5ab0e',
-              emerald: '#10b981',
-              accentRed: '#ef4444',
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- SheetJS for Excel Import -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#0a0d18',
+                            900: '#1a1a2e',
+                            800: '#16213e',
+                            700: '#0f3460',
+                            600: '#1f4287'
+                        },
+                        goldAccent: '#febe10',
+                        emeraldLive: '#10b981'
+                    },
+                    fontFamily: {
+                        oswald: ['Oswald', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif']
+                    }
+                }
             }
-          },
-          fontFamily: {
-            oswald: ['Oswald', 'sans-serif'],
-            roboto: ['Roboto', 'sans-serif'],
-          }
         }
-      }
-    }
-  </script>
+    </script>
 
-  <!-- External Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #080b14;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(15, 52, 96, 0.45) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(254, 190, 16, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-  <style>
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #1a1a2e; }
-    ::-webkit-scrollbar-thumb { background: #0f3460; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #febe10; }
+        /* Ambient Animated Mesh Blobs */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.25;
+            animation: floatBlob 12s ease-in-out infinite alternate;
+        }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      min-height: 100vh;
-      color: #ffffff;
-      background-attachment: fixed;
-      overflow-x: hidden;
-    }
+        .blob-1 {
+            top: 10%;
+            left: -5%;
+            width: 350px;
+            height: 350px;
+            background: #0f3460;
+        }
 
-    .bg-pattern {
-      background-image: radial-gradient(rgba(254, 190, 16, 0.08) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 32px 32px;
-      background-position: 0 0, 16px 16px;
-    }
+        .blob-2 {
+            bottom: 15%;
+            right: -5%;
+            width: 400px;
+            height: 400px;
+            background: #febe10;
+        }
 
-    .glass-card {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    }
-    .glass-card-hover { transition: all 0.3s ease; }
-    .glass-card-hover:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(254, 190, 16, 0.4);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
-    }
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 40px) scale(1.1); }
+        }
 
-    .glass-header {
-      background: rgba(26, 26, 46, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        /* Glassmorphism Card Style - Modernized Deep Navy Glass */
+        .glass-card {
+            background: rgba(13, 22, 44, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(254, 190, 16, 0.22);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    .glass-modal {
-      background: rgba(22, 33, 62, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(254, 190, 16, 0.25);
-    }
+        .glass-card-sm {
+            background: rgba(18, 30, 58, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+        }
 
-    .score-glow {
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 35px rgba(254, 190, 16, 0.3);
-    }
+        .glass-card-sm:hover {
+            border-color: rgba(254, 190, 16, 0.4);
+            transform: translateY(-2px);
+        }
 
-    .live-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background-color: #ef4444;
-      border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-      animation: pulse-red 1.5s infinite;
-    }
-    @keyframes pulse-red {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(8, 11, 20, 0.9);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #febe10 0%, #d49a07 100%);
+            border-radius: 999px;
+        }
 
-    .tab-btn.active {
-      background: linear-gradient(135deg, #febe10 0%, #e5ab0e 100%);
-      color: #1a1a2e;
-      font-weight: 700;
-      box-shadow: 0 4px 15px rgba(254, 190, 16, 0.35);
-    }
+        /* Ambient Glow & Neon Shadows */
+        .glow-score {
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 15px rgba(254, 190, 16, 0.7), 0 0 5px rgba(254, 190, 16, 0.9);
+        }
 
-    #sidebar-drawer { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-  </style>
+        .gold-glow {
+            text-shadow: 0 0 18px rgba(254, 190, 16, 0.75);
+        }
+
+        /* Ticker Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Subtle Background Grid Texture */
+        .bg-pattern {
+            background-image: radial-gradient(rgba(254, 190, 16, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        @keyframes pulseSlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.03); }
+        }
+
+        .animate-live-badge {
+            animation: pulseSlow 2s infinite ease-in-out;
+        }
+    </style>
 </head>
-<body class="bg-pattern text-slate-100 flex flex-col min-h-screen">
+<body class="relative bg-pattern min-h-screen flex flex-col justify-between selection:bg-goldAccent selection:text-navy-950">
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-40 w-full glass-header shadow-lg">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button id="btn-toggle-menu" onclick="toggleSidebar()" aria-label="Buka Menu" class="p-2 rounded-xl text-brand-gold hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center justify-center focus:outline-none">
-          <i class="fa-solid fa-bars text-xl"></i>
-        </button>
+    <!-- Ambient Background Blobs -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
 
-        <a href="javascript:void(0)" onclick="navigateTo('beranda')" class="flex items-center gap-2 group cursor-pointer" title="Kembali ke Beranda">
-          <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full p-0.5 bg-gradient-to-tr from-brand-gold to-yellow-200 shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
-            <img src="https://iili.io/KhDMwdb.png" alt="Logo Jong Canno Cup" class="w-full h-full object-contain rounded-full bg-[#1a1a2e]">
-          </div>
-          <div class="flex flex-col">
-            <span class="font-oswald font-bold text-sm sm:text-lg tracking-wider text-white group-hover:text-brand-gold transition leading-tight">
-              JONG CANNO CUP
-            </span>
-            <span class="text-[10px] sm:text-xs text-brand-gold/90 font-medium tracking-widest uppercase">
-              U19 • SEASON 2 2026
-            </span>
-          </div>
-        </a>
-      </div>
+    <!-- STICKY HEADER CONTAINER -->
+    <header class="sticky top-0 z-40 w-full glass-card border-b border-goldAccent/30 px-3 sm:px-6 py-2.5 flex items-center justify-between shadow-2xl">
+        <div class="flex items-center space-x-3">
+            <!-- Sidebar Drawer Toggle Toggle Button -->
+            <button onclick="toggleNavDrawer()" class="p-2 rounded-xl bg-navy-800/90 hover:bg-goldAccent/25 border border-goldAccent/40 text-goldAccent transition duration-200 hover:scale-105 active:scale-95 shadow-md">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
 
-      <div class="flex items-center gap-2 sm:gap-4">
-        <div class="text-right flex flex-col justify-center">
-          <div class="flex items-center justify-end gap-1.5 text-[11px] sm:text-xs text-slate-300 font-medium">
-            <i class="fa-regular fa-calendar text-brand-gold text-[10px] sm:text-xs"></i>
-            <span id="realtime-date" class="font-roboto">Memuat tanggal...</span>
-          </div>
-          <div class="flex items-center justify-end gap-1.5 text-xs sm:text-sm font-oswald font-bold text-brand-gold tracking-wide">
-            <span class="live-dot"></span>
-            <span id="realtime-time" class="tracking-widest">00:00:00 WIT</span>
-          </div>
+            <!-- Event Brand Logo & Title -->
+            <a href="javascript:void(0)" onclick="switchView('beranda')" class="flex items-center space-x-2.5 group">
+                <img src="https://iili.io/KhDMwdb.png" alt="Jong Canno Icon" class="w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_10px_rgba(254,190,16,0.5)] group-hover:scale-110 transition duration-300 transform">
+                <div class="flex flex-col">
+                    <span class="font-oswald font-bold text-base sm:text-xl tracking-wider text-white group-hover:text-goldAccent transition">JONG CANNO CUP</span>
+                    <span class="text-[10px] sm:text-xs font-roboto text-goldAccent tracking-widest uppercase font-semibold">U19 SEASON 2 2026</span>
+                </div>
+            </a>
         </div>
 
-        <button onclick="openSyncModal()" title="Sinkronisasi Data Cloud" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-brand-navyMid/70 hover:bg-brand-navyMid text-slate-200 hover:text-brand-gold border border-white/15 transition flex items-center gap-1.5 text-xs font-semibold">
-          <i class="fa-solid fa-cloud-arrow-up text-brand-gold"></i>
-          <span class="hidden md:inline">Sync Cloud</span>
-        </button>
+        <!-- Realtime Clock & Admin Trigger -->
+        <div class="flex items-center space-x-3">
+            <!-- Cloud Status Indicator -->
+            <div title="Multi-Device Cloud Sync Aktif" class="hidden md:flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span id="cloud-status-text" class="text-xs font-bold font-oswald uppercase tracking-wider">Cloud Connected</span>
+            </div>
 
-        <button onclick="openAdminModal()" title="Panel Admin (Password: qwerty)" class="p-2 sm:px-3.5 sm:py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-yellow-500/20 hover:from-amber-500/30 hover:to-yellow-500/30 border border-brand-gold/40 text-brand-gold hover:text-white transition flex items-center gap-1.5 text-xs sm:text-sm font-bold shadow-sm">
-          <i class="fa-solid fa-shield-halved text-brand-gold"></i>
-          <span class="hidden sm:inline">Admin</span>
-        </button>
-      </div>
-    </div>
-  </header>
+            <!-- Realtime Clock Display -->
+            <div class="hidden sm:flex flex-col items-end text-right border-r border-gray-700/60 pr-3">
+                <span id="header-date" class="text-[11px] font-roboto text-goldAccent font-medium tracking-wide">--</span>
+                <span id="header-clock" class="text-xs font-oswald font-bold text-white tracking-widest">00:00:00 WIB</span>
+            </div>
 
-  <!-- SIDEBAR DRAWER -->
-  <div id="sidebar-backdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
-
-  <nav id="sidebar-drawer" class="fixed top-0 left-0 h-full w-72 sm:w-80 bg-[#16213e] border-r border-brand-gold/30 z-50 transform -translate-x-full shadow-2xl flex flex-col justify-between">
-    <div>
-      <div class="p-4 border-b border-white/10 flex items-center justify-between bg-[#1a1a2e]">
-        <div class="flex items-center gap-3">
-          <img src="https://iili.io/KhDMwdb.png" alt="Logo" class="w-10 h-10 rounded-full border border-brand-gold p-0.5 object-contain">
-          <div>
-            <h3 class="font-oswald font-bold text-white text-base leading-tight">JONG CANNO CUP</h3>
-            <p class="text-[11px] text-brand-gold">Turnamen Gawang Mini U19</p>
-          </div>
+            <!-- Admin Button -->
+            <button onclick="handleAdminIconClick()" title="Panel Admin (Password: qwerty)" class="p-2 rounded-xl bg-navy-800 hover:bg-goldAccent/25 border border-goldAccent/40 text-goldAccent transition hover:scale-105 active:scale-95 shadow-md flex items-center space-x-1.5">
+                <i class="fa-solid fa-user-shield text-lg"></i>
+                <span class="hidden sm:inline text-xs font-oswald font-bold uppercase">Admin</span>
+            </button>
         </div>
-        <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
-      </div>
+    </header>
 
-      <div class="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-140px)]">
-        <button onclick="navigateTo('beranda')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-house w-5 text-brand-gold"></i>
-          <span>Beranda</span>
-        </button>
-        <button onclick="navigateTo('jadwal')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-calendar-days w-5 text-brand-gold"></i>
-          <span>Jadwal & Hasil</span>
-        </button>
-        <button onclick="navigateTo('topskor')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-trophy w-5 text-brand-gold"></i>
-          <span>Top Skor (32 Besar+)</span>
-        </button>
-        <button onclick="navigateTo('tim')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-users-viewfinder w-5 text-brand-gold"></i>
-          <span>Daftar Tim & Pemain</span>
-        </button>
-        <button onclick="navigateTo('ulangtahun')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-cake-candles w-5 text-brand-gold"></i>
-          <span>Ulang Tahun Pemain</span>
-        </button>
-        <button onclick="navigateTo('pengumuman')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-bullhorn w-5 text-brand-gold"></i>
-          <span>Pengumuman</span>
-        </button>
-
-        <div class="pt-2 pb-1">
-          <div class="border-t border-white/10 my-1"></div>
-          <span class="text-[10px] uppercase font-bold text-slate-400 px-3 tracking-wider">Link Eksternal & Bagan</span>
+    <!-- LIVE NEWS TICKER MARQUEE BAR -->
+    <div class="bg-navy-950/90 border-b border-goldAccent/25 px-4 py-1.5 overflow-hidden flex items-center space-x-3 text-xs shadow-inner">
+        <div class="flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-goldAccent text-navy-950 font-oswald font-bold uppercase text-[10px] shrink-0 tracking-wider">
+            <i class="fa-solid fa-bolt text-navy-950"></i>
+            <span>INFO LIVE</span>
         </div>
-
-        <button onclick="navigateTo('bagan')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-sitemap w-5 text-brand-gold"></i>
-          <span>Bagan Turnamen (Canva)</span>
-        </button>
-        <button onclick="navigateTo('aturan')" class="nav-item w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-brand-gold transition text-left">
-          <i class="fa-solid fa-file-shield w-5 text-brand-gold"></i>
-          <span>Aturan & Regulasi (Drive)</span>
-        </button>
-
-        <div class="pt-2 pb-1">
-          <div class="border-t border-white/10 my-1"></div>
-          <span class="text-[10px] uppercase font-bold text-slate-400 px-3 tracking-wider">Manajemen & Cloud</span>
+        <div class="overflow-hidden w-full relative">
+            <div class="animate-marquee font-roboto text-gray-200 text-xs tracking-wide">
+                <span>🏆 Selamat datang di <strong>GAWANG MINI JONG CANNO CUP U19 - SEASON 2 2026</strong> &nbsp;•&nbsp; ⚡ Integrasi Digital Realtime Cloud Sync &nbsp;•&nbsp; ⚽ Junjung Tinggi Sportivitas & Kehormatan &nbsp;•&nbsp; 📊 Perhitungan Top Skor Dimulai dari Babak 32 Besar &nbsp;•&nbsp; 📱 Akses Dari Mana Saja di Perangkat HP, Tablet & PC!</span>
+            </div>
         </div>
-
-        <button onclick="openAdminModal()" class="w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-bold text-amber-300 hover:bg-brand-gold/20 hover:text-white transition text-left">
-          <i class="fa-solid fa-lock w-5 text-amber-400"></i>
-          <span>Panel Admin (qwerty)</span>
-        </button>
-        <button onclick="openSyncModal()" class="w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium text-emerald-400 hover:bg-emerald-500/20 transition text-left">
-          <i class="fa-solid fa-cloud-arrow-down w-5 text-emerald-400"></i>
-          <span>Bagikan / Sinkronisasi</span>
-        </button>
-      </div>
     </div>
 
-    <div class="p-3 border-t border-white/10 bg-[#1a1a2e] text-center">
-      <p class="text-[11px] text-slate-400">Gawang Mini Jong Canno Cup U19</p>
-      <p class="text-[10px] text-brand-gold font-medium">Digital Football Management • Maluku</p>
+    <!-- Cloud Info Banner -->
+    <div id="cloud-info-banner" class="bg-gradient-to-r from-emerald-950/90 via-navy-900 to-emerald-950/90 border-b border-emerald-500/30 px-4 py-2 text-center text-xs text-emerald-300 font-roboto flex items-center justify-center space-x-2 shadow-md">
+        <i class="fa-solid fa-tower-broadcast animate-pulse text-emerald-400 text-sm"></i>
+        <span><strong>Sistem Cloud Aktif:</strong> Terhubung secara <i>Real-time</i>. Input & update data dari Admin otomatis muncul secara instan di semua HP/Perangkat tanpa perlu reload!</span>
     </div>
-  </nav>
 
-  <!-- MAIN SECTIONS -->
-  <main class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
-    <!-- Konten Beranda, Jadwal, Top Skor, Tim, Aturan, Bagan, Ulang Tahun, Pengumuman terpasang lengkap -->
-  </main>
+    <!-- SIDEBAR NAVIGATION DRAWER OVERLAY -->
+    <div id="navOverlay" onclick="closeNavDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
+
+    <aside id="navDrawer" class="fixed top-0 left-0 bottom-0 w-72 sm:w-80 glass-card bg-navy-950/95 z-50 transform -translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between p-5 border-r border-goldAccent/30">
+        <div class="space-y-6">
+            <!-- Sidebar Header -->
+            <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+                <div class="flex items-center space-x-3">
+                    <img src="https://iili.io/KhDMwdb.png" alt="Logo" class="w-10 h-10 object-contain">
+                    <div>
+                        <h2 class="font-oswald font-bold text-white text-lg tracking-wide">MENU UTAMA</h2>
+                        <p class="text-[10px] text-goldAccent font-medium">JONG CANNO CUP U19</p>
+                    </div>
+                </div>
+                <button onclick="closeNavDrawer()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1.5 font-oswald text-sm">
+                <button onclick="switchView('beranda')" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-house text-goldAccent w-5 text-center"></i>
+                    <span>BERANDA</span>
+                </button>
+                <button onclick="switchView('jadwal')" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-calendar-days text-goldAccent w-5 text-center"></i>
+                    <span>JADWAL & HASIL</span>
+                </button>
+                <button onclick="switchView('topskor')" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-ranking-star text-goldAccent w-5 text-center"></i>
+                    <span>TOP SKOR</span>
+                </button>
+                <button onclick="switchView('tim')" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-people-group text-goldAccent w-5 text-center"></i>
+                    <span>TIM KONTESTAN</span>
+                </button>
+                <a href="https://drive.google.com/file/d/1mQ3zfdWQQISzyM1Yx-UdcMM7iTGxl8b7/view" target="_blank" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-file-contract text-goldAccent w-5 text-center"></i>
+                    <span>ATURAN PERTANDINGAN</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto text-gray-400"></i>
+                </a>
+                <a href="https://jongcannocup.my.canva.site/bagan-u19" target="_blank" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-diagram-project text-goldAccent w-5 text-center"></i>
+                    <span>BAGAN TURNAMEN</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto text-gray-400"></i>
+                </a>
+                <button onclick="switchView('ultah')" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-cake-candles text-goldAccent w-5 text-center"></i>
+                    <span>ULANG TAHUN PEMAIN</span>
+                </button>
+                <button onclick="switchView('pengumuman')" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-goldAccent/15 hover:text-goldAccent text-gray-200 transition text-left font-medium">
+                    <i class="fa-solid fa-bullhorn text-goldAccent w-5 text-center"></i>
+                    <span>PENGUMUMAN</span>
+                </button>
+                
+                <!-- Admin Panel Navigation Link (Auto-unhide when logged in) -->
+                <button id="nav-admin-link" onclick="handleAdminIconClick()" class="hidden w-full items-center space-x-3 px-4 py-3 rounded-xl bg-goldAccent/20 border border-goldAccent/40 text-goldAccent transition text-left font-bold shadow-sm">
+                    <i class="fa-solid fa-user-shield text-goldAccent w-5 text-center"></i>
+                    <span>PANEL ADMIN</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="border-t border-gray-800 pt-4 space-y-2">
+            <div class="text-center text-[11px] text-gray-400 font-roboto">
+                &copy; 2026 Jong Canno Cup U19. All rights reserved.
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTAINER -->
+    <main class="w-full max-w-5xl mx-auto px-3 sm:px-6 py-4 space-y-6">
+
+        <!-- ================= BERANDA VIEW ================= -->
+        <section id="view-beranda" class="view-section space-y-6">
+            <!-- Hero Banner Container -->
+            <div class="relative rounded-3xl overflow-hidden glass-card p-6 sm:p-10 border border-goldAccent/40 flex flex-col items-center text-center space-y-6 shadow-2xl">
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/80 to-transparent z-0"></div>
+                
+                <!-- Floating Decorative Shapes -->
+                <div class="absolute top-3 right-5 w-24 h-24 rounded-full bg-goldAccent/10 blur-2xl"></div>
+                <div class="absolute bottom-3 left-5 w-32 h-32 rounded-full bg-blue-500/10 blur-2xl"></div>
+
+                <div class="relative z-10 space-y-4 max-w-3xl">
+                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-goldAccent/20 border border-goldAccent/60 text-goldAccent text-xs font-bold tracking-widest font-oswald uppercase shadow-md">
+                        <i class="fa-solid fa-trophy text-goldAccent animate-pulse"></i>
+                        <span>TURNAMEN GATAS JONG CANNO CUP U19 - SEASON 2</span>
+                    </div>
+                    
+                    <h1 class="font-oswald font-black text-3xl sm:text-6xl tracking-wide text-white uppercase drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] leading-tight">
+                        GAWANG MINI JONG CANNO CUP <span class="text-goldAccent gold-glow">2026</span>
+                    </h1>
+                    
+                    <p class="text-xs sm:text-sm text-gray-300 font-roboto leading-relaxed max-w-2xl mx-auto">
+                        Selamat datang di portal resmi kejuaraan sepak bola gawang mini terbesar dan paling bergengsi kategori usia 19 tahun di Maluku. Menyajikan laga seru dengan integrasi digital *Real-time Cloud Database*.
+                    </p>
+
+                    <!-- Key Metrics Pill Counters -->
+                    <div class="flex flex-wrap justify-center gap-3 pt-2">
+                        <div class="px-4 py-2 rounded-2xl glass-card-sm border border-goldAccent/30 flex items-center space-x-2 text-xs">
+                            <i class="fa-solid fa-people-group text-goldAccent"></i>
+                            <span class="font-oswald font-bold text-white">32 TIM KONTESTAN</span>
+                        </div>
+                        <div class="px-4 py-2 rounded-2xl glass-card-sm border border-goldAccent/30 flex items-center space-x-2 text-xs">
+                            <i class="fa-solid fa-graduation-cap text-goldAccent"></i>
+                            <span class="font-oswald font-bold text-white">KATEGORI U-19</span>
+                        </div>
+                        <div class="px-4 py-2 rounded-2xl glass-card-sm border border-emerald-500/40 text-emerald-400 flex items-center space-x-2 text-xs">
+                            <i class="fa-solid fa-rotate text-emerald-400 animate-spin"></i>
+                            <span class="font-oswald font-bold">REALTIME CLOUD DB</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3 pt-3">
+                        <button onclick="switchView('jadwal')" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-goldAccent via-yellow-500 to-amber-600 text-navy-950 font-oswald font-bold text-sm tracking-wider uppercase hover:scale-105 transition transform shadow-xl flex items-center space-x-2">
+                            <i class="fa-solid fa-calendar-days text-navy-950"></i>
+                            <span>Lihat Jadwal & Hasil</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights Info Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="glass-card p-6 rounded-3xl border border-goldAccent/30 flex flex-col justify-between space-y-4 hover:border-goldAccent/60 transition shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-goldAccent/20 border border-goldAccent/50 flex items-center justify-center text-goldAccent text-2xl shadow-inner">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-oswald font-bold text-xl text-white tracking-wide">SPORTIVITAS & KEJUJURAN</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">Jong Canno Cup menerapkan pertandingan dengan jujur, adil, dan menjunjung tinggi nilai sportivitas di setiap laga.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-3xl border border-goldAccent/30 flex flex-col justify-between space-y-4 hover:border-goldAccent/60 transition shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400 text-2xl shadow-inner">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-oswald font-bold text-xl text-white tracking-wide">SISTEM DIGITAL MALUKU</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">Jong Canno Cup merupakan satu-satunya event kejuaraan sepak bola gawang mini yang menggunakan sistem digital terintegrasi di Maluku.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-3xl border border-goldAccent/30 flex flex-col justify-between space-y-4 hover:border-goldAccent/60 transition shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/50 flex items-center justify-center text-purple-400 text-2xl shadow-inner">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-oswald font-bold text-xl text-goldAccent tracking-wide">INSPIRATIONAL QUOTE</h3>
+                        <p class="text-xs text-gray-300 italic mt-2 font-roboto leading-relaxed">"Semakin tinggi pohon maka semakin kencang anginnya, semakin dalam lautan maka semakin besar tekanannya, semakin maju usaha orang maka semakin banyak orang yang akan berusaha menjatuhkan. Jong Canno akan selalu memberikan yang terbaik."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Announcements Preview Section -->
+            <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-5 border border-goldAccent/30">
+                <div class="flex items-center justify-between border-b border-gray-800 pb-3.5">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2 rounded-xl bg-goldAccent/20 border border-goldAccent/40 text-goldAccent">
+                            <i class="fa-solid fa-bullhorn text-lg"></i>
+                        </div>
+                        <h2 class="font-oswald font-bold text-xl sm:text-2xl text-white tracking-wide">PENGUMUMAN RESMI TURNAMEN</h2>
+                    </div>
+                    <button onclick="switchView('pengumuman')" class="px-3 py-1.5 rounded-xl bg-goldAccent/15 text-goldAccent border border-goldAccent/30 hover:bg-goldAccent/25 text-xs font-oswald font-bold uppercase transition">Selengkapnya &rarr;</button>
+                </div>
+                <div id="beranda-announcement-list" class="space-y-3">
+                    <!-- Dynamic Announcements Injection -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= JADWAL & HASIL VIEW ================= -->
+        <section id="view-jadwal" class="view-section hidden space-y-5">
+            <!-- Header Tab Switcher -->
+            <div class="glass-card p-2 rounded-2xl flex items-center justify-center space-x-2">
+                <button onclick="switchJadwalTab('terjadwal')" id="tab-btn-terjadwal" class="w-1/2 py-2.5 rounded-xl font-oswald font-bold text-sm tracking-wider uppercase transition bg-goldAccent text-navy-950 shadow-md">
+                    <i class="fa-solid fa-clock-rotate-left mr-1"></i> TERJADWAL
+                </button>
+                <button onclick="switchJadwalTab('selesai')" id="tab-btn-selesai" class="w-1/2 py-2.5 rounded-xl font-oswald font-bold text-sm tracking-wider uppercase transition text-gray-300 hover:text-white">
+                    <i class="fa-solid fa-circle-check mr-1"></i> SELESAI / HASIL
+                </button>
+            </div>
+
+            <!-- Dynamic Schedule & Results Matches List -->
+            <div id="matches-container" class="space-y-6">
+                <!-- Matches Rendered by JavaScript -->
+            </div>
+        </section>
+
+        <!-- ================= TOP SKOR VIEW ================= -->
+        <section id="view-topskor" class="view-section hidden space-y-6">
+            <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-goldAccent/40">
+                <div class="text-center space-y-2 max-w-xl mx-auto">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-goldAccent/20 border border-goldAccent/50 text-goldAccent text-xs font-bold font-oswald uppercase shadow-md">
+                        <i class="fa-solid fa-award"></i>
+                        <span>PERHITUNGAN RESMI MULAI BABAK 32 BESAR</span>
+                    </div>
+                    <h2 class="font-oswald font-bold text-3xl sm:text-4xl text-white tracking-wider">PAPAN TOP SKOR PERTANDINGAN</h2>
+                    <p class="text-xs text-gray-300">Daftar pencetak gol terbanyak berdasarkan pembaruan jadwal terbaru.</p>
+                </div>
+
+                <!-- Top Scorer Podium Preview (Top 3) -->
+                <div id="topskor-podium" class="grid grid-cols-3 gap-3 sm:gap-6 pt-4 max-w-2xl mx-auto">
+                    <!-- Podium items dynamically rendered -->
+                </div>
+
+                <!-- Full Top Scorer Table -->
+                <div class="overflow-x-auto rounded-2xl border border-gray-800 bg-navy-950/80 shadow-inner">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-navy-900 font-oswald uppercase text-goldAccent border-b border-gray-800">
+                            <tr>
+                                <th class="p-3.5 text-center w-12">POS</th>
+                                <th class="p-3.5">NAMA PEMAIN</th>
+                                <th class="p-3.5">TIM</th>
+                                <th class="p-3.5 text-center w-24">GOL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topskor-table-body" class="divide-y divide-gray-800/60 font-roboto">
+                            <!-- Top Scorers injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TIM KONTESTAN VIEW ================= -->
+        <section id="view-tim" class="view-section hidden space-y-5">
+            <!-- Search & Filter Bar -->
+            <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-gray-700">
+                <i class="fa-solid fa-magnifying-glass text-goldAccent text-lg ml-2"></i>
+                <input type="text" id="team-search-input" oninput="renderTeamsView()" placeholder="Cari Nama Tim Kontestan..." class="bg-transparent text-white text-sm outline-none w-full placeholder-gray-400 font-roboto">
+            </div>
+
+            <!-- Teams Grid Display -->
+            <div id="teams-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <!-- Teams Grid Items -->
+            </div>
+        </section>
+
+        <!-- TEAM DETAIL MODAL -->
+        <div id="teamDetailModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+            <div class="glass-card w-full max-w-xl p-6 rounded-3xl border border-goldAccent/40 space-y-6 max-h-[90vh] overflow-y-auto relative shadow-2xl">
+                <button onclick="closeTeamDetailModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div id="team-detail-content">
+                    <!-- Dynamic Team Details -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ULANG TAHUN PEMAIN VIEW ================= -->
+        <section id="view-ultah" class="view-section hidden space-y-5">
+            <div class="glass-card p-6 rounded-3xl space-y-5">
+                <div class="text-center space-y-2">
+                    <h2 class="font-oswald font-bold text-2xl sm:text-3xl text-goldAccent tracking-wide">ULANG TAHUN PEMAIN</h2>
+                    <p class="text-xs text-gray-300">Data umur dihitung secara akurat dalam hitungan <strong>Tahun dan Bulan</strong> berdasarkan waktu realtime hari ini.</p>
+                </div>
+
+                <!-- Month Filter Tabs Scrollable -->
+                <div class="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none" id="ultah-month-tabs">
+                    <!-- Month buttons injected by JS -->
+                </div>
+
+                <!-- Player Search Input -->
+                <div class="glass-card-sm p-3 rounded-xl flex items-center space-x-2">
+                    <i class="fa-solid fa-search text-goldAccent text-sm"></i>
+                    <input type="text" id="ultah-search-input" oninput="renderUltahView()" placeholder="Cari nama pemain / tim..." class="bg-transparent text-xs text-white outline-none w-full font-roboto">
+                </div>
+
+                <!-- Birthday Player List Grid -->
+                <div id="ultah-players-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Players injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PENGUMUMAN VIEW ================= -->
+        <section id="view-pengumuman" class="view-section hidden space-y-5">
+            <div class="glass-card p-6 rounded-3xl space-y-5">
+                <div class="flex items-center space-x-3 border-b border-gray-800 pb-3">
+                    <i class="fa-solid fa-bullhorn text-goldAccent text-2xl"></i>
+                    <div>
+                        <h2 class="font-oswald font-bold text-2xl text-white">PENGUMUMAN TERBARU</h2>
+                        <p class="text-xs text-gray-300">Informasi resmi dari panitia turnamen Jong Canno Cup U19.</p>
+                    </div>
+                </div>
+                <div id="announcement-full-list" class="space-y-4">
+                    <!-- Full Announcements injected by JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= ADMIN LOGIN MODAL ================= -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-sm p-6 rounded-3xl border border-goldAccent/50 space-y-4 text-center relative shadow-2xl">
+            <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl bg-goldAccent/20 border border-goldAccent/40 flex items-center justify-center text-goldAccent text-2xl mx-auto shadow-inner">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 class="font-oswald font-bold text-xl text-white uppercase tracking-wider">Akses Panel Admin</h3>
+                <p class="text-xs text-gray-300">Masukkan kata sandi untuk mengaktifkan fitur admin.</p>
+            </div>
+            <form onsubmit="submitAdminPassword(event)" class="space-y-3">
+                <div class="relative">
+                    <input type="password" id="admin-password-input" placeholder="Kata Sandi (Default: qwerty)" required class="w-full bg-navy-900 border border-goldAccent/40 rounded-xl px-4 py-3 text-white text-center text-sm outline-none focus:border-goldAccent font-mono">
+                </div>
+                <div id="login-error-msg" class="text-xs text-red-400 font-medium hidden">Sandi salah! Silakan coba lagi.</div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-goldAccent hover:bg-yellow-500 text-navy-950 font-oswald font-bold uppercase transition tracking-wider shadow-lg">
+                    <i class="fa-solid fa-key mr-1.5"></i> Masuk Admin
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= CUSTOM CONFIRM DIALOG MODAL ================= -->
+    <div id="confirmModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-sm p-6 rounded-3xl border border-red-500/40 space-y-4 text-center relative shadow-2xl">
+            <div class="w-12 h-12 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 text-2xl mx-auto">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="font-oswald font-bold text-lg text-white uppercase tracking-wider">Konfirmasi Hapus</h3>
+            <p id="confirm-modal-text" class="text-xs text-gray-300">Apakah Anda yakin ingin menghapus data ini?</p>
+            <div class="flex items-center space-x-3 pt-2">
+                <button id="confirm-modal-btn-yes" class="w-1/2 py-2.5 bg-red-500 hover:bg-red-600 text-white font-oswald font-bold uppercase rounded-xl transition text-xs">Ya, Hapus</button>
+                <button onclick="closeConfirmModal()" class="w-1/2 py-2.5 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold uppercase rounded-xl transition text-xs">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ADMIN PANEL MODAL ================= -->
+    <div id="adminModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-5">
+        <div class="glass-card w-full max-w-3xl rounded-3xl border border-goldAccent/50 flex flex-col max-h-[92vh] overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div class="p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between bg-navy-950/80">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-user-shield text-goldAccent text-2xl"></i>
+                    <div>
+                        <h3 class="font-oswald font-bold text-lg text-white tracking-wider uppercase">PANEL CONTROL ADMIN</h3>
+                        <p class="text-[10px] text-goldAccent font-medium">Sistem Input & Sinkronisasi Real-time</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="handleAdminLogout()" title="Keluar Mode Admin" class="px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-400 font-oswald text-xs font-bold rounded-xl transition">
+                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar
+                    </button>
+                    <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white text-xl p-1">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="flex items-center space-x-1 p-2 bg-navy-900 border-b border-gray-800 overflow-x-auto text-xs font-oswald uppercase">
+                <button onclick="switchAdminTab('pemain')" id="admin-tab-pemain" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 bg-goldAccent text-navy-950">Input Pemain</button>
+                <button onclick="switchAdminTab('jadwal')" id="admin-tab-jadwal" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Input Jadwal</button>
+                <button onclick="switchAdminTab('hasil')" id="admin-tab-hasil" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Input Hasil</button>
+                <button onclick="switchAdminTab('tim')" id="admin-tab-tim" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Kelola Tim</button>
+                <button onclick="switchAdminTab('pengumuman')" id="admin-tab-pengumuman" class="px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white">Pengumuman</button>
+            </div>
+
+            <!-- Admin Body Scrollable Content -->
+            <div class="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1 text-xs sm:text-sm font-roboto">
+
+                <!-- TAB: INPUT PEMAIN -->
+                <div id="admin-panel-pemain" class="admin-panel-content space-y-5">
+                    <form onsubmit="handleSavePlayer(event)" class="glass-card-sm p-4 rounded-2xl space-y-4 border border-gray-700">
+                        <input type="hidden" id="admin-player-edit-id">
+                        <h4 class="font-oswald font-bold text-base text-goldAccent uppercase" id="admin-player-form-title">Tambah Data Pemain Baru</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Pilih Tim</label>
+                                <select id="player-team-select" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                                    <!-- Team options injected -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Nama Pemain Lengkap</label>
+                                <input type="text" id="player-name-input" required placeholder="Contoh: Rivaldo Laka" class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Nomor Punggung</label>
+                                <input type="number" id="player-number-input" required placeholder="Contoh: 10" class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Tanggal Lahir</label>
+                                <input type="date" id="player-dob-input" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2 pt-1">
+                            <button type="submit" class="w-full py-3 bg-goldAccent hover:bg-yellow-500 text-navy-950 font-oswald font-bold uppercase rounded-xl transition shadow">
+                                Simpan Data Pemain
+                            </button>
+                            <button type="button" onclick="cancelEditPlayer()" id="btn-cancel-player" class="hidden px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold uppercase rounded-xl transition">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Existing Players Table & Filter -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-oswald font-bold text-sm text-white uppercase">Daftar Pemain Terdaftar</h4>
+                            <select id="admin-player-filter-team" onchange="renderAdminPlayerList()" class="bg-navy-900 border border-gray-700 text-xs text-goldAccent p-1.5 rounded-lg">
+                                <option value="ALL">Semua Tim</option>
+                            </select>
+                        </div>
+                        <div class="overflow-x-auto rounded-xl border border-gray-800">
+                            <table class="w-full text-left">
+                                <thead class="bg-navy-900 font-oswald text-xs uppercase text-goldAccent">
+                                    <tr>
+                                        <th class="p-2.5">NO</th>
+                                        <th class="p-2.5">PEMAIN</th>
+                                        <th class="p-2.5">TIM</th>
+                                        <th class="p-2.5">TGL LAHIR</th>
+                                        <th class="p-2.5 text-center">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-players-table-body" class="divide-y divide-gray-800/60 font-roboto text-xs">
+                                    <!-- Player rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: INPUT JADWAL -->
+                <div id="admin-panel-jadwal" class="admin-panel-content hidden space-y-5">
+                    <form onsubmit="handleSaveMatch(event)" class="glass-card-sm p-4 rounded-2xl space-y-4 border border-gray-700">
+                        <input type="hidden" id="admin-match-edit-id">
+                        <h4 class="font-oswald font-bold text-base text-goldAccent uppercase" id="admin-match-form-title">Tambah Jadwal Pertandingan Baru</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Babak Pertandingan</label>
+                                <select id="match-babak-select" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent font-oswald">
+                                    <option value="BABAK PENYISIHAN">BABAK PENYISIHAN</option>
+                                    <option value="BABAK 128 BESAR">BABAK 128 BESAR</option>
+                                    <option value="BABAK 64 BESAR">BABAK 64 BESAR</option>
+                                    <option value="BABAK 32 BESAR">BABAK 32 BESAR</option>
+                                    <option value="BABAK 16 BESAR">BABAK 16 BESAR</option>
+                                    <option value="BABAK 8 BESAR">BABAK 8 BESAR</option>
+                                    <option value="BABAK SEMIFINAL">BABAK SEMIFINAL</option>
+                                    <option value="BABAK 3RD PLACE">BABAK 3RD PLACE</option>
+                                    <option value="FINAL">FINAL</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Tanggal Pertandingan</label>
+                                <input type="date" id="match-date-input" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Jam Pertandingan (WIB)</label>
+                                <input type="time" id="match-time-input" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Tim Home (Tuan Rumah)</label>
+                                <select id="match-home-team-select" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                                    <!-- Options injected -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Tim Away (Tamu)</label>
+                                <select id="match-away-team-select" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                                    <!-- Options injected -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2 pt-1">
+                            <button type="submit" class="w-full py-3 bg-goldAccent hover:bg-yellow-500 text-navy-950 font-oswald font-bold uppercase rounded-xl transition shadow">
+                                Simpan Jadwal Pertandingan
+                            </button>
+                            <button type="button" onclick="cancelEditMatch()" id="btn-cancel-match" class="hidden px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold uppercase rounded-xl transition">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Existing Schedule Table -->
+                    <div class="space-y-3">
+                        <h4 class="font-oswald font-bold text-sm text-white uppercase">Daftar Jadwal Pertandingan</h4>
+                        <div class="overflow-x-auto rounded-xl border border-gray-800">
+                            <table class="w-full text-left">
+                                <thead class="bg-navy-900 font-oswald text-xs uppercase text-goldAccent">
+                                    <tr>
+                                        <th class="p-2.5">WAKTU</th>
+                                        <th class="p-2.5">PERTANDINGAN</th>
+                                        <th class="p-2.5">STATUS</th>
+                                        <th class="p-2.5 text-center">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-matches-table-body" class="divide-y divide-gray-800/60 font-roboto text-xs">
+                                    <!-- Rows injected -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: INPUT HASIL PERTANDINGAN -->
+                <div id="admin-panel-hasil" class="admin-panel-content hidden space-y-5">
+                    <form onsubmit="handleSaveResult(event)" class="glass-card-sm p-4 rounded-2xl space-y-4 border border-gray-700">
+                        <h4 class="font-oswald font-bold text-base text-goldAccent uppercase">Input / Update Skor Hasil Pertandingan</h4>
+                        <div>
+                            <label class="block text-gray-300 font-medium mb-1">Pilih Pertandingan</label>
+                            <select id="result-match-select" onchange="populateResultFormFields()" required class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent font-oswald">
+                                <!-- Match options injected -->
+                            </select>
+                        </div>
+
+                        <!-- Score Input Grid -->
+                        <div class="grid grid-cols-2 gap-4 bg-navy-950/60 p-4 rounded-xl border border-gray-800">
+                            <div class="text-center space-y-2">
+                                <span id="result-home-team-label" class="font-oswald font-bold text-sm text-goldAccent block">HOME TEAM</span>
+                                <input type="number" id="result-home-score" min="0" required placeholder="0" class="w-20 mx-auto bg-navy-900 border border-goldAccent/50 rounded-xl text-center text-2xl font-oswald font-bold text-white p-2">
+                            </div>
+                            <div class="text-center space-y-2">
+                                <span id="result-away-team-label" class="font-oswald font-bold text-sm text-goldAccent block">AWAY TEAM</span>
+                                <input type="number" id="result-away-score" min="0" required placeholder="0" class="w-20 mx-auto bg-navy-900 border border-goldAccent/50 rounded-xl text-center text-2xl font-oswald font-bold text-white p-2">
+                            </div>
+                        </div>
+
+                        <!-- Goal Scorers Input Section -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="space-y-2 bg-navy-950/40 p-3 rounded-xl border border-gray-800">
+                                <h5 class="font-oswald font-bold text-xs text-gray-200 uppercase flex items-center justify-between">
+                                    <span>Pencetak Gol Home</span>
+                                    <button type="button" onclick="addScorerRow('home')" class="text-goldAccent hover:underline text-[11px]">+ Tambah</button>
+                                </h5>
+                                <div id="home-scorers-container" class="space-y-2">
+                                    <!-- Scorer Rows -->
+                                </div>
+                            </div>
+                            <div class="space-y-2 bg-navy-950/40 p-3 rounded-xl border border-gray-800">
+                                <h5 class="font-oswald font-bold text-xs text-gray-200 uppercase flex items-center justify-between">
+                                    <span>Pencetak Gol Away</span>
+                                    <button type="button" onclick="addScorerRow('away')" class="text-goldAccent hover:underline text-[11px]">+ Tambah</button>
+                                </h5>
+                                <div id="away-scorers-container" class="space-y-2">
+                                    <!-- Scorer Rows -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Yellow & Red Cards Input Section -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="space-y-2 bg-navy-950/40 p-3 rounded-xl border border-gray-800">
+                                <h5 class="font-oswald font-bold text-xs text-gray-200 uppercase flex items-center justify-between">
+                                    <span>Kartu Kuning / Merah Home</span>
+                                    <button type="button" onclick="addCardRow('home')" class="text-goldAccent hover:underline text-[11px]">+ Tambah</button>
+                                </h5>
+                                <div id="home-cards-container" class="space-y-2">
+                                    <!-- Card Rows -->
+                                </div>
+                            </div>
+                            <div class="space-y-2 bg-navy-950/40 p-3 rounded-xl border border-gray-800">
+                                <h5 class="font-oswald font-bold text-xs text-gray-200 uppercase flex items-center justify-between">
+                                    <span>Kartu Kuning / Merah Away</span>
+                                    <button type="button" onclick="addCardRow('away')" class="text-goldAccent hover:underline text-[11px]">+ Tambah</button>
+                                </h5>
+                                <div id="away-cards-container" class="space-y-2">
+                                    <!-- Card Rows -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Penalty Option if Seri -->
+                        <div class="bg-navy-950/60 p-3.5 rounded-xl border border-gray-800 space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="result-is-penalty" onchange="togglePenaltyFields()" class="rounded border-gray-700 bg-navy-900 text-goldAccent">
+                                <label for="result-is-penalty" class="font-oswald font-bold text-xs text-goldAccent uppercase cursor-pointer">Adu Penalti (Jika Skor Seri)</label>
+                            </div>
+                            <div id="penalty-fields" class="hidden grid-cols-2 gap-3 pt-1">
+                                <div>
+                                    <label class="block text-gray-300 text-[11px] mb-1">Skor Penalti Home</label>
+                                    <input type="number" id="result-penalty-home" min="0" placeholder="0" class="w-full bg-navy-900 border border-gray-700 rounded-lg p-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-300 text-[11px] mb-1">Skor Penalti Away</label>
+                                    <input type="number" id="result-penalty-away" min="0" placeholder="0" class="w-full bg-navy-900 border border-gray-700 rounded-lg p-2 text-white">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-oswald font-bold uppercase rounded-xl transition shadow">
+                            Simpan Hasil Pertandingan & Selesaikan
+                        </button>
+                    </form>
+                </div>
+
+                <!-- TAB: KELOLA TIM -->
+                <div id="admin-panel-tim" class="admin-panel-content hidden space-y-5">
+                    <!-- Excel Import Box -->
+                    <div class="glass-card-sm p-4 rounded-2xl border border-emerald-500/40 bg-emerald-950/20 space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-file-excel text-emerald-400 text-xl"></i>
+                            <div>
+                                <h4 class="font-oswald font-bold text-sm text-emerald-400 uppercase">IMPORT DATAFACE TIM DARI FILE EXCEL</h4>
+                                <p class="text-[11px] text-gray-300">Unggah file Excel (.xlsx / .xls) berisi daftar nama tim dan link logo tim.</p>
+                            </div>
+                        </div>
+                        <input type="file" id="excel-file-input" accept=".xlsx, .xls" class="block w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-oswald file:font-bold file:bg-emerald-500 file:text-navy-950 hover:file:bg-emerald-600 cursor-pointer">
+                        <button onclick="handleImportExcelTeams()" class="w-full py-2 bg-emerald-500 hover:bg-emerald-600 text-navy-950 font-oswald font-bold text-xs uppercase rounded-xl transition">
+                            Proses & Import Data Excel
+                        </button>
+                    </div>
+
+                    <!-- Add/Edit Single Team Manual Form -->
+                    <form onsubmit="handleSaveTeam(event)" class="glass-card-sm p-4 rounded-2xl space-y-4 border border-gray-700">
+                        <input type="hidden" id="admin-team-edit-id">
+                        <h4 class="font-oswald font-bold text-base text-goldAccent uppercase" id="admin-team-form-title">Tambah / Edit Tim Manual</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Nama Tim</label>
+                                <input type="text" id="team-name-input" required placeholder="Contoh: JONG CANNO FC" class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 font-medium mb-1">Upload Logo Tim (Gambar / File)</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="file" id="team-logo-file-input" accept="image/*" onchange="previewUploadedLogo(event)" class="block w-full text-xs text-gray-400 file:mr-2 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-oswald file:font-bold file:bg-goldAccent file:text-navy-950 hover:file:bg-yellow-500 cursor-pointer">
+                                    <img id="team-logo-preview" src="https://placehold.co/100x100/16213e/febe10?text=LOGO" alt="Preview" class="w-10 h-10 object-contain rounded-lg border border-goldAccent/40 shrink-0">
+                                </div>
+                                <input type="hidden" id="team-logo-url-hidden">
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2 pt-1">
+                            <button type="submit" class="w-full py-3 bg-goldAccent hover:bg-yellow-500 text-navy-950 font-oswald font-bold uppercase rounded-xl transition shadow">
+                                Simpan Data Tim
+                            </button>
+                            <button type="button" onclick="cancelEditTeam()" id="btn-cancel-team" class="hidden px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold uppercase rounded-xl transition">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Existing Teams Management Grid -->
+                    <div class="space-y-3">
+                        <h4 class="font-oswald font-bold text-sm text-white uppercase">Daftar Tim Terdaftar</h4>
+                        <div id="admin-teams-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- Team items -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: PENGUMUMAN -->
+                <div id="admin-panel-pengumuman" class="admin-panel-content hidden space-y-5">
+                    <form onsubmit="handleSaveAnnouncement(event)" class="glass-card-sm p-4 rounded-2xl space-y-4 border border-gray-700">
+                        <input type="hidden" id="admin-ann-edit-id">
+                        <h4 class="font-oswald font-bold text-base text-goldAccent uppercase" id="admin-ann-form-title">Buat Pengumuman Resmi Baru</h4>
+                        <div>
+                            <label class="block text-gray-300 font-medium mb-1">Judul Pengumuman</label>
+                            <input type="text" id="ann-title-input" required placeholder="Contoh: Pembukaan Official Jong Canno Cup U19" class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 font-medium mb-1">Isi Pengumuman</label>
+                            <textarea id="ann-content-input" rows="4" required placeholder="Tuliskan detail informasi..." class="w-full bg-navy-900 border border-gray-700 rounded-xl p-2.5 text-white outline-none focus:border-goldAccent font-roboto"></textarea>
+                        </div>
+                        <div class="flex items-center space-x-2 pt-1">
+                            <button type="submit" class="w-full py-3 bg-goldAccent hover:bg-yellow-500 text-navy-950 font-oswald font-bold uppercase rounded-xl transition shadow">
+                                Rilis Pengumuman
+                            </button>
+                            <button type="button" onclick="cancelEditAnn()" id="btn-cancel-ann" class="hidden px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-oswald font-bold uppercase rounded-xl transition">
+                                Batal
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Existing Announcements List -->
+                    <div class="space-y-3">
+                        <h4 class="font-oswald font-bold text-sm text-white uppercase">Daftar Pengumuman Terbit</h4>
+                        <div id="admin-ann-list" class="space-y-3">
+                            <!-- Announcement items -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-navy-800 text-white border border-goldAccent/40 px-4 py-3 rounded-xl shadow-2xl transition-all duration-300 opacity-0 pointer-events-none transform translate-y-4 z-50 flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toast-message" class="text-sm font-medium">Notifikasi</span>
+    </div>
+
+    <!-- FIREBASE INIT & APPLICATION LOGIC SCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'jong-canno-cup-2026';
+        
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyDemoPlaceholderOnlyKey12345",
+            authDomain: "jong-canno-cup.firebaseapp.com",
+            projectId: "jong-canno-cup",
+            storageBucket: "jong-canno-cup.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+
+        let app, db, auth, currentUser = null;
+
+        // Default initial mockup datasets
+        const DEFAULT_TEAMS = [
+            { id: 't1', name: 'JONG CANNO FC', logo: 'https://iili.io/KhDMwdb.png' },
+            { id: 't2', name: 'HARIMAU MALUKU FC', logo: 'https://placehold.co/100x100/16213e/febe10?text=HM' },
+            { id: 't3', name: 'GARUDA CANNO U19', logo: 'https://placehold.co/100x100/16213e/febe10?text=GC' },
+            { id: 't4', name: 'PUTRA CANNO FC', logo: 'https://placehold.co/100x100/16213e/febe10?text=PC' },
+            { id: 't5', name: 'TERNATE JUNIOR', logo: 'https://placehold.co/100x100/16213e/febe10?text=TJ' },
+            { id: 't6', name: 'AMBON UNITED', logo: 'https://placehold.co/100x100/16213e/febe10?text=AU' }
+        ];
+
+        const DEFAULT_PLAYERS = [
+            { id: 'p1', teamId: 't1', name: 'Rivaldo Laka', number: 10, dob: '2007-05-15' },
+            { id: 'p2', teamId: 't1', name: 'Fikram Salampessy', number: 7, dob: '2007-08-20' },
+            { id: 'p3', teamId: 't2', name: 'Alif Rumagesan', number: 9, dob: '2008-01-10' },
+            { id: 'p4', teamId: 't2', name: 'Zulkifli Hitimala', number: 11, dob: '2007-11-04' }
+        ];
+
+        const DEFAULT_MATCHES = [
+            {
+                id: 'm1',
+                babak: 'BABAK 32 BESAR',
+                date: new Date().toISOString().split('T')[0],
+                time: '15:30',
+                homeTeamId: 't1',
+                homeTeamName: 'JONG CANNO FC',
+                awayTeamId: 't2',
+                awayTeamName: 'HARIMAU MALUKU FC',
+                status: 'SELESAI',
+                homeScore: 3,
+                awayScore: 1,
+                homeScorers: [
+                    { playerId: 'p1', playerName: 'Rivaldo Laka', minute: 15 },
+                    { playerId: 'p1', playerName: 'Rivaldo Laka', minute: 42 },
+                    { playerId: 'p2', playerName: 'Fikram Salampessy', minute: 68 }
+                ],
+                awayScorers: [
+                    { playerId: 'p3', playerName: 'Alif Rumagesan', minute: 30 }
+                ],
+                homeCards: [
+                    { playerId: 'p2', playerName: 'Fikram Salampessy', cardType: '🟨' }
+                ],
+                awayCards: []
+            }
+        ];
+
+        window.appState = {
+            teams: JSON.parse(localStorage.getItem('jcc_teams')) || DEFAULT_TEAMS,
+            players: JSON.parse(localStorage.getItem('jcc_players')) || DEFAULT_PLAYERS,
+            matches: JSON.parse(localStorage.getItem('jcc_matches')) || DEFAULT_MATCHES,
+            announcements: JSON.parse(localStorage.getItem('jcc_announcements')) || [
+                { id: 'a1', title: 'Pembukaan Official Jong Canno Cup U19 Season 2', content: 'Turnamen resmi dimulai! Harap semua tim datang 30 menit sebelum jadwal tanding.', date: '2026-08-01' }
+            ],
+            activeView: 'beranda',
+            jadwalTab: 'terjadwal',
+            ultahSelectedMonth: new Date().getMonth() + 1,
+            isAdminLoggedIn: false
+        };
+
+        // Helper to update LocalStorage Cache Backup
+        function syncLocalStorageCache() {
+            try {
+                localStorage.setItem('jcc_teams', JSON.stringify(window.appState.teams));
+                localStorage.setItem('jcc_players', JSON.stringify(window.appState.players));
+                localStorage.setItem('jcc_matches', JSON.stringify(window.appState.matches));
+                localStorage.setItem('jcc_announcements', JSON.stringify(window.appState.announcements));
+            } catch (e) {
+                console.warn("Local storage cache sync:", e);
+            }
+        }
+
+        // Firebase Sync Initializer
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            const initialToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+            if (initialToken) {
+                signInWithCustomToken(auth, initialToken).catch(err => signInAnonymously(auth));
+            } else {
+                signInAnonymously(auth).catch(err => console.warn("Anon auth fallback:", err));
+            }
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    currentUser = user;
+                    const statusText = document.getElementById('cloud-status-text');
+                    if (statusText) statusText.innerText = "Cloud Synchronized";
+                    setupRealtimeListeners();
+                }
+            });
+        } catch (e) {
+            console.warn("Firestore running in local fallback mode:", e);
+        }
+
+        function getCollectionRef(colName) {
+            return collection(db, 'artifacts', appId, 'public', 'data', colName);
+        }
+
+        async function seedInitialCloudDataIfEmpty() {
+            if (!db || !currentUser) return;
+            try {
+                const teamsSnap = await getDocs(getCollectionRef('teams'));
+                if (teamsSnap.empty) {
+                    for (const team of DEFAULT_TEAMS) {
+                        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'teams', team.id), team);
+                    }
+                }
+                const playersSnap = await getDocs(getCollectionRef('players'));
+                if (playersSnap.empty) {
+                    for (const player of DEFAULT_PLAYERS) {
+                        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'players', player.id), player);
+                    }
+                }
+                const matchesSnap = await getDocs(getCollectionRef('matches'));
+                if (matchesSnap.empty) {
+                    for (const match of DEFAULT_MATCHES) {
+                        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'matches', match.id), match);
+                    }
+                }
+            } catch (err) {
+                console.warn("Cloud seeding skipped:", err);
+            }
+        }
+
+        function setupRealtimeListeners() {
+            if (!currentUser) return;
+
+            seedInitialCloudDataIfEmpty();
+
+            onSnapshot(getCollectionRef('teams'), (snapshot) => {
+                if (!snapshot.empty) {
+                    const teamsArr = [];
+                    snapshot.forEach(docSnap => teamsArr.push({ id: docSnap.id, ...docSnap.data() }));
+                    window.appState.teams = teamsArr;
+                    syncLocalStorageCache();
+                }
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }, (error) => console.warn("Teams sync warning:", error));
+
+            onSnapshot(getCollectionRef('players'), (snapshot) => {
+                if (!snapshot.empty) {
+                    const playersArr = [];
+                    snapshot.forEach(docSnap => playersArr.push({ id: docSnap.id, ...docSnap.data() }));
+                    window.appState.players = playersArr;
+                    syncLocalStorageCache();
+                }
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }, (error) => console.warn("Players sync warning:", error));
+
+            onSnapshot(getCollectionRef('matches'), (snapshot) => {
+                if (!snapshot.empty) {
+                    const matchesArr = [];
+                    snapshot.forEach(docSnap => matchesArr.push({ id: docSnap.id, ...docSnap.data() }));
+                    window.appState.matches = matchesArr;
+                    syncLocalStorageCache();
+                }
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }, (error) => console.warn("Matches sync warning:", error));
+
+            onSnapshot(getCollectionRef('announcements'), (snapshot) => {
+                if (!snapshot.empty) {
+                    const annArr = [];
+                    snapshot.forEach(docSnap => annArr.push({ id: docSnap.id, ...docSnap.data() }));
+                    window.appState.announcements = annArr;
+                    syncLocalStorageCache();
+                }
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }, (error) => console.warn("Announcements sync warning:", error));
+        }
+
+        // Global Share & QR Modal Helpers
+        window.openShareModal = function() {
+            const shareModal = document.getElementById('shareModal');
+            const urlInput = document.getElementById('share-url-input');
+            const qrImg = document.getElementById('share-qr-img');
+            const currentUrl = window.location.href;
+
+            if (urlInput) urlInput.value = currentUrl;
+            if (qrImg) {
+                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}&color=0f3460&bg=ffffff`;
+            }
+            if (shareModal) shareModal.classList.remove('hidden');
+        };
+
+        window.closeShareModal = function() {
+            const shareModal = document.getElementById('shareModal');
+            if (shareModal) shareModal.classList.add('hidden');
+        };
+
+        window.copyShareUrl = function() {
+            const urlInput = document.getElementById('share-url-input');
+            if (urlInput) {
+                urlInput.select();
+                document.execCommand('copy');
+                if (typeof window.showToast === 'function') {
+                    window.showToast("Link Cloud Turnamen Berhasil Disalin!");
+                }
+            }
+        };
+
+        window.shareTournamentLink = function() {
+            window.openShareModal();
+        };
+
+        window.dbSaveTeam = async function(teamData) {
+            if (db && currentUser) {
+                await addDoc(getCollectionRef('teams'), teamData);
+            } else {
+                window.appState.teams.push({ id: 'local_' + Date.now(), ...teamData });
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbUpdateTeam = async function(id, teamData) {
+            if (db && currentUser) {
+                await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'teams', id), teamData);
+            } else {
+                const idx = window.appState.teams.findIndex(t => t.id === id);
+                if (idx !== -1) window.appState.teams[idx] = { ...window.appState.teams[idx], ...teamData };
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbDeleteTeam = async function(id) {
+            if (db && currentUser) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'teams', id));
+            } else {
+                window.appState.teams = window.appState.teams.filter(t => t.id !== id);
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbSavePlayer = async function(playerData) {
+            if (db && currentUser) {
+                await addDoc(getCollectionRef('players'), playerData);
+            } else {
+                window.appState.players.push({ id: 'local_' + Date.now(), ...playerData });
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbUpdatePlayer = async function(id, playerData) {
+            if (db && currentUser) {
+                await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'players', id), playerData);
+            } else {
+                const idx = window.appState.players.findIndex(p => p.id === id);
+                if (idx !== -1) window.appState.players[idx] = { ...window.appState.players[idx], ...playerData };
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbDeletePlayer = async function(id) {
+            if (db && currentUser) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'players', id));
+            } else {
+                window.appState.players = window.appState.players.filter(p => p.id !== id);
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbSaveMatch = async function(matchData) {
+            if (db && currentUser) {
+                await addDoc(getCollectionRef('matches'), matchData);
+            } else {
+                window.appState.matches.push({ id: 'local_' + Date.now(), ...matchData });
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbUpdateMatch = async function(id, matchData) {
+            if (db && currentUser) {
+                await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'matches', id), matchData);
+            } else {
+                const idx = window.appState.matches.findIndex(m => m.id === id);
+                if (idx !== -1) window.appState.matches[idx] = { ...window.appState.matches[idx], ...matchData };
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbDeleteMatch = async function(id) {
+            if (db && currentUser) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'matches', id));
+            } else {
+                window.appState.matches = window.appState.matches.filter(m => m.id !== id);
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbSaveAnnouncement = async function(annData) {
+            if (db && currentUser) {
+                await addDoc(getCollectionRef('announcements'), annData);
+            } else {
+                window.appState.announcements.push({ id: 'local_' + Date.now(), ...annData });
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbUpdateAnnouncement = async function(id, annData) {
+            if (db && currentUser) {
+                await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'announcements', id), annData);
+            } else {
+                const idx = window.appState.announcements.findIndex(a => a.id === id);
+                if (idx !== -1) window.appState.announcements[idx] = { ...window.appState.announcements[idx], ...annData };
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+
+        window.dbDeleteAnnouncement = async function(id) {
+            if (db && currentUser) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'announcements', id));
+            } else {
+                window.appState.announcements = window.appState.announcements.filter(a => a.id !== id);
+                syncLocalStorageCache();
+                if (typeof window.renderAllViews === 'function') window.renderAllViews();
+            }
+        };
+    </script>
+
+    <!-- APPLICATION CONTROLLER & RENDER ENGINE SCRIPT -->
+    <script>
+        // Realtime Clock Handler
+        function initClock() {
+            const monthsIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            const daysIndo = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+            function updateTime() {
+                const now = new Date();
+                const dayName = daysIndo[now.getDay()];
+                const dateNum = now.getDate();
+                const monthName = monthsIndo[now.getMonth()];
+                const yearNum = now.getFullYear();
+
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                const dateString = `${dayName}, ${dateNum} ${monthName} ${yearNum}`;
+                const clockString = `${hours}:${minutes}:${seconds} WIB`;
+
+                const dateEl = document.getElementById('header-date');
+                const clockEl = document.getElementById('header-clock');
+                if (dateEl) dateEl.innerText = dateString;
+                if (clockEl) clockEl.innerText = clockString;
+            }
+
+            updateTime();
+            setInterval(updateTime, 1000);
+        }
+
+        // Navigation Drawer Controls
+        function toggleNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            const overlay = document.getElementById('navOverlay');
+            drawer.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        function closeNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            const overlay = document.getElementById('navOverlay');
+            drawer.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        }
+
+        // View Switcher
+        function switchView(viewName) {
+            window.appState.activeView = viewName;
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
+
+            const targetView = document.getElementById(`view-${viewName}`);
+            if (targetView) targetView.classList.remove('hidden');
+
+            closeNavDrawer();
+            renderAllViews();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toast Notification Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            if (toast && msgEl) {
+                msgEl.innerText = message;
+                toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                }, 3000);
+            }
+        }
+
+        // Helper: Calculate Age (Years & Months) based on Realtime Date
+        function calculateAgeYearsMonths(dobString) {
+            if (!dobString) return '-';
+            const birthDate = new Date(dobString);
+            const today = new Date();
+
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+
+            if (months < 0 || (months === 0 && today.getDate() < birthDate.getDate())) {
+                years--;
+                months += 12;
+            }
+            if (today.getDate() < birthDate.getDate() && months > 0) {
+                months--;
+            }
+
+            return `${years} Thn ${months} Bln`;
+        }
+
+        // Format Date to Indo
+        function formatDateIndo(dateStr) {
+            if (!dateStr) return '';
+            const parts = dateStr.split('-');
+            if (parts.length !== 3) return dateStr;
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            return `${parts[2]} ${months[parseInt(parts[1]) - 1]} ${parts[0]}`;
+        }
+
+        // MAIN RENDER CONTROLLER
+        function renderAllViews() {
+            renderBerandaView();
+            renderJadwalView();
+            renderTopSkorView();
+            renderTeamsView();
+            renderUltahView();
+            renderPengumumanView();
+            renderAdminView();
+        }
+
+        // 1. Render Beranda
+        function renderBerandaView() {
+            const annContainer = document.getElementById('beranda-announcement-list');
+            if (!annContainer) return;
+
+            const anns = window.appState.announcements || [];
+            if (anns.length === 0) {
+                annContainer.innerHTML = `<p class="text-xs text-gray-400 italic">Belum ada pengumuman terbaru.</p>`;
+                return;
+            }
+
+            annContainer.innerHTML = anns.slice(0, 3).map(ann => `
+                <div class="glass-card-sm p-4 rounded-2xl space-y-1.5 border border-goldAccent/20">
+                    <div class="flex items-center justify-between text-goldAccent font-oswald text-xs">
+                        <span class="font-bold tracking-wide">${ann.title}</span>
+                        <span class="text-gray-400 font-roboto text-[11px]"><i class="fa-regular fa-clock mr-1"></i>${formatDateIndo(ann.date)}</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed font-roboto">${ann.content}</p>
+                </div>
+            `).join('');
+        }
+
+        // 2. Render Jadwal & Hasil
+        function switchJadwalTab(tabName) {
+            window.appState.jadwalTab = tabName;
+            const btnTerjadwal = document.getElementById('tab-btn-terjadwal');
+            const btnSelesai = document.getElementById('tab-btn-selesai');
+
+            if (tabName === 'terjadwal') {
+                btnTerjadwal.className = "w-1/2 py-2.5 rounded-xl font-oswald font-bold text-sm tracking-wider uppercase transition bg-goldAccent text-navy-950 shadow-md";
+                btnSelesai.className = "w-1/2 py-2.5 rounded-xl font-oswald font-bold text-sm tracking-wider uppercase transition text-gray-300 hover:text-white";
+            } else {
+                btnSelesai.className = "w-1/2 py-2.5 rounded-xl font-oswald font-bold text-sm tracking-wider uppercase transition bg-goldAccent text-navy-950 shadow-md";
+                btnTerjadwal.className = "w-1/2 py-2.5 rounded-xl font-oswald font-bold text-sm tracking-wider uppercase transition text-gray-300 hover:text-white";
+            }
+
+            renderJadwalView();
+        }
+
+        function renderJadwalView() {
+            const container = document.getElementById('matches-container');
+            if (!container) return;
+
+            const currentTab = window.appState.jadwalTab;
+            const matches = window.appState.matches || [];
+
+            // Filter matches based on status tab
+            let filteredMatches = matches.filter(m => {
+                if (currentTab === 'terjadwal') return m.status !== 'SELESAI';
+                return m.status === 'SELESAI';
+            });
+
+            if (filteredMatches.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-card p-10 rounded-3xl text-center space-y-3">
+                        <i class="fa-solid fa-calendar-xmark text-gray-500 text-4xl"></i>
+                        <h3 class="font-oswald font-bold text-lg text-gray-300">TIDAK ADA PERTANDINGAN</h3>
+                        <p class="text-xs text-gray-400">Belum ada daftar pertandingan pada kategori tab ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group matches by Date
+            const groupedByDate = {};
+            filteredMatches.forEach(m => {
+                if (!groupedByDate[m.date]) groupedByDate[m.date] = [];
+                groupedByDate[m.date].push(m);
+            });
+
+            // Sort dates (Latest date top)
+            const sortedDates = Object.keys(groupedByDate).sort((a, b) => new Date(b) - new Date(a));
+
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            container.innerHTML = sortedDates.map(dateKey => {
+                const dayMatches = groupedByDate[dateKey];
+                // Sort day matches by time ascending (smallest to largest time)
+                dayMatches.sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+
+                const isToday = dateKey === todayStr;
+
+                return `
+                    <div class="glass-card p-4 sm:p-6 rounded-3xl border border-goldAccent/30 space-y-4 shadow-xl">
+                        <!-- Date Header Card Header -->
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-calendar-day text-goldAccent text-lg"></i>
+                                <span class="font-oswald font-bold text-lg text-white uppercase tracking-wider">${formatDateIndo(dateKey)}</span>
+                            </div>
+                            ${isToday ? `
+                                <div class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold font-oswald uppercase flex items-center space-x-1.5 animate-live-badge">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span>HARI INI</span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Match Cards List in One Frame -->
+                        <div class="space-y-4">
+                            ${dayMatches.map(m => renderMatchCardItem(m)).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Custom Modern Broadcast-Style Match Card Item Renderer
+        function renderMatchCardItem(m) {
+            const homeTeam = (window.appState.teams || []).find(t => t.id === m.homeTeamId) || { name: m.homeTeamName || 'HOME', logo: 'https://placehold.co/100x100/16213e/febe10?text=HOME' };
+            const awayTeam = (window.appState.teams || []).find(t => t.id === m.awayTeamId) || { name: m.awayTeamName || 'AWAY', logo: 'https://placehold.co/100x100/16213e/febe10?text=AWAY' };
+
+            const isFinished = m.status === 'SELESAI';
+
+            // Scorers Lists
+            const homeScorersList = (m.homeScorers || []).map(s => `${s.playerName} ${s.minute ? s.minute + "'" : ''}`).join(' <br> ');
+            const awayScorersList = (m.awayScorers || []).map(s => `${s.playerName} ${s.minute ? s.minute + "'" : ''}`).join(' <br> ');
+
+            // Cards Lists
+            const homeCardsList = (m.homeCards || []).map(c => `${c.cardType || '🟨'} ${c.playerName}`).join(' • ');
+            const awayCardsList = (m.awayCards || []).map(c => `${c.cardType || '🟨'} ${c.playerName}`).join(' • ');
+
+            return `
+                <div class="relative rounded-2xl glass-card-sm p-4 sm:p-6 border border-gray-700/60 overflow-hidden space-y-3 hover:border-goldAccent/40 transition">
+                    <!-- Top Match Info Badge -->
+                    <div class="flex items-center justify-between text-[11px] font-oswald text-goldAccent tracking-widest uppercase">
+                        <span><i class="fa-solid fa-trophy mr-1 text-goldAccent"></i>${m.babak || 'BABAK PENYISIHAN'}</span>
+                        <span class="text-gray-300"><i class="fa-regular fa-clock mr-1"></i>${m.time || '15:00'} WIB</span>
+                    </div>
+
+                    <!-- MATCH SCORE SECTION -->
+                    <div class="grid grid-cols-11 items-center gap-1 sm:gap-2">
+                        
+                        <!-- HOME TEAM (KIRI) -->
+                        <div class="col-span-5 flex items-center justify-end space-x-2 sm:space-x-3 text-right">
+                            <!-- Home Scorers (Di SEBELAH KIRI Skor) -->
+                            ${isFinished ? `
+                                <div class="hidden sm:block text-[11px] text-gray-400 font-roboto leading-tight pr-1">
+                                    ${homeScorersList || ''}
+                                    ${homeCardsList ? `<div class="text-[10px] text-yellow-400 mt-0.5">${homeCardsList}</div>` : ''}
+                                </div>
+                            ` : ''}
+
+                            <!-- Home Score (Besar Glow) -->
+                            <div class="text-3xl sm:text-5xl font-oswald font-black ${isFinished ? 'text-white glow-score' : 'text-gray-500'}">
+                                ${isFinished ? (m.homeScore !== undefined ? m.homeScore : '0') : ''}
+                            </div>
+
+                            <!-- Home Name & Logo -->
+                            <div class="flex flex-col items-end shrink-0">
+                                <img src="${homeTeam.logo}" alt="${homeTeam.name}" class="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-md rounded-full bg-navy-900/80 p-1 border border-goldAccent/30">
+                                <span class="font-oswald font-bold text-xs sm:text-sm text-white uppercase tracking-wider mt-1 text-right max-w-[110px] truncate">${homeTeam.name}</span>
+                            </div>
+                        </div>
+
+                        <!-- VS SEPARATOR (TENGAH) -->
+                        <div class="col-span-1 flex flex-col items-center justify-center text-center">
+                            <span class="font-oswald font-bold text-xs sm:text-sm text-goldAccent opacity-80">VS</span>
+                        </div>
+
+                        <!-- AWAY TEAM (KANAN) -->
+                        <div class="col-span-5 flex items-center justify-start space-x-2 sm:space-x-3 text-left">
+                            <!-- Away Name & Logo -->
+                            <div class="flex flex-col items-start shrink-0">
+                                <img src="${awayTeam.logo}" alt="${awayTeam.name}" class="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-md rounded-full bg-navy-900/80 p-1 border border-goldAccent/30">
+                                <span class="font-oswald font-bold text-xs sm:text-sm text-white uppercase tracking-wider mt-1 text-left max-w-[110px] truncate">${awayTeam.name}</span>
+                            </div>
+
+                            <!-- Away Score (Besar Glow) -->
+                            <div class="text-3xl sm:text-5xl font-oswald font-black ${isFinished ? 'text-white glow-score' : 'text-gray-500'}">
+                                ${isFinished ? (m.awayScore !== undefined ? m.awayScore : '0') : ''}
+                            </div>
+
+                            <!-- Away Scorers (Di SEBELAH KANAN Skor) -->
+                            ${isFinished ? `
+                                <div class="hidden sm:block text-[11px] text-gray-400 font-roboto leading-tight pl-1">
+                                    ${awayScorersList || ''}
+                                    ${awayCardsList ? `<div class="text-[10px] text-yellow-400 mt-0.5">${awayCardsList}</div>` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+
+                    </div>
+
+                    <!-- Mobile Scorers & Cards Summary (Visible on small screens) -->
+                    ${isFinished && (homeScorersList || awayScorersList) ? `
+                        <div class="sm:hidden grid grid-cols-2 gap-2 pt-2 border-t border-gray-800 text-[10px] text-gray-400 font-roboto">
+                            <div class="text-right border-r border-gray-800 pr-2">${homeScorersList}</div>
+                            <div class="text-left pl-2">${awayScorersList}</div>
+                        </div>
+                    ` : ''}
+
+                    <!-- Penalty & Winner Result Line -->
+                    ${isFinished && m.isPenalty ? `
+                        <div class="text-center font-oswald text-xs text-goldAccent font-bold bg-navy-900/60 p-1.5 rounded-xl border border-goldAccent/20">
+                            Adu Penalti: ${m.homeTeamName} (${m.penaltyHome || 0}) vs (${m.penaltyAway || 0}) ${m.awayTeamName}
+                        </div>
+                    ` : ''}
+
+                    <!-- Bottom Status Badge -->
+                    ${isFinished ? `
+                        <div class="flex justify-center pt-1">
+                            <span class="px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-oswald font-bold uppercase tracking-widest">
+                                FULL TIME
+                            </span>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // 3. Render Top Skor
+        function renderTopSkorView() {
+            const podiumContainer = document.getElementById('topskor-podium');
+            const tableBody = document.getElementById('topskor-table-body');
+            if (!tableBody) return;
+
+            const matches = window.appState.matches || [];
+            const players = window.appState.players || [];
+            const teams = window.appState.teams || [];
+
+            // Calculate goals per player (From matches starting from Babak 32 Besar or All Finished matches)
+            const goalCounts = {};
+
+            matches.forEach(m => {
+                if (m.status === 'SELESAI') {
+                    (m.homeScorers || []).forEach(s => {
+                        if (s.playerId) {
+                            goalCounts[s.playerId] = (goalCounts[s.playerId] || 0) + 1;
+                        }
+                    });
+                    (m.awayScorers || []).forEach(s => {
+                        if (s.playerId) {
+                            goalCounts[s.playerId] = (goalCounts[s.playerId] || 0) + 1;
+                        }
+                    });
+                }
+            });
+
+            // Map to player list array
+            const topScorersList = Object.keys(goalCounts).map(pId => {
+                const p = players.find(x => x.id === pId) || { name: 'Pemain ' + pId, teamId: '' };
+                const t = teams.find(x => x.id === p.teamId) || { name: 'Tim Unknown' };
+                return {
+                    playerId: pId,
+                    name: p.name,
+                    teamName: t.name,
+                    goals: goalCounts[pId]
+                };
+            }).sort((a, b) => b.goals - a.goals);
+
+            if (topScorersList.length === 0) {
+                podiumContainer.innerHTML = '';
+                tableBody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400 italic">Belum ada data pencetak gol.</td></tr>`;
+                return;
+            }
+
+            // Podium Display for Top 3
+            const top3 = topScorersList.slice(0, 3);
+            podiumContainer.innerHTML = `
+                ${top3[1] ? `
+                    <div class="glass-card-sm p-3 rounded-2xl text-center space-y-1 border border-gray-400/40 transform translate-y-2">
+                        <span class="text-2xl">🥈</span>
+                        <h4 class="font-oswald font-bold text-xs text-white truncate">${top3[1].name}</h4>
+                        <p class="text-[10px] text-gray-400 truncate">${top3[1].teamName}</p>
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-gray-400/20 text-gray-200 font-oswald font-bold text-xs">${top3[1].goals} GOL</span>
+                    </div>
+                ` : '<div></div>'}
+                ${top3[0] ? `
+                    <div class="glass-card-sm p-4 rounded-2xl text-center space-y-1 border border-goldAccent/60 shadow-xl bg-goldAccent/10">
+                        <span class="text-3xl">🥇</span>
+                        <h4 class="font-oswald font-bold text-sm text-goldAccent truncate">${top3[0].name}</h4>
+                        <p class="text-[10px] text-gray-300 truncate">${top3[0].teamName}</p>
+                        <span class="inline-block px-3 py-1 rounded-full bg-goldAccent text-navy-950 font-oswald font-bold text-xs shadow">${top3[0].goals} GOL</span>
+                    </div>
+                ` : '<div></div>'}
+                ${top3[2] ? `
+                    <div class="glass-card-sm p-3 rounded-2xl text-center space-y-1 border border-amber-700/40 transform translate-y-3">
+                        <span class="text-2xl">🥉</span>
+                        <h4 class="font-oswald font-bold text-xs text-white truncate">${top3[2].name}</h4>
+                        <p class="text-[10px] text-gray-400 truncate">${top3[2].teamName}</p>
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-700/20 text-amber-500 font-oswald font-bold text-xs">${top3[2].goals} GOL</span>
+                    </div>
+                ` : '<div></div>'}
+            `;
+
+            tableBody.innerHTML = topScorersList.map((item, idx) => `
+                <tr class="hover:bg-navy-900/60 transition">
+                    <td class="p-3 text-center font-oswald font-bold text-goldAccent">${idx + 1}</td>
+                    <td class="p-3 font-medium text-white">${item.name}</td>
+                    <td class="p-3 text-gray-300">${item.teamName}</td>
+                    <td class="p-3 text-center font-oswald font-bold text-goldAccent text-base">${item.goals}</td>
+                </tr>
+            `).join('');
+        }
+
+        // 4. Render Tim Kontestan
+        function renderTeamsView() {
+            const grid = document.getElementById('teams-grid');
+            if (!grid) return;
+
+            const searchKey = (document.getElementById('team-search-input')?.value || '').toLowerCase();
+            const teams = (window.appState.teams || []).filter(t => t.name.toLowerCase().includes(searchKey));
+
+            if (teams.length === 0) {
+                grid.innerHTML = `<div class="col-span-full p-8 text-center text-gray-400 italic">Tidak ada tim yang ditemukan.</div>`;
+                return;
+            }
+
+            grid.innerHTML = teams.map(t => `
+                <div onclick="openTeamDetailModal('${t.id}')" class="glass-card-sm p-4 rounded-2xl text-center space-y-3 border border-gray-700/60 hover:border-goldAccent/50 transition cursor-pointer group shadow-md">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-navy-900 p-2 border border-goldAccent/30 group-hover:scale-105 transition transform flex items-center justify-center">
+                        <img src="${t.logo}" alt="${t.name}" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h4 class="font-oswald font-bold text-xs sm:text-sm text-white uppercase tracking-wider group-hover:text-goldAccent transition truncate">${t.name}</h4>
+                        <span class="text-[10px] text-gray-400 font-roboto">Klik untuk Detail &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Team Detail Modal Open
+        function openTeamDetailModal(teamId) {
+            const team = (window.appState.teams || []).find(t => t.id === teamId);
+            if (!team) return;
+
+            const teamPlayers = (window.appState.players || []).filter(p => p.teamId === teamId);
+            const teamMatches = (window.appState.matches || []).filter(m => m.homeTeamId === teamId || m.awayTeamId === teamId);
+
+            let wins = 0, draws = 0, losses = 0;
+            teamMatches.forEach(m => {
+                if (m.status === 'SELESAI') {
+                    const isHome = m.homeTeamId === teamId;
+                    const myScore = isHome ? m.homeScore : m.awayScore;
+                    const oppScore = isHome ? m.awayScore : m.homeScore;
+
+                    if (myScore > oppScore) wins++;
+                    else if (myScore < oppScore) losses++;
+                    else draws++;
+                }
+            });
+
+            const content = document.getElementById('team-detail-content');
+            content.innerHTML = `
+                <div class="text-center space-y-3 border-b border-gray-800 pb-5">
+                    <img src="${team.logo}" alt="${team.name}" class="w-24 h-24 mx-auto object-contain rounded-full bg-navy-900 p-2 border-2 border-goldAccent">
+                    <h2 class="font-oswald font-bold text-2xl text-white uppercase tracking-wider">${team.name}</h2>
+                    <div class="flex justify-center space-x-3 font-oswald text-xs">
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-lg border border-emerald-500/30">MENANG: ${wins}</span>
+                        <span class="px-3 py-1 bg-gray-500/20 text-gray-300 rounded-lg border border-gray-500/30">SERI: ${draws}</span>
+                        <span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-lg border border-red-500/30">KALAH: ${losses}</span>
+                    </div>
+                </div>
+
+                <!-- Squad Player Roster -->
+                <div class="space-y-3">
+                    <h3 class="font-oswald font-bold text-sm text-goldAccent uppercase">DAFTAR SKUAD PEMAIN (${teamPlayers.length})</h3>
+                    <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                        ${teamPlayers.length === 0 ? '<p class="text-xs text-gray-400 italic">Belum ada data pemain terdaftar.</p>' : 
+                            teamPlayers.map(p => `
+                                <div class="flex items-center justify-between glass-card-sm p-2.5 rounded-xl text-xs">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="w-6 h-6 rounded-md bg-goldAccent text-navy-950 font-oswald font-bold flex items-center justify-center">${p.number}</span>
+                                        <span class="font-medium text-white">${p.name}</span>
+                                    </div>
+                                    <span class="text-[11px] text-gray-400">${calculateAgeYearsMonths(p.dob)}</span>
+                                </div>
+                            `).join('')
+                        }
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('teamDetailModal').classList.remove('hidden');
+        }
+
+        function closeTeamDetailModal() {
+            document.getElementById('teamDetailModal').classList.add('hidden');
+        }
+
+        // 5. Render Ulang Tahun Pemain
+        function renderUltahView() {
+            const tabsContainer = document.getElementById('ultah-month-tabs');
+            const listContainer = document.getElementById('ultah-players-list');
+            if (!listContainer) return;
+
+            const monthsIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            const selMonth = window.appState.ultahSelectedMonth || (new Date().getMonth() + 1);
+
+            // Render Month Filter Buttons
+            tabsContainer.innerHTML = monthsIndo.map((mName, idx) => {
+                const mNum = idx + 1;
+                const active = mNum === selMonth;
+                return `
+                    <button onclick="setUltahMonth(${mNum})" class="px-3.5 py-1.5 rounded-xl font-oswald text-xs font-bold uppercase shrink-0 transition ${active ? 'bg-goldAccent text-navy-950 shadow' : 'bg-navy-900 text-gray-300 hover:text-white'}">
+                        ${mName}
+                    </button>
+                `;
+            }).join('');
+
+            const searchKey = (document.getElementById('ultah-search-input')?.value || '').toLowerCase();
+            const players = window.appState.players || [];
+            const teams = window.appState.teams || [];
+
+            // Filter players by selected birthday month
+            const monthPlayers = players.filter(p => {
+                if (!p.dob) return false;
+                const pMonth = parseInt(p.dob.split('-')[1]);
+                const matchMonth = pMonth === selMonth;
+                const matchName = p.name.toLowerCase().includes(searchKey);
+                return matchMonth && matchName;
+            });
+
+            if (monthPlayers.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="col-span-full p-8 text-center text-gray-400 italic glass-card-sm rounded-2xl">
+                        Tidak ada pemain yang ulang tahun pada bulan ${monthsIndo[selMonth - 1]}.
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = monthPlayers.map(p => {
+                const team = teams.find(t => t.id === p.teamId) || { name: 'Tim Unknown' };
+                const ageText = calculateAgeYearsMonths(p.dob);
+                return `
+                    <div class="glass-card-sm p-4 rounded-2xl space-y-2 border border-goldAccent/20 flex items-center justify-between">
+                        <div class="space-y-0.5">
+                            <span class="text-[10px] text-goldAccent font-oswald uppercase tracking-wider">${team.name} • #${p.number}</span>
+                            <h4 class="font-oswald font-bold text-sm text-white">${p.name}</h4>
+                            <p class="text-[11px] text-gray-300"><i class="fa-solid fa-cake-candles text-pink-400 mr-1"></i>${formatDateIndo(p.dob)}</p>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <span class="px-3 py-1 rounded-xl bg-goldAccent/20 text-goldAccent font-oswald font-bold text-xs border border-goldAccent/30">
+                                ${ageText}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function setUltahMonth(mNum) {
+            window.appState.ultahSelectedMonth = mNum;
+            renderUltahView();
+        }
+
+        // 6. Render Pengumuman View
+        function renderPengumumanView() {
+            const container = document.getElementById('announcement-full-list');
+            if (!container) return;
+
+            const anns = window.appState.announcements || [];
+            if (anns.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-400 italic">Belum ada pengumuman.</p>`;
+                return;
+            }
+
+            container.innerHTML = anns.map(ann => `
+                <div class="glass-card-sm p-5 rounded-2xl space-y-2 border border-goldAccent/20 shadow-md">
+                    <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                        <h3 class="font-oswald font-bold text-base text-goldAccent uppercase">${ann.title}</h3>
+                        <span class="text-xs text-gray-400 font-roboto"><i class="fa-regular fa-calendar-days mr-1"></i>${formatDateIndo(ann.date)}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-200 leading-relaxed font-roboto">${ann.content}</p>
+                </div>
+            `).join('');
+        }
+
+        // ================= ADMIN CONTROLLERS =================
+        function handleAdminIconClick() {
+            if (window.appState.isAdminLoggedIn) {
+                openAdminModal();
+            } else {
+                openAdminLoginModal();
+            }
+        }
+
+        function openAdminLoginModal() {
+            const modal = document.getElementById('adminLoginModal');
+            const pwdInput = document.getElementById('admin-password-input');
+            const errMsg = document.getElementById('login-error-msg');
+            if (pwdInput) pwdInput.value = '';
+            if (errMsg) errMsg.classList.add('hidden');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeAdminLoginModal() {
+            const modal = document.getElementById('adminLoginModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function submitAdminPassword(e) {
+            if (e) e.preventDefault();
+            const pwdInput = document.getElementById('admin-password-input');
+            const errMsg = document.getElementById('login-error-msg');
+            if (pwdInput && pwdInput.value === 'qwerty') {
+                window.appState.isAdminLoggedIn = true;
+                const navAdminLink = document.getElementById('nav-admin-link');
+                if (navAdminLink) navAdminLink.classList.remove('hidden');
+                closeAdminLoginModal();
+                showToast("Panel Admin Berhasil Diaktifkan!");
+                openAdminModal();
+            } else {
+                if (errMsg) errMsg.classList.remove('hidden');
+                showToast("Kata sandi salah!");
+            }
+        }
+
+        let pendingConfirmCallback = null;
+        function showConfirmDialog(message, callback) {
+            const confirmModal = document.getElementById('confirmModal');
+            const confirmText = document.getElementById('confirm-modal-text');
+            const confirmBtnYes = document.getElementById('confirm-modal-btn-yes');
+
+            if (confirmText) confirmText.innerText = message;
+            pendingConfirmCallback = callback;
+
+            if (confirmBtnYes) {
+                confirmBtnYes.onclick = async function() {
+                    if (pendingConfirmCallback) {
+                        const cb = pendingConfirmCallback;
+                        pendingConfirmCallback = null;
+                        await cb();
+                    }
+                    closeConfirmModal();
+                };
+            }
+
+            if (confirmModal) confirmModal.classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            const confirmModal = document.getElementById('confirmModal');
+            if (confirmModal) confirmModal.classList.add('hidden');
+            pendingConfirmCallback = null;
+        }
+
+        function handleAdminLogout() {
+            window.appState.isAdminLoggedIn = false;
+            const navAdminLink = document.getElementById('nav-admin-link');
+            if (navAdminLink) navAdminLink.classList.add('hidden');
+            closeAdminModal();
+            showToast("Anda telah keluar dari Mode Admin.");
+        }
+
+        function openAdminModal() {
+            renderAdminView();
+            document.getElementById('adminModal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-panel-content').forEach(el => el.classList.add('hidden'));
+
+            const targetTab = document.getElementById(`admin-panel-${tabName}`);
+            if (targetTab) targetTab.classList.remove('hidden');
+
+            const tabs = ['pemain', 'jadwal', 'hasil', 'tim', 'pengumuman'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`admin-tab-${t}`);
+                if (btn) {
+                    if (t === tabName) {
+                        btn.className = "px-3.5 py-2 rounded-xl font-bold transition shrink-0 bg-goldAccent text-navy-950";
+                    } else {
+                        btn.className = "px-3.5 py-2 rounded-xl font-bold transition shrink-0 text-gray-300 hover:text-white";
+                    }
+                }
+            });
+        }
+
+        function renderAdminView() {
+            populateAdminDropdowns();
+            renderAdminPlayerList();
+            renderAdminMatchList();
+            renderAdminTeamList();
+            renderAdminAnnList();
+        }
+
+        function deletePlayerItem(id) {
+            showConfirmDialog("Apakah Anda yakin ingin menghapus data pemain ini?", async () => {
+                await window.dbDeletePlayer(id);
+                showToast("Pemain Terhapus!");
+                renderAdminView();
+            });
+        }
+
+        function deleteMatchItem(id) {
+            showConfirmDialog("Apakah Anda yakin ingin menghapus jadwal pertandingan ini?", async () => {
+                await window.dbDeleteMatch(id);
+                showToast("Jadwal Terhapus!");
+                renderAdminView();
+            });
+        }
+
+        function deleteTeamItem(id) {
+            showConfirmDialog("Apakah Anda yakin ingin menghapus tim ini?", async () => {
+                await window.dbDeleteTeam(id);
+                showToast("Tim Berhasil Dihapus!");
+                renderAdminView();
+                if (typeof window.renderTeamsView === 'function') window.renderTeamsView();
+            });
+        }
+
+        function deleteAnnItem(id) {
+            showConfirmDialog("Apakah Anda yakin ingin menghapus pengumuman ini?", async () => {
+                await window.dbDeleteAnnouncement(id);
+                showToast("Pengumuman Terhapus!");
+                renderAdminView();
+            });
+        }
+
+        function populateAdminDropdowns() {
+            const teams = window.appState.teams || [];
+            const playerTeamSel = document.getElementById('player-team-select');
+            const homeSel = document.getElementById('match-home-team-select');
+            const awaySel = document.getElementById('match-away-team-select');
+            const filterTeamSel = document.getElementById('admin-player-filter-team');
+
+            const teamOptionsHtml = teams.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+
+            if (playerTeamSel) playerTeamSel.innerHTML = teamOptionsHtml;
+            if (homeSel) homeSel.innerHTML = teamOptionsHtml;
+            if (awaySel) awaySel.innerHTML = teamOptionsHtml;
+
+            if (filterTeamSel) {
+                filterTeamSel.innerHTML = `<option value="ALL">Semua Tim</option>` + teamOptionsHtml;
+            }
+
+            // Populate Matches dropdown for Result tab
+            const resultMatchSel = document.getElementById('result-match-select');
+            const matches = window.appState.matches || [];
+
+            if (resultMatchSel) {
+                resultMatchSel.innerHTML = matches.map(m => `
+                    <option value="${m.id}">${m.babak} - ${m.homeTeamName} VS ${m.awayTeamName} (${m.date})</option>
+                `).join('');
+                populateResultFormFields();
+            }
+        }
+
+        // Player Admin Handlers
+        async function handleSavePlayer(e) {
+            e.preventDefault();
+            const editId = document.getElementById('admin-player-edit-id').value;
+            const teamId = document.getElementById('player-team-select').value;
+            const name = document.getElementById('player-name-input').value;
+            const number = parseInt(document.getElementById('player-number-input').value);
+            const dob = document.getElementById('player-dob-input').value;
+
+            const playerData = { teamId, name, number, dob };
+
+            if (editId) {
+                await window.dbUpdatePlayer(editId, playerData);
+                showToast("Data Pemain Berhasil Diperbarui!");
+            } else {
+                await window.dbSavePlayer(playerData);
+                showToast("Pemain Baru Berhasil Ditambahkan!");
+            }
+
+            cancelEditPlayer();
+            renderAdminView();
+        }
+
+        function editPlayerItem(id) {
+            const player = (window.appState.players || []).find(p => p.id === id);
+            if (!player) return;
+
+            document.getElementById('admin-player-edit-id').value = player.id;
+            document.getElementById('player-team-select').value = player.teamId;
+            document.getElementById('player-name-input').value = player.name;
+            document.getElementById('player-number-input').value = player.number;
+            document.getElementById('player-dob-input').value = player.dob;
+
+            document.getElementById('admin-player-form-title').innerText = "Edit Data Pemain";
+            document.getElementById('btn-cancel-player').classList.remove('hidden');
+        }
+
+        function cancelEditPlayer() {
+            document.getElementById('admin-player-edit-id').value = '';
+            document.getElementById('player-name-input').value = '';
+            document.getElementById('player-number-input').value = '';
+            document.getElementById('player-dob-input').value = '';
+            document.getElementById('admin-player-form-title').innerText = "Tambah Data Pemain Baru";
+            document.getElementById('btn-cancel-player').classList.add('hidden');
+        }
+
+        function renderAdminPlayerList() {
+            const tableBody = document.getElementById('admin-players-table-body');
+            if (!tableBody) return;
+
+            const filterTeam = document.getElementById('admin-player-filter-team')?.value || 'ALL';
+            let players = window.appState.players || [];
+            const teams = window.appState.teams || [];
+
+            if (filterTeam !== 'ALL') {
+                players = players.filter(p => p.teamId === filterTeam);
+            }
+
+            tableBody.innerHTML = players.map((p, idx) => {
+                const team = teams.find(t => t.id === p.teamId) || { name: 'Unknown' };
+                return `
+                    <tr class="hover:bg-navy-900/60 transition">
+                        <td class="p-2.5 font-bold text-goldAccent text-center">${idx + 1}</td>
+                        <td class="p-2.5 font-medium text-white">#${p.number} - ${p.name}</td>
+                        <td class="p-2.5 text-gray-300">${team.name}</td>
+                        <td class="p-2.5 text-gray-400">${p.dob}</td>
+                        <td class="p-2.5 text-center space-x-1">
+                            <button onclick="editPlayerItem('${p.id}')" class="px-2 py-1 bg-goldAccent/20 hover:bg-goldAccent/30 text-goldAccent rounded transition">Edit</button>
+                            <button onclick="deletePlayerItem('${p.id}')" class="px-2 py-1 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded transition">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Match Schedule Handlers
+        async function handleSaveMatch(e) {
+            e.preventDefault();
+            const editId = document.getElementById('admin-match-edit-id').value;
+            const babak = document.getElementById('match-babak-select').value;
+            const date = document.getElementById('match-date-input').value;
+            const time = document.getElementById('match-time-input').value;
+            const homeTeamId = document.getElementById('match-home-team-select').value;
+            const awayTeamId = document.getElementById('match-away-team-select').value;
+
+            const teams = window.appState.teams || [];
+            const homeTeam = teams.find(t => t.id === homeTeamId) || { name: 'HOME' };
+            const awayTeam = teams.find(t => t.id === awayTeamId) || { name: 'AWAY' };
+
+            const matchData = {
+                babak,
+                date,
+                time,
+                homeTeamId,
+                homeTeamName: homeTeam.name,
+                awayTeamId,
+                awayTeamName: awayTeam.name,
+                status: 'TERJADWAL'
+            };
+
+            if (editId) {
+                await window.dbUpdateMatch(editId, matchData);
+                showToast("Jadwal Pertandingan Diperbarui!");
+            } else {
+                await window.dbSaveMatch(matchData);
+                showToast("Jadwal Pertandingan Ditambahkan!");
+            }
+
+            cancelEditMatch();
+            renderAdminView();
+        }
+
+        function editMatchItem(id) {
+            const m = (window.appState.matches || []).find(x => x.id === id);
+            if (!m) return;
+
+            document.getElementById('admin-match-edit-id').value = m.id;
+            document.getElementById('match-babak-select').value = m.babak;
+            document.getElementById('match-date-input').value = m.date;
+            document.getElementById('match-time-input').value = m.time;
+            document.getElementById('match-home-team-select').value = m.homeTeamId;
+            document.getElementById('match-away-team-select').value = m.awayTeamId;
+
+            document.getElementById('admin-match-form-title').innerText = "Edit Jadwal Pertandingan";
+            document.getElementById('btn-cancel-match').classList.remove('hidden');
+        }
+
+        function cancelEditMatch() {
+            document.getElementById('admin-match-edit-id').value = '';
+            document.getElementById('admin-match-form-title').innerText = "Tambah Jadwal Pertandingan Baru";
+            document.getElementById('btn-cancel-match').classList.add('hidden');
+        }
+
+        function renderAdminMatchList() {
+            const body = document.getElementById('admin-matches-table-body');
+            if (!body) return;
+
+            const matches = window.appState.matches || [];
+            body.innerHTML = matches.map(m => `
+                <tr class="hover:bg-navy-900/60 transition">
+                    <td class="p-2.5 text-gray-400">${m.date} ${m.time}</td>
+                    <td class="p-2.5 font-medium text-white">${m.homeTeamName} vs ${m.awayTeamName}</td>
+                    <td class="p-2.5 text-goldAccent font-bold">${m.status}</td>
+                    <td class="p-2.5 text-center space-x-1">
+                        <button onclick="editMatchItem('${m.id}')" class="px-2 py-1 bg-goldAccent/20 text-goldAccent rounded">Edit</button>
+                        <button onclick="deleteMatchItem('${m.id}')" class="px-2 py-1 bg-red-500/20 text-red-400 rounded">Hapus</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Result Input Handlers
+        function populateResultFormFields() {
+            const matchId = document.getElementById('result-match-select')?.value;
+            const match = (window.appState.matches || []).find(m => m.id === matchId);
+
+            if (!match) return;
+
+            document.getElementById('result-home-team-label').innerText = match.homeTeamName;
+            document.getElementById('result-away-team-label').innerText = match.awayTeamName;
+
+            document.getElementById('result-home-score').value = match.homeScore !== undefined ? match.homeScore : 0;
+            document.getElementById('result-away-score').value = match.awayScore !== undefined ? match.awayScore : 0;
+
+            // Render existing scorers and cards
+            renderScorerRows('home', match.homeScorers || [], match.homeTeamId);
+            renderScorerRows('away', match.awayScorers || [], match.awayTeamId);
+
+            renderCardRows('home', match.homeCards || [], match.homeTeamId);
+            renderCardRows('away', match.awayCards || [], match.awayTeamId);
+        }
+
+        function renderScorerRows(side, scorers, teamId) {
+            const container = document.getElementById(`${side}-scorers-container`);
+            const teamPlayers = (window.appState.players || []).filter(p => p.teamId === teamId);
+
+            if (!container) return;
+
+            container.innerHTML = scorers.map((s, idx) => `
+                <div class="flex items-center space-x-2">
+                    <select class="${side}-scorer-player-select w-full bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                        ${teamPlayers.map(p => `<option value="${p.id}" ${p.id === s.playerId ? 'selected' : ''}>${p.name}</option>`).join('')}
+                    </select>
+                    <input type="number" placeholder="Menit" value="${s.minute || ''}" class="${side}-scorer-minute-input w-20 bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                    <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 p-1">&times;</button>
+                </div>
+            `).join('');
+        }
+
+        function addScorerRow(side) {
+            const matchId = document.getElementById('result-match-select')?.value;
+            const match = (window.appState.matches || []).find(m => m.id === matchId);
+            if (!match) return;
+
+            const teamId = side === 'home' ? match.homeTeamId : match.awayTeamId;
+            const container = document.getElementById(`${side}-scorers-container`);
+            const teamPlayers = (window.appState.players || []).filter(p => p.teamId === teamId);
+
+            const div = document.createElement('div');
+            div.className = "flex items-center space-x-2";
+            div.innerHTML = `
+                <select class="${side}-scorer-player-select w-full bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                    ${teamPlayers.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}
+                </select>
+                <input type="number" placeholder="Menit" class="${side}-scorer-minute-input w-20 bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 p-1">&times;</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function renderCardRows(side, cards, teamId) {
+            const container = document.getElementById(`${side}-cards-container`);
+            const teamPlayers = (window.appState.players || []).filter(p => p.teamId === teamId);
+
+            if (!container) return;
+
+            container.innerHTML = cards.map((c, idx) => `
+                <div class="flex items-center space-x-2">
+                    <select class="${side}-card-player-select w-full bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                        ${teamPlayers.map(p => `<option value="${p.id}" ${p.id === c.playerId ? 'selected' : ''}>${p.name}</option>`).join('')}
+                    </select>
+                    <select class="${side}-card-type-select bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                        <option value="🟨" ${c.cardType === '🟨' ? 'selected' : ''}>🟨 Kuning</option>
+                        <option value="🟥" ${c.cardType === '🟥' ? 'selected' : ''}>🟥 Merah</option>
+                    </select>
+                    <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 p-1">&times;</button>
+                </div>
+            `).join('');
+        }
+
+        function addCardRow(side) {
+            const matchId = document.getElementById('result-match-select')?.value;
+            const match = (window.appState.matches || []).find(m => m.id === matchId);
+            if (!match) return;
+
+            const teamId = side === 'home' ? match.homeTeamId : match.awayTeamId;
+            const container = document.getElementById(`${side}-cards-container`);
+            const teamPlayers = (window.appState.players || []).filter(p => p.teamId === teamId);
+
+            const div = document.createElement('div');
+            div.className = "flex items-center space-x-2";
+            div.innerHTML = `
+                <select class="${side}-card-player-select w-full bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                    ${teamPlayers.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}
+                </select>
+                <select class="${side}-card-type-select bg-navy-900 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
+                    <option value="🟨">🟨 Kuning</option>
+                    <option value="🟥">🟥 Merah</option>
+                </select>
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 p-1">&times;</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function togglePenaltyFields() {
+            const isPen = document.getElementById('result-is-penalty').checked;
+            const penFields = document.getElementById('penalty-fields');
+            if (isPen) {
+                penFields.classList.remove('hidden');
+                penFields.classList.add('grid');
+            } else {
+                penFields.classList.add('hidden');
+                penFields.classList.remove('grid');
+            }
+        }
+
+        async function handleSaveResult(e) {
+            e.preventDefault();
+            const matchId = document.getElementById('result-match-select').value;
+            const homeScore = parseInt(document.getElementById('result-home-score').value || 0);
+            const awayScore = parseInt(document.getElementById('result-away-score').value || 0);
+
+            const players = window.appState.players || [];
+
+            // Extract Home Scorers
+            const homeScorers = [];
+            document.querySelectorAll('#home-scorers-container > div').forEach(row => {
+                const pId = row.querySelector('.home-scorer-player-select')?.value;
+                const min = parseInt(row.querySelector('.home-scorer-minute-input')?.value || 0);
+                const p = players.find(x => x.id === pId);
+                if (p) homeScorers.push({ playerId: pId, playerName: p.name, minute: min });
+            });
+
+            // Extract Away Scorers
+            const awayScorers = [];
+            document.querySelectorAll('#away-scorers-container > div').forEach(row => {
+                const pId = row.querySelector('.away-scorer-player-select')?.value;
+                const min = parseInt(row.querySelector('.away-scorer-minute-input')?.value || 0);
+                const p = players.find(x => x.id === pId);
+                if (p) awayScorers.push({ playerId: pId, playerName: p.name, minute: min });
+            });
+
+            // Extract Home Cards
+            const homeCards = [];
+            document.querySelectorAll('#home-cards-container > div').forEach(row => {
+                const pId = row.querySelector('.home-card-player-select')?.value;
+                const cType = row.querySelector('.home-card-type-select')?.value;
+                const p = players.find(x => x.id === pId);
+                if (p) homeCards.push({ playerId: pId, playerName: p.name, cardType: cType });
+            });
+
+            // Extract Away Cards
+            const awayCards = [];
+            document.querySelectorAll('#away-cards-container > div').forEach(row => {
+                const pId = row.querySelector('.away-card-player-select')?.value;
+                const cType = row.querySelector('.away-card-type-select')?.value;
+                const p = players.find(x => x.id === pId);
+                if (p) awayCards.push({ playerId: pId, playerName: p.name, cardType: cType });
+            });
+
+            const isPenalty = document.getElementById('result-is-penalty').checked;
+            const penaltyHome = parseInt(document.getElementById('result-penalty-home')?.value || 0);
+            const penaltyAway = parseInt(document.getElementById('result-penalty-away')?.value || 0);
+
+            const updateData = {
+                status: 'SELESAI',
+                homeScore,
+                awayScore,
+                homeScorers,
+                awayScorers,
+                homeCards,
+                awayCards,
+                isPenalty,
+                penaltyHome,
+                penaltyAway
+            };
+
+            await window.dbUpdateMatch(matchId, updateData);
+            showToast("Hasil Pertandingan Berhasil Disimpan & Diperbarui!");
+            renderAdminView();
+        }
+
+        // Team Management & Excel Upload Handlers
+        function previewUploadedLogo(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // Maximum dimensions for team logo avatar (200x200 px)
+                    const maxDim = 200;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxDim) {
+                            height = Math.round((height * maxDim) / width);
+                            width = maxDim;
+                        }
+                    } else {
+                        if (height > maxDim) {
+                            width = Math.round((width * maxDim) / height);
+                            height = maxDim;
+                        }
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Compress to JPEG Data URL (quality 0.85) to keep payload under ~30KB
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.85);
+
+                    document.getElementById('team-logo-preview').src = compressedBase64;
+                    document.getElementById('team-logo-url-hidden').value = compressedBase64;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function handleSaveTeam(e) {
+            e.preventDefault();
+            const editId = document.getElementById('admin-team-edit-id').value;
+            const name = document.getElementById('team-name-input').value;
+            let logo = document.getElementById('team-logo-url-hidden').value;
+
+            if (!logo) {
+                logo = `https://placehold.co/100x100/16213e/febe10?text=${encodeURIComponent(name.substring(0, 3))}`;
+            } else if (logo.length > 800000) {
+                // Safety guard against oversized Base64 payloads exceeding Firestore 1MB limit
+                showToast("Ukuran logo terlalu besar! Menggunakan logo placeholder.");
+                logo = `https://placehold.co/100x100/16213e/febe10?text=${encodeURIComponent(name.substring(0, 3))}`;
+            }
+
+            const teamData = { name, logo };
+
+            if (editId) {
+                await window.dbUpdateTeam(editId, teamData);
+                showToast("Data Tim Berhasil Diperbarui!");
+            } else {
+                await window.dbSaveTeam(teamData);
+                showToast("Tim Baru Berhasil Ditambahkan!");
+            }
+
+            cancelEditTeam();
+            renderAdminView();
+        }
+
+        function editTeamItem(id) {
+            const team = (window.appState.teams || []).find(t => t.id === id);
+            if (!team) return;
+
+            document.getElementById('admin-team-edit-id').value = team.id;
+            document.getElementById('team-name-input').value = team.name;
+            document.getElementById('team-logo-url-hidden').value = team.logo;
+            document.getElementById('team-logo-preview').src = team.logo;
+
+            document.getElementById('admin-team-form-title').innerText = "Edit Data Tim";
+            document.getElementById('btn-cancel-team').classList.remove('hidden');
+        }
+
+        function cancelEditTeam() {
+            document.getElementById('admin-team-edit-id').value = '';
+            document.getElementById('team-name-input').value = '';
+            document.getElementById('team-logo-url-hidden').value = '';
+            document.getElementById('team-logo-preview').src = 'https://placehold.co/100x100/16213e/febe10?text=LOGO';
+            document.getElementById('admin-team-form-title').innerText = "Tambah / Edit Tim Manual";
+            document.getElementById('btn-cancel-team').classList.add('hidden');
+        }
+
+        function handleImportExcelTeams() {
+            const fileInput = document.getElementById('excel-file-input');
+            const file = fileInput ? fileInput.files[0] : null;
+
+            if (!file) {
+                showToast("Pilih file Excel terlebih dahulu!");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+
+                    const jsonRows = XLSX.utils.sheet_to_json(worksheet);
+
+                    if (!jsonRows || jsonRows.length === 0) {
+                        showToast("File Excel kosong atau format tidak sesuai!");
+                        return;
+                    }
+
+                    let count = 0;
+                    for (const row of jsonRows) {
+                        let name = null;
+                        let logo = null;
+
+                        // Case-insensitive key detection
+                        for (const key of Object.keys(row)) {
+                            const cleanKey = key.trim().toLowerCase();
+                            if (['nama tim', 'nama', 'team', 'name', 'nama_tim'].includes(cleanKey)) {
+                                name = row[key];
+                            }
+                            if (['logo', 'logo url', 'url logo', 'url', 'logo_url', 'link logo'].includes(cleanKey)) {
+                                logo = row[key];
+                            }
+                        }
+
+                        if (name && String(name).trim() !== '') {
+                            const trimmedName = String(name).trim();
+                            const teamObj = {
+                                name: trimmedName,
+                                logo: (logo && String(logo).trim().startsWith('http')) 
+                                    ? String(logo).trim() 
+                                    : `https://placehold.co/100x100/16213e/febe10?text=${encodeURIComponent(trimmedName.substring(0, 3).toUpperCase())}`
+                            };
+                            await window.dbSaveTeam(teamObj);
+                            count++;
+                        }
+                    }
+
+                    if (count > 0) {
+                        showToast(`Berhasil mengimpor ${count} tim dari Excel!`);
+                    } else {
+                        showToast("Format Excel tidak sesuai! Pastikan terdapat kolom 'Nama Tim' & 'Logo'.");
+                    }
+                    fileInput.value = '';
+                    renderAdminView();
+                    if (typeof window.renderTeamsView === 'function') window.renderTeamsView();
+                } catch (err) {
+                    console.error("Excel Read Error:", err);
+                    showToast("Gagal membaca file Excel!");
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        function renderAdminTeamList() {
+            const container = document.getElementById('admin-teams-list');
+            if (!container) return;
+
+            const teams = window.appState.teams || [];
+            container.innerHTML = teams.map(t => `
+                <div class="glass-card-sm p-3 rounded-xl flex items-center justify-between border border-gray-700">
+                    <div class="flex items-center space-x-3">
+                        <img src="${t.logo}" alt="${t.name}" class="w-10 h-10 object-contain rounded-full bg-navy-900 p-1 border border-goldAccent/30">
+                        <span class="font-oswald font-bold text-xs text-white uppercase">${t.name}</span>
+                    </div>
+                    <div class="space-x-1">
+                        <button onclick="editTeamItem('${t.id}')" class="px-2 py-1 bg-goldAccent/20 text-goldAccent rounded text-[10px] hover:bg-goldAccent/30 transition">Edit</button>
+                        <button onclick="deleteTeamItem('${t.id}')" class="px-2 py-1 bg-red-500/20 text-red-400 rounded text-[10px] hover:bg-red-500/30 transition">Hapus</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Announcement Admin Handlers
+        async function handleSaveAnnouncement(e) {
+            e.preventDefault();
+            const editId = document.getElementById('admin-ann-edit-id').value;
+            const title = document.getElementById('ann-title-input').value;
+            const content = document.getElementById('ann-content-input').value;
+            const date = new Date().toISOString().split('T')[0];
+
+            const annData = { title, content, date };
+
+            if (editId) {
+                await window.dbUpdateAnnouncement(editId, annData);
+                showToast("Pengumuman Diperbarui!");
+            } else {
+                await window.dbSaveAnnouncement(annData);
+                showToast("Pengumuman Berhasil Diterbitkan!");
+            }
+
+            cancelEditAnn();
+            renderAdminView();
+        }
+
+        function editAnnItem(id) {
+            const ann = (window.appState.announcements || []).find(a => a.id === id);
+            if (!ann) return;
+
+            document.getElementById('admin-ann-edit-id').value = ann.id;
+            document.getElementById('ann-title-input').value = ann.title;
+            document.getElementById('ann-content-input').value = ann.content;
+
+            document.getElementById('admin-ann-form-title').innerText = "Edit Pengumuman";
+            document.getElementById('btn-cancel-ann').classList.remove('hidden');
+        }
+
+        function cancelEditAnn() {
+            document.getElementById('admin-ann-edit-id').value = '';
+            document.getElementById('ann-title-input').value = '';
+            document.getElementById('ann-content-input').value = '';
+            document.getElementById('admin-ann-form-title').innerText = "Buat Pengumuman Resmi Baru";
+            document.getElementById('btn-cancel-ann').classList.add('hidden');
+        }
+
+        function renderAdminAnnList() {
+            const container = document.getElementById('admin-ann-list');
+            if (!container) return;
+
+            const anns = window.appState.announcements || [];
+            container.innerHTML = anns.map(a => `
+                <div class="glass-card-sm p-3 rounded-xl space-y-1 border border-gray-700">
+                    <div class="flex items-center justify-between">
+                        <h5 class="font-oswald font-bold text-xs text-goldAccent">${a.title}</h5>
+                        <div class="space-x-1">
+                            <button onclick="editAnnItem('${a.id}')" class="px-2 py-0.5 bg-goldAccent/20 text-goldAccent rounded text-[10px]">Edit</button>
+                            <button onclick="deleteAnnItem('${a.id}')" class="px-2 py-0.5 bg-red-500/20 text-red-400 rounded text-[10px]">Hapus</button>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-gray-300">${a.content}</p>
+                </div>
+            `).join('');
+        }
+
+        // Global Scope Declarations for HTML Event Handlers
+        window.initClock = initClock;
+        window.toggleNavDrawer = toggleNavDrawer;
+        window.closeNavDrawer = closeNavDrawer;
+        window.openAdminLoginModal = openAdminLoginModal;
+        window.closeAdminLoginModal = closeAdminLoginModal;
+        window.submitAdminPassword = submitAdminPassword;
+        window.showConfirmDialog = showConfirmDialog;
+        window.closeConfirmModal = closeConfirmModal;
+        window.handleAdminIconClick = handleAdminIconClick;
+        window.handleAdminLogout = handleAdminLogout;
+        window.openAdminModal = openAdminModal;
+        window.closeAdminModal = closeAdminModal;
+        window.switchAdminTab = switchAdminTab;
+
+        window.handleSavePlayer = handleSavePlayer;
+        window.editPlayerItem = editPlayerItem;
+        window.cancelEditPlayer = cancelEditPlayer;
+        window.deletePlayerItem = deletePlayerItem;
+        window.renderAdminPlayerList = renderAdminPlayerList;
+
+        window.handleSaveMatch = handleSaveMatch;
+        window.editMatchItem = editMatchItem;
+        window.cancelEditMatch = cancelEditMatch;
+        window.deleteMatchItem = deleteMatchItem;
+
+        window.populateResultFormFields = populateResultFormFields;
+        window.addScorerRow = addScorerRow;
+        window.addCardRow = addCardRow;
+        window.togglePenaltyFields = togglePenaltyFields;
+        window.handleSaveResult = handleSaveResult;
+
+        window.previewUploadedLogo = previewUploadedLogo;
+        window.handleSaveTeam = handleSaveTeam;
+        window.editTeamItem = editTeamItem;
+        window.cancelEditTeam = cancelEditTeam;
+        window.deleteTeamItem = deleteTeamItem;
+        window.handleImportExcelTeams = handleImportExcelTeams;
+
+        window.handleSaveAnnouncement = handleSaveAnnouncement;
+        window.editAnnItem = editAnnItem;
+        window.cancelEditAnn = cancelEditAnn;
+        window.deleteAnnItem = deleteAnnItem;
+
+        window.renderTeamsView = renderTeamsView;
+        window.renderUltahView = renderUltahView;
+        window.renderAllViews = renderAllViews;
+        window.showToast = showToast;
+
+        // Initialize on Window Load
+        window.onload = function() {
+            initClock();
+            renderAllViews();
+        };
+    </script>
 </body>
 </html>
