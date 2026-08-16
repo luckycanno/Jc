@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>JONG CANNO CUP U19 - Season 2 2026</title>
+  <meta name="description" content="Official Digital Tournament Website - GAWANG MINI JONG CANNO CUP U19 Season 2 2026">
   
-  <!-- Fonts & FontAwesome -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -256,7 +257,7 @@
       text-align: center;
     }
 
-    /* MAIN CONTAINER */
+    /* MAIN CONTAINER & CARDS */
     main {
       flex: 1;
       max-width: 950px;
@@ -1002,7 +1003,7 @@
       <img src="https://iili.io/KhDMwdb.png" alt="Event Logo" style="width: 36px; height: 36px; border-radius: 50%;">
       <div>
         <h4 style="font-family: 'Oswald'; color: var(--accent-gold); font-size: 15px;">JONG CANNO CUP</h4>
-        <p style="font-size: 10px; color: var(--text-gray);">GitHub Pages Cloud App</p>
+        <p style="font-size: 10px; color: var(--text-gray);">Digital Cloud System Maluku</p>
       </div>
     </div>
     <ul class="sidebar-menu">
@@ -1019,7 +1020,6 @@
   </nav>
 
   <main id="mainContainer">
-    <!-- Dynamic View Content -->
   </main>
 
   <div class="modal-overlay" id="teamModal">
@@ -1062,11 +1062,10 @@
   </div>
 
   <script>
-    // GitHub Pages + Google Spreadsheet Integration URL
-    let APPS_SCRIPT_URL = localStorage.getItem('JONG_CANNO_APPS_SCRIPT_URL') || '';
+    // HARDCODED LIVE GOOGLE APPS SCRIPT WEB APP API URL
+    const HARDCODED_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyW4qgjy6ikX9-TOFD_fUBpBkv531ZgOwaqRT8Hkv89IDALsifeYTVyu_iJve0kNc0Wg/exec";
 
-    // Application Global Memory State
-    window.appData = {
+    let appData = {
       teams: [],
       players: [],
       matches: [],
@@ -1083,7 +1082,6 @@
     let editingAnnouncementId = null;
     let pendingConfirmAction = null;
 
-    // Realtime Clock
     function updateClock() {
       const now = new Date();
       const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
@@ -1139,102 +1137,45 @@
       return { years, months, text: `${years} Thn ${months} Bln` };
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('toastNotification');
-      if (!toast) return;
-      toast.innerText = msg;
-      toast.style.opacity = '1';
-      toast.style.transform = 'translateX(-50%) translateY(0)';
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(-50%) translateY(100px)';
-      }, 3000);
-    }
-
-    function openConfirmModal(message, actionCallback) {
-      document.getElementById('confirmModalMsg').innerText = message;
-      pendingConfirmAction = actionCallback;
-      const btn = document.getElementById('confirmModalBtn');
-      btn.onclick = function() {
-        if (pendingConfirmAction) pendingConfirmAction();
-        closeConfirmModal();
-      };
-      document.getElementById('confirmModal').classList.add('active');
-    }
-
-    function closeConfirmModal() {
-      document.getElementById('confirmModal').classList.remove('active');
-    }
-
-    async function loadCloudSpreadsheetData() {
-      if (!APPS_SCRIPT_URL) {
-        setupFallbackData();
-        return;
-      }
-
+    async function fetchAllData(callback) {
+      const targetUrl = HARDCODED_SCRIPT_URL + '?action=getFullData';
       try {
-        const response = await fetch(`${APPS_SCRIPT_URL}?action=getFullData`);
-        const json = await response.json();
-        if (json && json.status === 'success') {
-          window.appData = {
-            teams: json.teams || [],
-            players: json.players || [],
-            matches: json.matches || [],
-            announcements: json.announcements || []
-          };
-          renderView();
-        } else {
-          setupFallbackData();
+        const response = await fetch(targetUrl);
+        const data = await response.json();
+        if (data && data.status === 'success') {
+          appData = data;
+          if (callback) callback();
+          else renderView();
+          return;
         }
       } catch (err) {
-        console.warn("Spreadsheet API fetch fallback:", err);
-        setupFallbackData();
+        console.warn('API cloud fallback mode:', err);
       }
+
+      // Local fallback data if network drops
+      const todayStr = new Date().toISOString().split('T')[0];
+      if (!appData.announcements || appData.announcements.length === 0) {
+        appData.announcements = [
+          { ID: 'A1', Date: todayStr, Tag: 'RESMI', Title: 'Sistem Google Sheet Connected', Content: 'Tersambung otomatis ke Google Spreadsheet Cloud backend.' }
+        ];
+      }
+      if (callback) callback();
+      else renderView();
     }
 
-    async function sendSpreadsheetRequest(payload) {
-      if (!APPS_SCRIPT_URL) {
-        showToast('Mode Lokal: Harap atur URL Google Apps Script di Panel Admin!');
-        return false;
-      }
+    async function postToCloud(action, payload) {
       try {
-        const res = await fetch(APPS_SCRIPT_URL, {
+        const response = await fetch(HARDCODED_SCRIPT_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ action: action, payload: payload })
         });
-        const json = await res.json();
-        if (json && json.status === 'success') {
-          showToast(json.message || 'Data tersimpan ke Spreadsheet!');
-          await loadCloudSpreadsheetData();
-          return true;
-        } else {
-          showToast(json.message || 'Gagal memperbarui Spreadsheet');
-          return false;
-        }
+        const res = await response.json();
+        return res;
       } catch (err) {
-        showToast('Error koneksi Google Sheets!');
-        console.error(err);
-        return false;
+        console.error('Cloud POST Error:', err);
+        return { status: 'error', message: err.toString() };
       }
-    }
-
-    function setupFallbackData() {
-      const todayStr = new Date().toISOString().split('T')[0];
-      window.appData = {
-        teams: [
-          { TeamID: 'T1', TeamName: 'Barcelona Maluku', LogoURL: 'https://iili.io/KhDMwdb.png', Won: 1, Lost: 0, Drawn: 0 },
-          { TeamID: 'T2', TeamName: 'Real Madrid Ambon', LogoURL: 'https://iili.io/KhDMwdb.png', Won: 0, Lost: 1, Drawn: 0 }
-        ],
-        players: [
-          { PlayerID: 'P1', TeamID: 'T1', TeamName: 'Barcelona Maluku', PlayerName: 'Lewandowski', School: 'SMA Negeri 1 Ambon', JerseyNumber: '9', BirthDate: '2007-08-21', Goals: 2 }
-        ],
-        matches: [],
-        announcements: [
-          { ID: 'A1', Date: todayStr, Tag: 'RESMI', Title: 'Sistem Cloud GitHub x Spreadsheet Aktif', Content: 'Sistem telah terhubung antara GitHub Pages dan Google Spreadsheet.' }
-        ]
-      };
-      renderView();
     }
 
     function renderView() {
@@ -1255,7 +1196,6 @@
         default: renderBeranda(container);
       }
     }
-    window.renderView = renderView;
 
     function renderBeranda(container) {
       const champions = [
@@ -1269,9 +1209,8 @@
         { team: 'NATHANIA JR', category: 'U15 - SEASON 1' }
       ];
 
-      const appData = window.appData || { announcements: [], matches: [] };
-      const scheduledMatches = appData.matches.filter(m => m.Status !== 'Finished').slice(0, 2);
-      const finishedMatches = appData.matches.filter(m => m.Status === 'Finished').slice(0, 2);
+      const scheduledMatches = (appData.matches || []).filter(m => m.Status !== 'Finished').slice(0, 2);
+      const finishedMatches = (appData.matches || []).filter(m => m.Status === 'Finished').slice(0, 2);
 
       container.innerHTML = `
         <div class="hero-banner">
@@ -1320,7 +1259,7 @@
             <button onclick="switchView('pengumuman')" style="background: none; border: none; color: var(--accent-gold); font-size: 11px; cursor: pointer;">Lihat Semua &rarr;</button>
           </div>
           <div>
-            ${appData.announcements.length === 0 ? '<p style="color: var(--text-gray); font-size: 11px;">Belum ada pengumuman.</p>' : appData.announcements.slice(0, 3).map(a => `
+            ${(appData.announcements || []).length === 0 ? '<p style="color: var(--text-gray); font-size: 11px;">Belum ada pengumuman.</p>' : appData.announcements.slice(0, 3).map(a => `
               <div class="announcement-card">
                 <div class="ann-header">
                   <span class="ann-badge">${a.Tag || 'INFO'}</span>
@@ -1335,13 +1274,39 @@
       `;
     }
 
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+      }, 3000);
+    }
+
+    function openConfirmModal(message, actionCallback) {
+      document.getElementById('confirmModalMsg').innerText = message;
+      pendingConfirmAction = actionCallback;
+      const btn = document.getElementById('confirmModalBtn');
+      btn.onclick = function() {
+        if (pendingConfirmAction) pendingConfirmAction();
+        closeConfirmModal();
+      };
+      document.getElementById('confirmModal').classList.add('active');
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').classList.remove('active');
+    }
+
     function renderJadwal(container, activeTab = 'terjadwal') {
-      const appData = window.appData || { matches: [] };
       let filteredMatches = [];
       if (activeTab === 'terjadwal') {
-        filteredMatches = appData.matches.filter(m => m.Status !== 'Finished');
+        filteredMatches = (appData.matches || []).filter(m => m.Status !== 'Finished');
       } else {
-        filteredMatches = appData.matches.filter(m => m.Status === 'Finished');
+        filteredMatches = (appData.matches || []).filter(m => m.Status === 'Finished');
       }
 
       const groups = {};
@@ -1449,8 +1414,7 @@
     }
 
     function renderTopSkor(container) {
-      const appData = window.appData || { players: [] };
-      let sortedPlayers = [...appData.players].filter(p => parseInt(p.Goals || 0) > 0);
+      let sortedPlayers = [...(appData.players || [])].filter(p => parseInt(p.Goals || 0) > 0);
       sortedPlayers.sort((a, b) => parseInt(b.Goals) - parseInt(a.Goals));
 
       container.innerHTML = `
@@ -1495,7 +1459,6 @@
     }
 
     function renderTeams(container) {
-      const appData = window.appData || { teams: [] };
       container.innerHTML = `
         <div class="glass-card">
           <div class="section-header">
@@ -1506,7 +1469,7 @@
             <input type="text" id="teamSearchInput" placeholder="Cari tim..." onkeyup="filterTeams()">
           </div>
           <div class="teams-grid" id="teamsGrid">
-            ${appData.teams.map(t => `
+            ${(appData.teams || []).map(t => `
               <div class="team-card" onclick="openTeamDetail('${t.TeamID}')">
                 <img src="${t.LogoURL || 'https://iili.io/KhDMwdb.png'}" alt="${t.TeamName}">
                 <h4>${t.TeamName}</h4>
@@ -1519,9 +1482,8 @@
     }
 
     function filterTeams() {
-      const appData = window.appData || { teams: [] };
       const q = document.getElementById('teamSearchInput').value.toLowerCase();
-      const filtered = appData.teams.filter(t => t.TeamName.toLowerCase().includes(q));
+      const filtered = (appData.teams || []).filter(t => t.TeamName.toLowerCase().includes(q));
       const grid = document.getElementById('teamsGrid');
       if (!grid) return;
       grid.innerHTML = filtered.map(t => `
@@ -1534,12 +1496,11 @@
     }
 
     function openTeamDetail(teamId) {
-      const appData = window.appData || { teams: [], players: [], matches: [] };
-      const team = appData.teams.find(t => t.TeamID === teamId);
+      const team = (appData.teams || []).find(t => t.TeamID === teamId);
       if (!team) return;
 
-      const teamPlayers = appData.players.filter(p => p.TeamID === teamId || p.TeamName === team.TeamName);
-      const teamMatches = appData.matches.filter(m => m.HomeTeamName === team.TeamName || m.AwayTeamName === team.TeamName);
+      const teamPlayers = (appData.players || []).filter(p => p.TeamID === teamId || p.TeamName === team.TeamName);
+      const teamMatches = (appData.matches || []).filter(m => m.HomeTeamName === team.TeamName || m.AwayTeamName === team.TeamName);
 
       let modalHtml = `
         <div style="text-align: center; margin-bottom: 16px;">
@@ -1630,10 +1591,9 @@
     }
 
     function renderUlangTahun(container) {
-      const appData = window.appData || { players: [] };
       const months = ['Semua', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
       
-      let filteredPlayers = appData.players.filter(p => {
+      let filteredPlayers = (appData.players || []).filter(p => {
         if (!p.BirthDate) return false;
         if (selectedBdayMonth === 0) return true;
         const bMonth = new Date(p.BirthDate).getMonth() + 1;
@@ -1699,14 +1659,13 @@
     }
 
     function renderPengumuman(container) {
-      const appData = window.appData || { announcements: [] };
       container.innerHTML = `
         <div class="glass-card">
           <div class="section-header">
             <h3 class="section-title"><i class="fa-solid fa-bullhorn"></i> SEMUA PENGUMUMAN</h3>
           </div>
           <div>
-            ${appData.announcements.length === 0 ? '<p style="color: var(--text-gray); font-size: 11px;">Belum ada pengumuman.</p>' : appData.announcements.map(a => `
+            ${(appData.announcements || []).length === 0 ? '<p style="color: var(--text-gray); font-size: 11px;">Belum ada pengumuman.</p>' : appData.announcements.map(a => `
               <div class="announcement-card">
                 <div class="ann-header">
                   <span class="ann-badge">${a.Tag || 'INFO'}</span>
@@ -1762,11 +1721,10 @@
 
           <div class="tab-container" style="flex-wrap: wrap;">
             <button class="tab-btn ${currentAdminTab === 'pemain' ? 'active' : ''}" onclick="switchAdminTab('pemain')">Pemain</button>
-            <button class="tab-btn ${currentAdminTab === 'jadwal' ? 'active' : ''}" onclick="switchAdminTab('jadwal')">Jadwal</button>
-            <button class="tab-btn ${currentAdminTab === 'hasil' ? 'active' : ''}" onclick="switchAdminTab('hasil')">Skor</button>
+            <button class="tab-btn ${currentAdminTab === 'jadwal' ? 'active' : ''}" onclick="switchAdminTab('jadwal')">Jadwal Pertandingan</button>
+            <button class="tab-btn ${currentAdminTab === 'hasil' ? 'active' : ''}" onclick="switchAdminTab('hasil')">Input Skor/Hasil</button>
             <button class="tab-btn ${currentAdminTab === 'tim' ? 'active' : ''}" onclick="switchAdminTab('tim')">Kelola Tim</button>
             <button class="tab-btn ${currentAdminTab === 'pengumuman' ? 'active' : ''}" onclick="switchAdminTab('pengumuman')">Pengumuman</button>
-            <button class="tab-btn ${currentAdminTab === 'cloud' ? 'active' : ''}" onclick="switchAdminTab('cloud')"><i class="fa-solid fa-cloud"></i> Sheets API</button>
           </div>
 
           <div id="adminTabContent">
@@ -1791,35 +1749,12 @@
       switchView('beranda');
     }
 
-    function saveSpreadsheetApiUrl() {
-      const url = document.getElementById('admSpreadsheetUrl').value.trim();
-      APPS_SCRIPT_URL = url;
-      localStorage.setItem('JONG_CANNO_APPS_SCRIPT_URL', url);
-      showToast('URL Google Sheets API berhasil disimpan!');
-      loadCloudSpreadsheetData();
-    }
-
     function renderAdminTabContent() {
-      const appData = window.appData || { teams: [], players: [], matches: [], announcements: [] };
       const rounds = [
         'BABAK PENYISIHAN', 'BABAK 128 BESAR', 'BABAK 64 BESAR', 
         'BABAK 32 BESAR', 'BABAK 16 BESAR', 'BABAK 8 BESAR', 
         'BABAK SEMIFINAL', 'BABAK 3RD PLACE', 'FINAL'
       ];
-
-      if (currentAdminTab === 'cloud') {
-        return `
-          <h4 style="color: var(--accent-gold); margin-bottom: 10px; font-family: 'Oswald';"><i class="fa-solid fa-cloud"></i> KONFIGURASI SPREADSHEET API (GITHUB TO SHEETS)</h4>
-          <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 12px; line-height: 1.5;">
-            Masukkan URL Web App dari Google Apps Script agar situs GitHub Pages ini terhubung langsung ke Google Spreadsheet Anda secara Cloud.
-          </p>
-          <div class="form-group">
-            <label>URL Google Apps Script Web App</label>
-            <input type="text" id="admSpreadsheetUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec" value="${APPS_SCRIPT_URL}">
-          </div>
-          <button class="btn-submit" onclick="saveSpreadsheetApiUrl()">HUBUNGKAN SPREADSHEET</button>
-        `;
-      }
 
       if (currentAdminTab === 'pemain') {
         const isEditing = !!editingPlayerId;
@@ -1833,12 +1768,12 @@
           <div class="form-group">
             <label>Pilih Tim</label>
             <select id="admPlayerTeam" class="form-control">
-              ${appData.teams.map(t => `<option value="${t.TeamID}|${t.TeamName}" ${playerToEdit && playerToEdit.TeamID === t.TeamID ? 'selected' : ''}>${t.TeamName}</option>`).join('')}
+              ${(appData.teams || []).map(t => `<option value="${t.TeamID}|${t.TeamName}" ${playerToEdit && playerToEdit.TeamID === t.TeamID ? 'selected' : ''}>${t.TeamName}</option>`).join('')}
             </select>
           </div>
           <div class="form-group">
             <label>Nama Lengkap Pemain</label>
-            <input type="text" id="admPlayerName" class="form-control" placeholder="Nama Pemain..." value="${playerToEdit ? playerToEdit.PlayerName : ''}">
+            <input type="text" id="admPlayerName" class="form-control" placeholder="Nama Lengkap Pemain..." value="${playerToEdit ? playerToEdit.PlayerName : ''}">
           </div>
           <div class="form-group">
             <label>Asal Sekolah / Instansi</label>
@@ -1857,7 +1792,7 @@
           ${isEditing ? `<button class="btn-cancel" onclick="cancelEditPlayer()">BATAL EDIT</button>` : ''}
 
           <h4 style="color: var(--accent-gold); margin: 20px 0 10px 0; font-family: 'Oswald'; border-top: 1px solid var(--glass-border); padding-top: 14px;">
-            DAFTAR PEMAIN TERDAFTAR (${appData.players.length})
+            DAFTAR PEMAIN TERDAFTAR (${(appData.players || []).length})
           </h4>
 
           <div class="admin-table-wrap">
@@ -1872,7 +1807,7 @@
                 </tr>
               </thead>
               <tbody>
-                ${appData.players.length === 0 ? `
+                ${(appData.players || []).length === 0 ? `
                   <tr><td colspan="5" style="text-align: center; color: var(--text-gray);">Belum ada data pemain.</td></tr>
                 ` : appData.players.map(p => `
                   <tr>
@@ -1923,13 +1858,13 @@
           <div class="form-group">
             <label>Tim Home</label>
             <select id="admMatchHome" class="form-control">
-              ${appData.teams.map(t => `<option value="${t.TeamID}|${t.TeamName}|${t.LogoURL}" ${matchToEdit && matchToEdit.HomeTeamName === t.TeamName ? 'selected' : ''}>${t.TeamName}</option>`).join('')}
+              ${(appData.teams || []).map(t => `<option value="${t.TeamID}|${t.TeamName}|${t.LogoURL}" ${matchToEdit && matchToEdit.HomeTeamName === t.TeamName ? 'selected' : ''}>${t.TeamName}</option>`).join('')}
             </select>
           </div>
           <div class="form-group">
             <label>Tim Away</label>
             <select id="admMatchAway" class="form-control">
-              ${appData.teams.map(t => `<option value="${t.TeamID}|${t.TeamName}|${t.LogoURL}" ${matchToEdit && matchToEdit.AwayTeamName === t.TeamName ? 'selected' : ''}>${t.TeamName}</option>`).join('')}
+              ${(appData.teams || []).map(t => `<option value="${t.TeamID}|${t.TeamName}|${t.LogoURL}" ${matchToEdit && matchToEdit.AwayTeamName === t.TeamName ? 'selected' : ''}>${t.TeamName}</option>`).join('')}
             </select>
           </div>
 
@@ -1937,7 +1872,7 @@
           ${isEditing ? `<button class="btn-cancel" onclick="cancelEditMatch()">BATAL EDIT</button>` : ''}
 
           <h4 style="color: var(--accent-gold); margin: 20px 0 10px 0; font-family: 'Oswald'; border-top: 1px solid var(--glass-border); padding-top: 14px;">
-            DAFTAR JADWAL TERSIMPAN (${appData.matches.length})
+            DAFTAR JADWAL TERSIMPAN (${(appData.matches || []).length})
           </h4>
 
           <div class="admin-table-wrap">
@@ -1951,7 +1886,7 @@
                 </tr>
               </thead>
               <tbody>
-                ${appData.matches.length === 0 ? `
+                ${(appData.matches || []).length === 0 ? `
                   <tr><td colspan="4" style="text-align: center; color: var(--text-gray);">Belum ada jadwal tersimpan.</td></tr>
                 ` : appData.matches.map(m => `
                   <tr>
@@ -1986,7 +1921,7 @@
             <label>Pilih Pertandingan Terjadwal</label>
             <select id="admResultMatchId" class="form-control" onchange="onResultMatchChange()">
               <option value="">-- Pilih Pertandingan --</option>
-              ${appData.matches.map(m => `<option value="${m.MatchID}">${m.Date} | ${m.HomeTeamName} vs ${m.AwayTeamName} (${m.Round})</option>`).join('')}
+              ${(appData.matches || []).map(m => `<option value="${m.MatchID}">${m.Date} | ${m.HomeTeamName} vs ${m.AwayTeamName} (${m.Round})</option>`).join('')}
             </select>
           </div>
           
@@ -2059,7 +1994,7 @@
           ` : ''}
 
           <h4 style="color: var(--accent-gold); margin: 20px 0 10px 0; font-family: 'Oswald'; border-top: 1px solid var(--glass-border); padding-top: 14px;">
-            DAFTAR TIM TERDAFTAR (${appData.teams.length})
+            DAFTAR TIM TERDAFTAR (${(appData.teams || []).length})
           </h4>
 
           <div class="admin-table-wrap">
@@ -2073,7 +2008,7 @@
                 </tr>
               </thead>
               <tbody>
-                ${appData.teams.length === 0 ? `
+                ${(appData.teams || []).length === 0 ? `
                   <tr><td colspan="4" style="text-align: center; color: var(--text-gray);">Belum ada data tim.</td></tr>
                 ` : appData.teams.map(t => `
                   <tr>
@@ -2130,7 +2065,7 @@
           ${isEditing ? `<button class="btn-cancel" onclick="cancelEditAnnouncement()">BATAL EDIT</button>` : ''}
 
           <h4 style="color: var(--accent-gold); margin: 20px 0 10px 0; font-family: 'Oswald'; border-top: 1px solid var(--glass-border); padding-top: 14px;">
-            DAFTAR PENGUMUMAN (${appData.announcements.length})
+            DAFTAR PENGUMUMAN (${(appData.announcements || []).length})
           </h4>
 
           <div class="admin-table-wrap">
@@ -2143,7 +2078,7 @@
                 </tr>
               </thead>
               <tbody>
-                ${appData.announcements.length === 0 ? `
+                ${(appData.announcements || []).length === 0 ? `
                   <tr><td colspan="3" style="text-align: center; color: var(--text-gray);">Belum ada pengumuman.</td></tr>
                 ` : appData.announcements.map(a => `
                   <tr>
@@ -2189,9 +2124,8 @@
     }
 
     function onResultMatchChange() {
-      const appData = window.appData || { matches: [] };
       const matchId = document.getElementById('admResultMatchId').value;
-      const match = appData.matches.find(m => m.MatchID === matchId);
+      const match = (appData.matches || []).find(m => m.MatchID === matchId);
       if (match) {
         const winnerSelect = document.getElementById('admPenaltyWinner');
         if (winnerSelect) {
@@ -2208,7 +2142,7 @@
       }
     }
 
-    // Player Handlers
+    // Player CRUD
     function editPlayer(playerId) {
       editingPlayerId = playerId;
       renderAdminPanel(document.getElementById('mainContainer'));
@@ -2221,15 +2155,15 @@
 
     function confirmDeletePlayer(playerId, playerName) {
       openConfirmModal(`Hapus pemain "${playerName}"?`, async () => {
-        await sendSpreadsheetRequest({ action: 'deletePlayer', playerId: playerId });
-        editingPlayerId = null;
+        const res = await postToCloud(editingPlayerId ? 'updatePlayer' : 'deletePlayer', { playerId: playerId });
+        showToast(res.message || 'Pemain dihapus!');
+        await fetchAllData();
       });
     }
 
     async function submitPlayer() {
       const teamVal = document.getElementById('admPlayerTeam').value.split('|');
       const data = {
-        action: editingPlayerId ? 'updatePlayer' : 'addPlayer',
         playerId: editingPlayerId || '',
         teamId: teamVal[0],
         teamName: teamVal[1],
@@ -2241,11 +2175,14 @@
 
       if (!data.playerName) return showToast('Nama pemain wajib diisi!');
 
-      await sendSpreadsheetRequest(data);
+      const action = editingPlayerId ? 'updatePlayer' : 'addPlayer';
+      const res = await postToCloud(action, data);
+      showToast(res.message || 'Pemain disimpan!');
       editingPlayerId = null;
+      await fetchAllData();
     }
 
-    // Match Handlers
+    // Match CRUD
     function editMatch(matchId) {
       editingMatchId = matchId;
       renderAdminPanel(document.getElementById('mainContainer'));
@@ -2258,8 +2195,9 @@
 
     function confirmDeleteMatch(matchId, matchLabel) {
       openConfirmModal(`Hapus jadwal "${matchLabel}"?`, async () => {
-        await sendSpreadsheetRequest({ action: 'deleteMatch', matchId: matchId });
-        editingMatchId = null;
+        const res = await postToCloud('deleteMatch', { matchId: matchId });
+        showToast(res.message || 'Jadwal dihapus!');
+        await fetchAllData();
       });
     }
 
@@ -2268,7 +2206,6 @@
       const awayVal = document.getElementById('admMatchAway').value.split('|');
 
       const data = {
-        action: editingMatchId ? 'updateMatch' : 'addMatch',
         matchId: editingMatchId || '',
         round: document.getElementById('admMatchRound').value,
         date: document.getElementById('admMatchDate').value,
@@ -2278,21 +2215,24 @@
         homeTeamLogo: homeVal[2],
         awayTeamId: awayVal[0],
         awayTeamName: awayVal[1],
-        awayTeamLogo: awayVal[2]
+        awayTeamLogo: awayVal[2],
+        status: 'Scheduled'
       };
 
       if (!data.date || !data.time) return showToast('Tanggal dan jam wajib diisi!');
 
-      await sendSpreadsheetRequest(data);
+      const action = editingMatchId ? 'updateMatch' : 'addMatch';
+      const res = await postToCloud(action, data);
+      showToast(res.message || 'Jadwal disimpan!');
       editingMatchId = null;
+      await fetchAllData();
     }
 
     async function submitResult() {
       const matchId = document.getElementById('admResultMatchId').value;
       if (!matchId) return showToast('Pilih pertandingan terlebih dahulu!');
 
-      const appData = window.appData || { matches: [] };
-      const match = appData.matches.find(m => m.MatchID === matchId);
+      const match = (appData.matches || []).find(m => m.MatchID === matchId);
       if (!match) return;
 
       const h = parseInt(document.getElementById('admHomeScore').value || 0);
@@ -2300,20 +2240,23 @@
       const isPenalty = h === a;
 
       const data = {
-        action: 'updateMatchResult',
+        ...match,
         matchId: matchId,
+        status: 'Finished',
         homeScore: h,
         awayScore: a,
         homeScorers: document.getElementById('admHomeScorers').value,
         awayScorers: document.getElementById('admAwayScorers').value,
-        isPenalty: isPenalty,
+        isPenalty: isPenalty ? 'Yes' : 'No',
         penaltyWinner: isPenalty ? document.getElementById('admPenaltyWinner').value : ''
       };
 
-      await sendSpreadsheetRequest(data);
+      const res = await postToCloud('updateMatchResult', data);
+      showToast(res.message || 'Hasil disimpan!');
+      await fetchAllData();
     }
 
-    // Team Handlers
+    // Team CRUD
     function editTeam(teamId) {
       editingTeamId = teamId;
       renderAdminPanel(document.getElementById('mainContainer'));
@@ -2326,22 +2269,24 @@
 
     function confirmDeleteTeam(teamId, teamName) {
       openConfirmModal(`Hapus tim "${teamName}"?`, async () => {
-        await sendSpreadsheetRequest({ action: 'deleteTeam', teamId: teamId });
-        editingTeamId = null;
+        const res = await postToCloud('deleteTeam', { teamId: teamId });
+        showToast(res.message || 'Tim dihapus!');
+        await fetchAllData();
       });
     }
 
     async function submitManualTeam() {
       const data = {
-        action: 'updateTeam',
         teamId: editingTeamId || '',
         teamName: document.getElementById('admManualTeamName').value,
         logoUrl: document.getElementById('admManualTeamLogo').value
       };
       if (!data.teamName) return showToast('Nama tim wajib diisi!');
 
-      await sendSpreadsheetRequest(data);
+      const res = await postToCloud('updateTeam', data);
+      showToast(res.message || 'Tim disimpan!');
       editingTeamId = null;
+      await fetchAllData();
     }
 
     function importExcelTeams() {
@@ -2364,12 +2309,14 @@
           logoUrl: r.LogoURL || r.Logo || r['URL Logo'] || 'https://iili.io/KhDMwdb.png'
         }));
 
-        await sendSpreadsheetRequest({ action: 'importTeams', teams: formatted });
+        const res = await postToCloud('importTeamsFromJSON', formatted);
+        showToast(res.message || 'Import berhasil!');
+        await fetchAllData();
       };
       reader.readAsArrayBuffer(fileInput.files[0]);
     }
 
-    // Announcement Handlers
+    // Announcement CRUD
     function editAnnouncement(annId) {
       editingAnnouncementId = annId;
       renderAdminPanel(document.getElementById('mainContainer'));
@@ -2382,14 +2329,14 @@
 
     function confirmDeleteAnnouncement(annId, title) {
       openConfirmModal(`Hapus pengumuman "${title}"?`, async () => {
-        await sendSpreadsheetRequest({ action: 'deleteAnnouncement', annId: annId });
-        editingAnnouncementId = null;
+        const res = await postToCloud('deleteAnnouncement', { annId: annId });
+        showToast(res.message || 'Pengumuman dihapus!');
+        await fetchAllData();
       });
     }
 
     async function submitAnnouncement() {
       const data = {
-        action: editingAnnouncementId ? 'updateAnnouncement' : 'addAnnouncement',
         annId: editingAnnouncementId || '',
         title: document.getElementById('admAnnTitle').value,
         tag: document.getElementById('admAnnTag').value,
@@ -2397,13 +2344,15 @@
       };
       if (!data.title || !data.content) return showToast('Judul dan isi pengumuman wajib diisi!');
 
-      await sendSpreadsheetRequest(data);
+      const action = editingAnnouncementId ? 'updateAnnouncement' : 'addAnnouncement';
+      const res = await postToCloud(action, data);
+      showToast(res.message || 'Pengumuman disimpan!');
       editingAnnouncementId = null;
+      await fetchAllData();
     }
 
-    // App Initialization
     window.addEventListener('DOMContentLoaded', () => {
-      loadCloudSpreadsheetData();
+      fetchAllData();
     });
   </script>
 </body>
