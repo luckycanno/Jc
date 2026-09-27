@@ -2,8 +2,8 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peraturan Pertandingan Gawang Mini Jong Canno Cup 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Peraturan Gawang Mini - Jong Canno Cup 2026</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -11,26 +11,33 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                            accent: '#f59e0b'
+                        navy: {
+                            950: '#060B18',
+                            900: '#0A1128',
+                            800: '#101B3B',
+                            700: '#182752',
+                            600: '#23366F',
+                            500: '#324A8D',
+                            card: '#0F1A36'
+                        },
+                        gold: {
+                            300: '#FFE680',
+                            400: '#F7D046',
+                            500: '#D4AF37',
+                            600: '#B89220',
+                            700: '#947211',
+                            gradient: 'linear-gradient(135deg, #FFE680 0%, #D4AF37 50%, #B89220 100%)'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         heading: ['Teko', 'sans-serif']
                     }
                 }
@@ -38,259 +45,275 @@
         }
     </script>
     <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(229, 231, 235, 0.8);
+        body {
+            background-color: #060B18;
+            color: #F8FAFC;
+            -webkit-tap-highlight-color: transparent;
         }
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(51, 65, 85, 0.8);
+
+        .gold-border {
+            border: 1px solid rgba(212, 175, 55, 0.35);
         }
+
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #F7D046 0%, #D4AF37 50%, #947211 100%);
+        }
+
+        .navy-card {
+            background: #0F1A36;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Hide scrollbars for mobile horizontal tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Pulse animation for trophy glow */
+        @keyframes goldPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
+        }
+
+        .trophy-glow {
+            animation: goldPulse 3s infinite ease-in-out;
+        }
+
         @media print {
             .no-print { display: none !important; }
             .print-only { display: block !important; }
             body { background: white !important; color: black !important; }
-            .page-break { page-break-before: always; }
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen transition-colors duration-200">
+<body class="font-sans pb-24 text-slate-100 min-h-screen selection:bg-gold-500 selection:text-navy-950">
 
-    <!-- Top Navigation Header -->
-    <header class="sticky top-0 z-40 w-full glass-card border-b shadow-sm transition-all no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Brand Logo & Title -->
-                <div class="flex items-center space-x-3">
-                    <img src="https://iili.io/n5zC9Gn.png" alt="Piala Jong Canno Cup" class="w-11 h-11 object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-200">
-                    <div>
-                        <span class="font-heading text-2xl tracking-wider text-brand-700 dark:text-brand-500 uppercase leading-none block">JONG CANNO CUP 2026</span>
-                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-tight">Peraturan Gawang Mini - Haruru, Maluku Tengah</span>
-                    </div>
+    <!-- Top Fixed App Header -->
+    <header class="sticky top-0 z-40 w-full bg-navy-900/95 backdrop-blur-md border-b border-gold-500/30 px-4 py-2.5 no-print shadow-lg">
+        <div class="max-w-md mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-full bg-navy-800 gold-border p-1">
+                    <img src="https://iili.io/n5zC9Gn.png" alt="Maskot Jong Canno Cup" class="w-full h-full object-contain filter drop-shadow">
                 </div>
+                <div>
+                    <h1 class="font-heading text-xl leading-none tracking-wider gold-gradient-text uppercase">JONG CANNO CUP 2026</h1>
+                    <p class="text-[10px] text-slate-300 font-medium tracking-tight">Peraturan Gawang Mini • Haruru</p>
+                </div>
+            </div>
 
-                <!-- Navigation Controls -->
-                <div class="flex items-center space-x-2 sm:space-x-4">
-                    <button id="calcModalBtn" onclick="toggleCalcModal()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 border border-amber-500/30 transition">
-                        <i class="fa-solid fa-calculator"></i>
-                        <span class="hidden md:inline">Kalkulator Sanksi</span>
-                    </button>
-                    <button id="fieldModalBtn" onclick="toggleFieldModal()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500/10 text-brand-700 dark:text-brand-400 hover:bg-brand-500/20 border border-brand-500/30 transition">
-                        <i class="fa-solid fa-vector-square"></i>
-                        <span class="hidden md:inline">Denah Lapangan</span>
-                    </button>
-                    <button onclick="window.print()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition" title="Cetak / Simpan PDF">
-                        <i class="fa-solid fa-print"></i>
-                    </button>
-                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition" title="Ganti Mode Gelap/Terang">
-                        <i class="fa-solid fa-moon dark:hidden"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
-                    </button>
-                </div>
+            <!-- Quick Utilities -->
+            <div class="flex items-center space-x-2">
+                <button onclick="window.print()" class="w-8 h-8 rounded-full bg-navy-800 border border-gold-500/30 text-gold-400 flex items-center justify-center hover:bg-gold-500 hover:text-navy-950 transition" title="Cetak PDF">
+                    <i class="fa-solid fa-print text-xs"></i>
+                </button>
+                <button onclick="toggleTrophyModal()" class="w-8 h-8 rounded-full bg-navy-800 border border-gold-500/30 text-gold-400 flex items-center justify-center hover:bg-gold-500 hover:text-navy-950 transition" title="Info Maskot">
+                    <i class="fa-solid fa-trophy text-xs"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Banner & Search Section -->
-    <section class="bg-gradient-to-br from-brand-900 via-slate-900 to-brand-800 text-white pt-10 pb-16 px-4 relative overflow-hidden no-print">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(34,197,94,0.15),transparent_50%)] pointer-events-none"></div>
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <div class="flex justify-center mb-4">
-                <div class="relative group cursor-pointer">
-                    <div class="absolute -inset-2 bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-500 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition duration-700 group-hover:duration-200 animate-pulse"></div>
-                    <img src="https://iili.io/n5zC9Gn.png" alt="Maskot Piala Jong Canno Cup 2026" class="relative w-32 h-32 sm:w-44 sm:h-44 object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)] transform hover:scale-105 transition duration-300">
+    <!-- Hero Banner with Mascot & Quick Search -->
+    <section class="px-4 pt-5 pb-6 bg-gradient-to-b from-navy-900 via-navy-800 to-navy-950 border-b border-gold-500/20 relative overflow-hidden no-print">
+        <div class="max-w-md mx-auto relative z-10 text-center">
+            
+            <!-- Trophy Showcase Badge -->
+            <div class="inline-block mb-3 relative group cursor-pointer" onclick="toggleTrophyModal()">
+                <div class="absolute -inset-2 bg-gold-500/20 rounded-full blur-md group-hover:bg-gold-500/40 transition"></div>
+                <div class="relative w-28 h-28 mx-auto bg-navy-950/80 rounded-full p-2 gold-border trophy-glow flex items-center justify-center">
+                    <img src="https://iili.io/n5zC9Gn.png" alt="Piala Jong Canno Cup 2026" class="w-24 h-24 object-contain filter drop-shadow-[0_8px_16px_rgba(212,175,55,0.4)] transform group-hover:scale-105 transition duration-300">
                 </div>
+                <span class="inline-flex items-center space-x-1 mt-2 bg-gold-500/10 text-gold-300 text-[10px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full border border-gold-500/30">
+                    <i class="fa-solid fa-crown text-[9px] text-gold-400"></i>
+                    <span>Piala Bergilir Resmi 2026</span>
+                </span>
             </div>
 
-            <span class="inline-block bg-brand-500/20 text-brand-300 text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-3 border border-brand-500/30">
-                Regulasi Resmi Turnamen 2026
-            </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold font-heading tracking-wide mb-3">
-                PERATURAN PERTANDINGAN GAWANG MINI
-            </h1>
-                <p class="text-slate-300 text-sm sm:text-base max-w-2xl mb-8 font-light">
-                    Pedoman resmi penyelenggaraan Turnamen Gawang Mini Jong Canno Cup 2026 di Haruru, Kabupaten Maluku Tengah. Diterbitkan untuk menjamin ketertiban, keamanan, dan sportivitas.
-                </p>
+            <h2 class="text-2xl font-black font-heading tracking-wide gold-gradient-text uppercase mb-1">
+                REGULASI RESMI PERTANDINGAN
+            </h2>
+            <p class="text-xs text-slate-300 max-w-xs mx-auto mb-4 leading-relaxed">
+                Pedoman Gawang Mini Turnamen Jong Canno Cup 2026 di Haruru, Maluku Tengah.
+            </p>
 
-                <!-- Search Input Box -->
-                <div class="max-w-2xl relative">
-                    <div class="relative flex items-center">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-400 text-lg"></i>
-                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Cari pasal, kata kunci (misal: 'kartu merah', 'WO', 'protes', 'sepatu')..." 
-                            class="w-full pl-12 pr-10 py-3.5 bg-white/10 backdrop-blur-md text-white placeholder-slate-400 border border-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-slate-900/90 transition shadow-xl text-sm sm:text-base">
-                        <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 text-slate-400 hover:text-white">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Quick Filter Chips -->
-                <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-4 text-xs">
-                    <span class="text-slate-400 py-1">Pencarian Populer:</span>
-                    <button onclick="quickFilter('sanksi')" class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full border border-white/10 transition"># Sanksi & Denda</button>
-                    <button onclick="quickFilter('lapangan')" class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full border border-white/10 transition"># Ukuran Lapangan</button>
-                    <button onclick="quickFilter('wasit')" class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full border border-white/10 transition"># Wewenang Wasit</button>
-                    <button onclick="quickFilter('pemogokan')" class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full border border-white/10 transition"># Mogok Main</button>
-                    <button onclick="quickFilter('protes')" class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full border border-white/10 transition"># Biaya Protes</button>
-                </div>
+            <!-- Search Input Box -->
+            <div class="relative mb-3">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gold-400 text-sm"></i>
+                <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Cari pasal, 'kartu merah', 'WO', 'protes'..." 
+                    class="w-full pl-10 pr-9 py-2.5 bg-navy-950/90 text-white placeholder-slate-400 text-xs rounded-xl border border-gold-500/40 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition shadow-inner">
+                <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
             </div>
 
-            <!-- Trophy Mascot Showcase -->
-            <div class="flex-shrink-0 relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-emerald-500 rounded-3xl blur-xl opacity-40 group-hover:opacity-75 transition duration-500"></div>
-                <div class="relative bg-slate-900/70 p-4 sm:p-6 rounded-3xl border border-white/15 shadow-2xl flex flex-col items-center">
-                    <img src="https://iili.io/n5z2RLJ.png" alt="Maskot Piala Jong Canno Cup 2026" class="w-40 h-40 sm:w-52 sm:h-52 object-contain drop-shadow-[0_10px_20px_rgba(245,158,11,0.35)] transition transform group-hover:scale-105 duration-300" onerror="this.onerror=null; this.src='https://placehold.co/200x200/15803d/ffffff?text=JCC+Trophy';">
-                    <span class="mt-2 text-xs font-heading tracking-widest text-amber-400 uppercase font-bold">Piala Bergilir Jong Canno</span>
-                </div>
+            <!-- Mobile Quick Filter Chips (Scrollable) -->
+            <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1 text-[11px]">
+                <span class="text-slate-400 shrink-0 text-[10px]">Populer:</span>
+                <button onclick="quickFilter('sanksi')" class="shrink-0 px-2.5 py-1 bg-navy-800 text-gold-300 rounded-lg border border-gold-500/20 active:bg-gold-500 active:text-navy-950 transition"># Sanksi Denda</button>
+                <button onclick="quickFilter('lapangan')" class="shrink-0 px-2.5 py-1 bg-navy-800 text-gold-300 rounded-lg border border-gold-500/20 active:bg-gold-500 active:text-navy-950 transition"># Lapangan</button>
+                <button onclick="quickFilter('wasit')" class="shrink-0 px-2.5 py-1 bg-navy-800 text-gold-300 rounded-lg border border-gold-500/20 active:bg-gold-500 active:text-navy-950 transition"># Wewenang Wasit</button>
+                <button onclick="quickFilter('wo')" class="shrink-0 px-2.5 py-1 bg-navy-800 text-gold-300 rounded-lg border border-gold-500/20 active:bg-gold-500 active:text-navy-950 transition"># Ketentuan WO</button>
+                <button onclick="quickFilter('protes')" class="shrink-0 px-2.5 py-1 bg-navy-800 text-gold-300 rounded-lg border border-gold-500/20 active:bg-gold-500 active:text-navy-950 transition"># Biaya Protes</button>
             </div>
+
         </div>
     </section>
 
-    <!-- Fast Info Highlights Grid -->
-    <section class="max-w-7xl mx-auto px-4 -mt-8 relative z-20 no-print">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            <div class="glass-card p-4 rounded-2xl shadow-sm border flex items-center space-x-3">
-                <div class="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-3 rounded-xl">
-                    <i class="fa-solid fa-ruler-combined text-xl"></i>
+    <!-- Mobile Quick Key Metrics Grid -->
+    <section class="max-w-md mx-auto px-4 -mt-3 relative z-20 no-print">
+        <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="navy-card p-3 rounded-xl flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/30 text-gold-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-ruler-combined text-sm"></i>
                 </div>
                 <div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Ukuran Lapangan</div>
-                    <div class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">29m × 19m</div>
+                    <div class="text-[10px] text-slate-400 font-medium">Ukuran Field</div>
+                    <div class="font-bold text-white text-sm">29m × 19m</div>
                 </div>
             </div>
 
-            <div class="glass-card p-4 rounded-2xl shadow-sm border flex items-center space-x-3">
-                <div class="bg-blue-500/10 text-blue-600 dark:text-blue-400 p-3 rounded-xl">
-                    <i class="fa-solid fa-clock text-xl"></i>
+            <div class="navy-card p-3 rounded-xl flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/30 text-gold-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-clock text-sm"></i>
                 </div>
                 <div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Waktu Permainan</div>
-                    <div class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">2 × 20 Mnt</div>
+                    <div class="text-[10px] text-slate-400 font-medium">Durasi Laga</div>
+                    <div class="font-bold text-white text-sm">2 × 20 Mnt</div>
                 </div>
             </div>
 
-            <div class="glass-card p-4 rounded-2xl shadow-sm border flex items-center space-x-3">
-                <div class="bg-amber-500/10 text-amber-600 dark:text-amber-400 p-3 rounded-xl">
-                    <i class="fa-solid fa-users text-xl"></i>
+            <div class="navy-card p-3 rounded-xl flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/30 text-gold-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-users text-sm"></i>
                 </div>
                 <div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Skuad Tim</div>
-                    <div class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">7 Pemain <span class="text-xs font-normal text-slate-500">(5+2)</span></div>
+                    <div class="text-[10px] text-slate-400 font-medium">Komposisi Tim</div>
+                    <div class="font-bold text-white text-sm">7 Pemain <span class="text-[10px] text-slate-400 font-normal">(5+2)</span></div>
                 </div>
             </div>
 
-            <div class="glass-card p-4 rounded-2xl shadow-sm border flex items-center space-x-3">
-                <div class="bg-red-500/10 text-red-600 dark:text-red-400 p-3 rounded-xl">
-                    <i class="fa-solid fa-shield-cat text-xl"></i>
+            <div class="navy-card p-3 rounded-xl flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/30 text-gold-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation text-sm"></i>
                 </div>
                 <div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Toleransi WO</div>
-                    <div class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">10 Menit</div>
+                    <div class="text-[10px] text-slate-400 font-medium">Toleransi WO</div>
+                    <div class="font-bold text-gold-400 text-sm">10 Menit</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <main class="max-w-md mx-auto px-4 mt-5">
         
-        <!-- Filter Tabs / Quick Navigation -->
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-slate-200 dark:border-slate-800 pb-4 no-print">
-            <div class="flex flex-wrap gap-2">
-                <button onclick="filterBab('all')" id="tab-all" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-600 text-white shadow-md transition">
+        <!-- Sticky Chapter Category Tabs -->
+        <div class="sticky top-[57px] z-30 bg-navy-950/95 backdrop-blur-md py-2 border-b border-navy-800 mb-4 no-print">
+            <div class="flex space-x-1.5 overflow-x-auto no-scrollbar text-xs">
+                <button onclick="filterBab('all')" id="tab-all" class="tab-btn px-3.5 py-2 rounded-xl font-bold bg-gold-500 text-navy-950 shadow transition shrink-0">
                     Semua Bab
                 </button>
-                <button onclick="filterBab('bab1')" id="tab-bab1" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700">
+                <button onclick="filterBab('bab1')" id="tab-bab1" class="tab-btn px-3.5 py-2 rounded-xl font-medium bg-navy-800 text-slate-300 border border-gold-500/20 shrink-0 transition">
                     BAB I: Umum
                 </button>
-                <button onclick="filterBab('bab2')" id="tab-bab2" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700">
+                <button onclick="filterBab('bab2')" id="tab-bab2" class="tab-btn px-3.5 py-2 rounded-xl font-medium bg-navy-800 text-slate-300 border border-gold-500/20 shrink-0 transition">
                     BAB II: Penyelenggaraan
                 </button>
-                <button onclick="filterBab('bab3')" id="tab-bab3" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700">
+                <button onclick="filterBab('bab3')" id="tab-bab3" class="tab-btn px-3.5 py-2 rounded-xl font-medium bg-navy-800 text-slate-300 border border-gold-500/20 shrink-0 transition">
                     BAB III: Lain-Lain
                 </button>
             </div>
-            
-            <div class="text-xs text-slate-500 dark:text-slate-400 italic">
-                <i class="fa-solid fa-circle-info mr-1 text-brand-500"></i> Klik pasal untuk memperluas / menyembunyikan rincian
-            </div>
         </div>
 
-        <!-- Search Result Alert Counter -->
-        <div id="searchCounter" class="hidden mb-4 p-3 bg-brand-50 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-800 text-brand-800 dark:text-brand-300 text-xs sm:text-sm rounded-xl font-medium flex items-center justify-between no-print">
-            <span>Ditemukan <strong id="matchCount">0</strong> pasal yang cocok dengan kriteria pencarian.</span>
-            <button onclick="clearSearchInput()" class="underline text-brand-600 dark:text-brand-400 font-bold">Bersihkan</button>
+        <!-- Search Result Counter -->
+        <div id="searchCounter" class="hidden mb-3 p-2.5 bg-navy-800 border border-gold-500/40 text-gold-300 text-xs rounded-xl flex items-center justify-between no-print">
+            <span>Ditemukan <strong id="matchCount" class="text-white">0</strong> pasal sesuai pencarian.</span>
+            <button onclick="clearSearchInput()" class="text-gold-400 font-bold underline text-[11px]">Bersihkan</button>
         </div>
 
-        <!-- Print Title (Only visible when printing document) -->
-        <div class="hidden print-only text-center mb-8">
-            <h1 class="text-2xl font-bold uppercase">Peraturan Pertandingan Gawang Mini Jong Canno Cup Tahun 2026</h1>
-            <p class="text-sm">Haruru, Kabupaten Maluku Tengah</p>
-            <hr class="my-4 border-black">
+        <!-- Print Document Title Header -->
+        <div class="hidden print-only text-center mb-6">
+            <h1 class="text-xl font-bold uppercase text-black">PERATURAN PERTANDINGAN GAWANG MINI JONG CANNO CUP TAHUN 2026</h1>
+            <p class="text-xs text-black">Haruru, Kabupaten Maluku Tengah</p>
+            <hr class="my-3 border-black">
         </div>
 
-        <!-- ARTICLES CONTAINER -->
-        <div class="space-y-8" id="articlesWrapper">
+        <!-- ARTICLES ACCORDION CONTAINER -->
+        <div class="space-y-6" id="articlesWrapper">
 
             <!-- ================= BAB I: UMUM ================= -->
             <div class="bab-section" id="section-bab1">
-                <div class="flex items-center space-x-3 mb-4">
-                    <div class="bg-brand-600 text-white font-heading text-xl px-3 py-1 rounded-lg">BAB I</div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">UMUM</h2>
+                <div class="flex items-center space-x-2 mb-3">
+                    <span class="bg-gold-500 text-navy-950 font-heading text-lg font-bold px-2.5 py-0.5 rounded-lg">BAB I</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wide">UMUM</h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-3">
                     <!-- Pasal 1 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="dasar acuan tm technical meeting aturan umum" data-article="1">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="dasar acuan tm technical meeting aturan umum gawang mini" data-article="1">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p1')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Dasar Pertandingan</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 1 - Dasar</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Dasar Hukum</span>
+                                <h3 class="text-base font-bold text-white">Pasal 1 - Dasar</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p1">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p1">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2 text-sm text-slate-600 dark:text-slate-300" id="content-p1">
-                            <p class="font-medium text-slate-700 dark:text-slate-200">Peraturan khusus turnamen Gawang Mini Jong Canno Cup berpedoman pada:</p>
-                            <ol class="list-decimal pl-5 space-y-1.5">
-                                <li>Peraturan Umum Pertandingan Gawang Mini.</li>
-                                <li>Peraturan dan Petunjuk Pelaksanaan Pertandingan Pekan Olahraga yang ditetapkan Panitia Jong Canno.</li>
-                                <li>Peraturan Pertandingan yang disepakati pada Pertemuan Teknik (<em>Technical Meeting</em>).</li>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p1">
+                            <p class="font-medium text-slate-200">Peraturan khusus turnamen Gawang Mini Jong Canno Cup berpedoman pada:</p>
+                            <ol class="list-decimal pl-4 space-y-1 text-slate-300">
+                                <li>Peraturan Umum Pertandingan Gawang Mini;</li>
+                                <li>Peraturan dan Petunjuk Pelaksanaan Pertandingan Pekan Olahraga yang ditetapkan Panitia Jong Canno;</li>
+                                <li>Peraturan Pertandingan yang disepakati pada Pertemuan Teknik.</li>
                             </ol>
                         </div>
                     </div>
 
                     <!-- Pasal 2 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="maksud tujuan haruru maluku tengah keamanan" data-article="2">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="maksud tujuan haruru maluku tengah keamanan kelancaran" data-article="2">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p2')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Tujuan Regulasi</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 2 - Maksud dan Tujuan</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Maksud & Tujuan</span>
+                                <h3 class="text-base font-bold text-white">Pasal 2 - Maksud dan Tujuan</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p2">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p2">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 leading-relaxed" id="content-p2">
-                            Peraturan khusus pertandingan gawang mini diterbitkan untuk mengatur penyelenggaraan pertandingan Gawang Mini Jong Canno Cup yang diselenggarakan di Haruru, Kabupaten Maluku Tengah agar terwujudnya keamanan, ketertiban, dan kelancaran jalannya pertandingan.
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 leading-relaxed" id="content-p2">
+                            Peraturan khusus pertandingan gawang mini diterbitkan untuk mengatur penyelenggaraan pertandingan Gawang Mini Jong Canno Cup yang diselenggarakan di Haruru, Kabupaten Maluku Tengah agar terwujudnya keamanan dan kelancaran jalannya pertandingan.
                         </div>
                     </div>
 
                     <!-- Pasal 3 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="technical meeting pertemuan teknik manager pelatih wajib" data-article="3">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="technical meeting pertemuan teknik manager pelatih wajib" data-article="3">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p3')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Pertemuan Teknik</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 3 - Pertemuan Teknik (Technical Meeting)</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Pertemuan Teknik</span>
+                                <h3 class="text-base font-bold text-white">Pasal 3 - Pertemuan Teknik</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p3">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p3">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 leading-relaxed" id="content-p3">
-                            Sebelum pertandingan dilaksanakan, wajib diadakan pertemuan teknik (<em>technical meeting</em>) yang dihadiri oleh manajer dan pelatih dari masing-masing tim.
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 leading-relaxed" id="content-p3">
+                            Sebelum pertandingan dilaksanakan diadakan pertemuan teknik yang wajib dihadiri oleh manajer dan pelatih tim masing-masing.
                         </div>
                     </div>
                 </div>
@@ -298,383 +321,395 @@
 
             <!-- ================= BAB II: PENYELENGGARAAN ================= -->
             <div class="bab-section" id="section-bab2">
-                <div class="flex items-center space-x-3 mb-4 pt-4">
-                    <div class="bg-brand-600 text-white font-heading text-xl px-3 py-1 rounded-lg">BAB II</div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">PENYELENGGARAAN PERTANDINGAN</h2>
+                <div class="flex items-center space-x-2 mb-3 pt-2">
+                    <span class="bg-gold-500 text-navy-950 font-heading text-lg font-bold px-2.5 py-0.5 rounded-lg">BAB II</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wide">PENYELENGGARAAN PERTANDINGAN</h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-3">
                     <!-- Pasal 4 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="lapangan ukuran panjang lebar 29 19 meter" data-article="4">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="lapangan ukuran panjang lebar 29 19 meter" data-article="4">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p4')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Spesifikasi Lapangan</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 4 - Lapangan</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Spesifikasi Lapangan</span>
+                                <h3 class="text-base font-bold text-white">Pasal 4 - Lapangan</h3>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <button onclick="event.stopPropagation(); toggleFieldModal()" class="text-xs bg-brand-500/10 text-brand-600 dark:text-brand-400 px-2.5 py-1 rounded-md font-semibold hover:bg-brand-500/20 no-print">
-                                    <i class="fa-solid fa-eye mr-1"></i> Lihat Skema
+                                <button onclick="event.stopPropagation(); toggleFieldModal()" class="text-[10px] bg-gold-500/20 text-gold-300 px-2 py-1 rounded-lg border border-gold-500/30 font-semibold no-print">
+                                    <i class="fa-solid fa-vector-square mr-1"></i> Denah
                                 </button>
-                                <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p4">
-                                    <i class="fa-solid fa-chevron-down"></i>
+                                <button class="text-gold-400 p-1" id="icon-p4">
+                                    <i class="fa-solid fa-chevron-down text-sm"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300" id="content-p4">
-                            <p class="font-medium mb-2">Ukuran lapangan pertandingan gawang mini:</p>
-                            <div class="grid grid-cols-2 gap-3 max-w-sm">
-                                <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
-                                    <span class="block text-xs text-slate-500">Panjang Field</span>
-                                    <span class="text-lg font-bold text-brand-600 dark:text-brand-400">29 Meter</span>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300" id="content-p4">
+                            <p class="font-medium mb-2 text-slate-200">Ukuran lapangan pertandingan:</p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-navy-700 text-center">
+                                    <span class="block text-[10px] text-slate-400">Panjang</span>
+                                    <span class="text-base font-bold text-gold-400">29 Meter</span>
                                 </div>
-                                <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
-                                    <span class="block text-xs text-slate-500">Lebar Field</span>
-                                    <span class="text-lg font-bold text-brand-600 dark:text-brand-400">19 Meter</span>
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-navy-700 text-center">
+                                    <span class="block text-[10px] text-slate-400">Lebar</span>
+                                    <span class="text-base font-bold text-gold-400">19 Meter</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Pasal 5 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="sistem waktu istirahat tambahan waktu gugur keterlambatan wo buzzer timer" data-article="5">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="sistem waktu istirahat tambahan waktu gugur keterlambatan wo buzzer timer" data-article="5">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p5')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Format & Durasi</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 5 - Sistem Pertandingan</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Format & Durasi</span>
+                                <h3 class="text-base font-bold text-white">Pasal 5 - Sistem Pertandingan</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p5">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p5">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-3" id="content-p5">
-                            <ul class="space-y-2 list-disc pl-5">
-                                <li><strong>Waktu Permainan:</strong> 2 x 20 menit.</li>
-                                <li><strong>Waktu Istirahat:</strong> 5 menit.</li>
-                                <li><strong>Tambahan Waktu:</strong> 2 x 5 menit (khusus pada babak semifinal dan final jika terjadi hasil imbang).</li>
-                                <li><strong>Sistem Pertandingan:</strong> Sistem Gugur (<em>Knockout System</em>).</li>
-                                <li><strong>Kedatangan Skuad:</strong> Tim wajib berada di area lapangan <strong>20 menit</strong> sebelum jadwal pertandingan dimulai.</li>
-                                <li><strong>Toleransi Keterlambatan:</strong> Maksimal <strong>10 menit</strong> dari jadwal. Tim yang terlambat hingga 3 x 5 menit setelah 3 kali pemanggilan resmi dinyatakan <strong>Kalah Walk Over (WO)</strong>.</li>
-                                <li><strong>Sistem Pengukur Waktu:</strong> Pengaturan waktu menggunakan sistem <em>timer</em> yang ditandai dengan bunyi bel/sirine (<em>buzzer</em>).</li>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p5">
+                            <ul class="space-y-1.5 list-disc pl-4 text-slate-300">
+                                <li><strong>Waktu Permainan:</strong> 2 x 20 menit</li>
+                                <li><strong>Waktu Istirahat:</strong> 5 menit</li>
+                                <li><strong>Tambahan Waktu:</strong> 2 x 5 menit (pada babak semifinal - final)</li>
+                                <li><strong>Sistem Pertandingan:</strong> Sistem Gugur</li>
+                                <li><strong>Kedatangan Skuad:</strong> Berada di lapangan <strong>20 menit</strong> sebelum pertandingan dimulai.</li>
+                                <li><strong>Toleransi Keterlambatan:</strong> Hanya <strong>10 menit</strong> dari waktu pertandingan. Yang datang terlambat 3 x 5 menit maka dinyatakan <strong>Kalah WO</strong>, setelah 3 kali pemanggilan.</li>
+                                <li><strong>Sistem Pengukur Waktu:</strong> Menggunakan sistem <em>timer</em> yang ditandai dengan bunyi <em>Buzzer</em>.</li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Pasal 6 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="pemain jumlah cadangan minimal kuorum 7 4 orang" data-article="6">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="pemain jumlah cadangan minimal kuorum 7 4 orang" data-article="6">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p6')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Komposisi Tim</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 6 - Jumlah Pemain</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Komposisi Tim</span>
+                                <h3 class="text-base font-bold text-white">Pasal 6 - Jumlah Pemain</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p6">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p6">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-2" id="content-p6">
-                            <p>Setiap tim terdiri dari <strong>7 orang pemain</strong> (5 pemain utama/inti dan 2 pemain cadangan).</p>
-                            <div class="p-3 bg-amber-500/10 border-l-4 border-amber-500 text-amber-900 dark:text-amber-300 rounded-r-xl">
-                                <strong>Ketentuan Minimum Pertandingan:</strong> Suatu pertandingan tidak dapat dimulai apabila jumlah pemain dari salah satu tim kurang dari <strong>4 orang</strong> di lapangan.
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p6">
+                            <p>Tiap tim terdiri dari <strong>7 pemain</strong> (5 pemain utama + 2 cadangan).</p>
+                            <div class="p-2.5 bg-red-500/10 border-l-2 border-red-500 text-red-300 rounded-r-xl">
+                                <strong>Batas Minimal:</strong> Suatu pertandingan tidak boleh dimulai apabila pemain dari salah satu tim kurang dari <strong>4 orang</strong>. Jumlah pemain cadangan maksimal 2 orang.
                             </div>
                         </div>
                     </div>
 
                     <!-- Pasal 7 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="kelengkapan kostum kaos kaki sepatu shinguard kiper perhiasan" data-article="7">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="kelengkapan kostum kaos kaki sepatu shinguard kiper perhiasan" data-article="7">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p7')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Atribut & Keamanan</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 7 - Kelengkapan Pemain</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Atribut & Keamanan</span>
+                                <h3 class="text-base font-bold text-white">Pasal 7 - Kelengkapan Pemain</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p7">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p7">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-3" id="content-p7">
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2.5" id="content-p7">
                             <div>
-                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">1. Keselamatan</h4>
-                                <p>Pemain dilarang menggunakan perlengkapan atau barang apa pun yang berbahaya bagi dirinya maupun pemain lain (termasuk segala jenis perhiasan, kalung, cincin, dll).</p>
+                                <h4 class="font-bold text-gold-400 mb-0.5">1. Keselamatan</h4>
+                                <p>Pemain dilarang menggunakan perlengkapan atau apapun yang dapat membahayakan dirinya atau pemain lain (termasuk segala macam perhiasan).</p>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">2. Perlengkapan Utama</h4>
-                                <ul class="list-disc pl-5 space-y-1">
-                                    <li>Seragam/kostum olahraga berlengan dan memiliki nomor punggung resmi.</li>
-                                    <li>Celana pendek olahraga.</li>
-                                    <li>Kaos kaki panjang.</li>
-                                    <li>Sepatu olahraga (tidak memiliki jamur/pul tajam berbahaya).</li>
-                                    <li>Pelindung tulang kering (<em>shinguard</em>).</li>
-                                    <li>Penjaga Gawang (Kiper) memakai seragam dengan warna berbeda dan <strong>mempunyai hak untuk ikut menyerang</strong>.</li>
-                                </ul>
+                                <h4 class="font-bold text-gold-400 mb-0.5">2. Perlengkapan Dasar/Utama</h4>
+                                <p class="mb-1">Seragam atau kostum olahraga yang berlengan dan memiliki nomor punggung, Celana pendek, Kaos kaki, Sepatu yang tidak memiliki jamur, dan pelindung tulang kering.</p>
+                                <p class="text-amber-300 font-medium bg-amber-500/10 p-2 rounded-lg border border-amber-500/20">Kiper yang menggunakan kostum berbeda mempunyai hak untuk menyerang.</p>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">3. Aturan Pelindung Tulang Kering (Shinguard)</h4>
-                                <ul class="list-disc pl-5 space-y-1">
-                                    <li>Seluruh bagian pengaman wajib tertutup rapat oleh kaos kaki.</li>
-                                    <li>Terbuat dari bahan yang layak dan aman (karet, plastik, atau bahan sejenis).</li>
-                                    <li>Wajib memberikan tingkat perlindungan yang memadai.</li>
+                                <h4 class="font-bold text-gold-400 mb-0.5">3. Pelindung Tulang Kering (Shinguard)</h4>
+                                <ul class="list-disc pl-4 space-y-0.5">
+                                    <li>3.1 Secara keseluruhan pengaman kaki harus ditutup oleh kaos kaki.</li>
+                                    <li>3.2 Terbuat dari bahan yang cocok (karet, plastik atau bahan sejenis).</li>
+                                    <li>3.3 Harus memberikan tingkat perlindungan yang cukup.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <!-- Pasal 8 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="wasit perwasitan asisten wasit keputusan mutlak tugas" data-article="8">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="wasit perwasitan asisten wasit keputusan mutlak tugas" data-article="8">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p8')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Perangkat Pertandingan</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 8 - Perwasitan</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Perangkat Pertandingan</span>
+                                <h3 class="text-base font-bold text-white">Pasal 8 - Perwasitan</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p8">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p8">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-3" id="content-p8">
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2.5" id="content-p8">
                             <div>
-                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">1. Wewenang Wasit</h4>
-                                <p>Setiap pertandingan dipimpin oleh <strong>1 orang Wasit Utama</strong> dan <strong>2 orang Asisten Wasit</strong>. Keputusan wasit mengenai fakta permainan adalah <strong>MUTLAK dan FINAL</strong>. Wasit hanya dapat merubah keputusan apabila menyadari kekeliruan sebelum pertandingan dimulai kembali.</p>
+                                <h4 class="font-bold text-gold-400 mb-0.5">1. Wewenang Wasit</h4>
+                                <p class="leading-relaxed">Setiap pertandingan dipimpin oleh seorang wasit dan dua orang asisten wasit yang wewenangnya mutlak dalam menegakkan peraturan permainan. Keputusan wasit mengenai fakta-fakta yang berkaitan dengan permainan adalah <strong>MUTLAK dan FINAL</strong>. Wasit hanya dapat mengubah keputusannya sebelum permainan dimulai kembali.</p>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">2. Tugas & Tanggung Jawab Wasit Utama</h4>
-                                <ul class="list-disc pl-5 space-y-1">
-                                    <li>Menegakkan seluruh peraturan permainan secara adil.</li>
-                                    <li>Memeriksa kelengkapan pemain sesuai ketentuan Pasal 7.</li>
-                                    <li>Bertindak sebagai pencatat waktu resmi dan mencatat skor pertandingan.</li>
-                                    <li>Berhak menghentikan/menunda pertandingan jika terjadi cedera parah, pendarahan pemain, gangguan pihak luar, atau cuaca buruk.</li>
-                                    <li>Menjalankan tindakan disiplin kartu kuning, kartu merah, serta mengusir ofisial yang tidak bertanggung jawab.</li>
+                                <h4 class="font-bold text-gold-400 mb-0.5">2. Kekuasaan dan Tanggung Jawab Wasit:</h4>
+                                <ul class="list-disc pl-4 space-y-1 text-slate-300">
+                                    <li>a) Menegakkan peraturan permainan;</li>
+                                    <li>b) Memimpin pertandingan bekerja sama dengan asisten wasit dan ofisial;</li>
+                                    <li>c) Memastikan perlengkapan pemain memenuhi Pasal 7;</li>
+                                    <li>d) Bertindak sebagai pencatat waktu dan mencatat hasil pertandingan;</li>
+                                    <li>e) Menghentikan, menunda atau meninggalkan pertandingan atas pelanggaran;</li>
+                                    <li>f) Menghentikan pertandingan karena adanya gangguan/campur tangan pihak luar;</li>
+                                    <li>g) Menghentikan laga jika pemain terluka parah dan dievakuasi;</li>
+                                    <li>h) Melanjutkan laga jika cedera pemain dinilai ringan;</li>
+                                    <li>i) Memastikan pemain yang berdarah keluar lapangan hingga pendarahan berhenti;</li>
+                                    <li>j) Memberi hukuman terhadap pelanggaran paling berat jika terjadi bersamaan;</li>
+                                    <li>k) Menjalankan tindakan disiplin kartu kuning / kartu merah;</li>
+                                    <li>l) Mengusir ofisial tim yang bertindak tidak bertanggung jawab;</li>
+                                    <li>m) Bertindak atas saran asisten wasit mengenai insiden yang tidak dilihatnya;</li>
+                                    <li>n) Menentukan kelayakan kondisi lapangan dan cuaca;</li>
+                                    <li>o) Memulai kembali pertandingan setelah dihentikan.</li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-slate-800 dark:text-slate-100 mb-1">3. Tugas Asisten Wasit</h4>
-                                <ul class="list-disc pl-5 space-y-1">
-                                    <li>Mengisyaratkan bola keluar dari garis lapangan.</li>
-                                    <li>Menentukan tim yang berhak atas tendangan sudut, gawang, atau ke dalam.</li>
-                                    <li>Mengawasi proses pergantian pemain.</li>
-                                    <li>Memberikan isyarat atas pelanggaran yang tidak terlihat langsung oleh wasit utama.</li>
+                                <h4 class="font-bold text-gold-400 mb-0.5">3. Asisten Wasit:</h4>
+                                <p class="mb-1">Dua asisten wasit bertugas mengisyaratkan:</p>
+                                <ul class="list-disc pl-4 space-y-0.5 text-slate-300">
+                                    <li>a) Kapan bola keluar lapangan;</li>
+                                    <li>b) Tim mana yang berhak atas tendangan sudut, gawang, atau ke dalam;</li>
+                                    <li>c) Apabila ada permintaan pergantian pemain;</li>
+                                    <li>d) Pelanggaran/insiden yang tidak terlihat oleh wasit utama;</li>
+                                    <li>e) Pelanggaran ketika berada pada posisi pandang yang lebih baik.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <!-- Pasal 9 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="pemenang penalty adu penalti sudden death undian koin kalah otomatis" data-article="9">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="pemenang penalty adu penalti sudden death undian koin kalah otomatis" data-article="9">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p9')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Tie-breaker</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 9 - Penentuan Pemenang</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Tie-breaker</span>
+                                <h3 class="text-base font-bold text-white">Pasal 9 - Penentuan Pemenang</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p9">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p9">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-3" id="content-p9">
-                            <ol class="list-decimal pl-5 space-y-1.5">
-                                <li>Apabila pertandingan berakhir imbang pada babak gugur, pemenang ditentukan melalui adu penalti sebanyak <strong>3 penendang utama</strong> dari masing-masing tim.</li>
-                                <li>Jika masih imbang, dilanjutkan dengan 1 penendang tambahan secara bergantian (<em>sudden death</em>) sampai terjadi selisih gol. Jika seluruh pemain telah menendang dan masih imbang, pemenang ditentukan via <strong>undian koin</strong>.</li>
-                                <li><strong>Kalah Otomatis:</strong> Apabila suatu tim hadir kurang dari 4 pemain di lapangan, ATAU salah satu tim pemain intinya menerima <strong>2 Kartu Merah</strong> dalam 1 pertandingan, maka tim tersebut langsung dinyatakan <strong>KALAH</strong>.</li>
-                            </ol>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p9">
+                            <p class="leading-relaxed">Apabila hasil imbang, maka pertandingan ditentukan melalui tendangan dari titik penalti, sebanyak <strong>3 penendang</strong>. Bila masih sama ditambah satu orang sampai ada selisih, sampai semua pemain menendang. Bila masih sama ditentukan dengan undian.</p>
+                            <div class="p-2.5 bg-red-500/10 border-l-2 border-red-500 text-red-300 rounded-r-xl">
+                                <strong>Kalah Otomatis:</strong> Apabila tim yang hadir kurang dari 4 pemain ATAU salah satu tim yang pemain inti mendapatkan <strong>2 Kartu Merah (2 pemain)</strong> dalam satu pertandingan, maka tim tersebut dinyatakan <strong>KALAH</strong>.
+                            </div>
                         </div>
                     </div>
 
                     <!-- Pasal 10 -->
-                    <div class="article-card glass-card rounded-2xl border border-red-200 dark:border-red-900/40 p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="sanksi denda kartu kuning kartu merah semifinal pemutihan rp 70000 35000" data-article="10">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md gold-border-glow transition duration-150" data-tags="sanksi denda kartu kuning kartu merah semifinal pemutihan rp 70000 35000" data-article="10">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p10')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-red-600 dark:text-red-400 tracking-wider uppercase"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Denda & Administrasi</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 10 - Sanksi Kartu Kuning & Kartu Merah</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-red-400 tracking-wider uppercase block mb-0.5"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Denda Administrasi</span>
+                                <h3 class="text-base font-bold text-white">Pasal 10 - Sanksi Kartu Kuning & Merah</h3>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <button onclick="event.stopPropagation(); toggleCalcModal()" class="text-xs bg-red-500/10 text-red-600 dark:text-red-400 px-2.5 py-1 rounded-md font-semibold hover:bg-red-500/20 no-print">
-                                    Hitung Denda
+                                <button onclick="event.stopPropagation(); toggleCalcModal()" class="text-[10px] bg-red-500/20 text-red-300 px-2 py-1 rounded-lg border border-red-500/30 font-semibold no-print">
+                                    <i class="fa-solid fa-calculator mr-1"></i> Hitung
                                 </button>
-                                <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p10">
-                                    <i class="fa-solid fa-chevron-down"></i>
+                                <button class="text-gold-400 p-1" id="icon-p10">
+                                    <i class="fa-solid fa-chevron-down text-sm"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm space-y-3 text-slate-700 dark:text-slate-300" id="content-p10">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                <div class="bg-amber-50 dark:bg-amber-950/30 p-3 rounded-xl border border-amber-200 dark:border-amber-800/50">
-                                    <div class="font-bold text-amber-700 dark:text-amber-400 mb-1">1 Kartu Kuning</div>
-                                    <p class="text-xs">Denda Administrasi:</p>
-                                    <div class="text-lg font-bold text-slate-900 dark:text-white">Rp 35.000,-</div>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p10">
+                            <div class="grid grid-cols-1 gap-2">
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-amber-500/30 flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-amber-400">1 Kartu Kuning</div>
+                                        <div class="text-[10px] text-slate-400">Denda Administrasi</div>
+                                    </div>
+                                    <div class="text-sm font-black text-white">Rp 35.000,-</div>
                                 </div>
-                                <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded-xl border border-amber-300 dark:border-amber-700/50">
-                                    <div class="font-bold text-amber-800 dark:text-amber-300 mb-1">2 Kartu Kuning (1 Laga)</div>
-                                    <p class="text-xs">Skorsing <strong>1 x Pertandingan</strong> + Denda Administrasi:</p>
-                                    <div class="text-lg font-bold text-slate-900 dark:text-white">Rp 70.000,-</div>
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-amber-500/40 flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-amber-300">2 Kartu Kuning (1 Laga)</div>
+                                        <div class="text-[10px] text-slate-400">Skorsing 1x Laga + Denda</div>
+                                    </div>
+                                    <div class="text-sm font-black text-white">Rp 70.000,-</div>
                                 </div>
-                                <div class="bg-red-50 dark:bg-red-950/30 p-3 rounded-xl border border-red-200 dark:border-red-800/50">
-                                    <div class="font-bold text-red-700 dark:text-red-400 mb-1">Kartu Merah Langsung</div>
-                                    <p class="text-xs">Skorsing <strong>2 x Pertandingan</strong> + Denda Administrasi:</p>
-                                    <div class="text-lg font-bold text-slate-900 dark:text-white">Rp 70.000,-</div>
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-red-500/40 flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-red-400">Kartu Merah Langsung</div>
+                                        <div class="text-[10px] text-slate-400">Skorsing 2x Laga + Denda</div>
+                                    </div>
+                                    <div class="text-sm font-black text-white">Rp 70.000,-</div>
                                 </div>
                             </div>
-                            <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
-                                <li><strong>Tanpa Pemutihan Semifinal:</strong> Pemain yang mendapat kartu merah pada babak semifinal <strong>TIDAK mendapat pemutihan</strong> dan dilarang tampil pada partai Final.</li>
-                                <li>Ketentuan denda di atas berlaku mengikat untuk pemain maupun <strong>Ofisial Tim</strong>.</li>
-                            </ul>
+                            <p class="text-red-300 bg-red-500/10 p-2 rounded-lg border border-red-500/20 text-[11px]">
+                                <strong>Tanpa Pemutihan Semifinal:</strong> Pemain yang mendapatkan kartu merah di babak semifinal <strong>TIDAK ADA PEMUTIHAN</strong>, sehingga tidak diperbolehkan main saat pertandingan final.
+                            </p>
+                            <p class="text-[10px] text-slate-400 italic">Poin 1-4 diberlakukan juga untuk Official Team.</p>
                         </div>
                     </div>
 
                     <!-- Pasal 11 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="official tim id card jaminan bench 2 orang sepatu 25000 100000" data-article="11">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="official tim id card jaminan bench 2 orang sepatu 25000 100000" data-article="11">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p11')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Manajemen Bench</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 11 - Official Team</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Manajemen Bench</span>
+                                <h3 class="text-base font-bold text-white">Pasal 11 - Official Team</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p11">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p11">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-2" id="content-p11">
-                            <ol class="list-decimal pl-5 space-y-2">
-                                <li>Jumlah ofisial yang diperkenankan mendampingi tim di bench maksimal <strong>2 (dua) orang</strong>.</li>
-                                <li>Seluruh ofisial wajib berpakaian sopan, memakai sepatu, dan mengenakan <strong>ID Card resmi</strong> dari Panitia (Biaya ID Card Rp 25.000,-).</li>
-                                <li>Setiap tim wajib menyerahkan <strong>Uang Jaminan Turnamen sebesar Rp 100.000,-</strong> sebelum turnamen dimulai.</li>
-                                <li>Ofisial yang telah terdaftar resmi <strong>TIDAK DAPAT DIGANTI</strong> selama turnamen berlangsung.</li>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p11">
+                            <ol class="list-decimal pl-4 space-y-1.5">
+                                <li>Jumlah official yang diperkenankan mendampingi tim maksimal sebanyak <strong>2 (dua) orang</strong>.</li>
+                                <li>Semua official wajib menggunakan pakaian yang sopan, memakai sepatu, dan wajib memakai <strong>ID Card</strong> yang disediakan Panitia (Biaya ID Card: <strong>Rp 25.000</strong>).</li>
+                                <li>Setiap team diwajibkan memberikan <strong>Uang Jaminan sebesar Rp 100.000</strong>.</li>
+                                <li>Official yang sudah terdaftar <strong>TIDAK DAPAT DIGANTI</strong>.</li>
                             </ol>
                         </div>
                     </div>
 
                     <!-- Pasal 12 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="pemogokan mogok main menolak kalah wo" data-article="12">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="pemogokan mogok main menolak kalah wo" data-article="12">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p12')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Pelanggaran Berat</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 12 - Pemogokan (Mogok Main)</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Pelanggaran Berat</span>
+                                <h3 class="text-base font-bold text-white">Pasal 12 - Pemogokan</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p12">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p12">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300" id="content-p12">
-                            <p class="p-3 bg-red-500/10 border-l-4 border-red-500 text-red-900 dark:text-red-300 rounded-r-xl">
-                                Apabila salah satu tim menolak untuk melanjutkan pertandingan, tim tersebut dinyatakan melakukan pemogokan dan langsung dinyatakan <strong>KALAH / DISKUALIFIKASI</strong>.
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300" id="content-p12">
+                            <p class="p-2.5 bg-red-500/10 border-l-2 border-red-500 text-red-300 rounded-r-xl">
+                                Kalau salah satu tim yang bertanding tidak bersedia meneruskan pertandingan, maka tim tersebut dinyatakan melakukan pemogokan dan <strong>TIM TERSEBUT KALAH</strong>.
                             </p>
                         </div>
                     </div>
 
                     <!-- Pasal 13 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="penundaan force majeure banjir cuaca 3 menit sisa waktu" data-article="13">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="penundaan force majeure banjir cuaca 3 menit sisa waktu" data-article="13">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p13')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Kondisi Darurat</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 13 - Penundaan Pertandingan</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Kondisi Darurat</span>
+                                <h3 class="text-base font-bold text-white">Pasal 13 - Penundaan Pertandingan</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p13">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p13">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-2" id="content-p13">
-                            <ol class="list-decimal pl-5 space-y-2">
-                                <li>Jika pertandingan tidak dapat dilaksanakan karena sebab terpaksa (<em>force majeure</em>), pertandingan ditunda atas kesepakatan kedua tim dan panitia pelaksana.</li>
-                                <li>Jika pertandingan terhenti akibat cuaca buruk/banjir dan sisa waktu <strong>3 menit atau kurang</strong>, maka pertandingan akan dilanjutkan sisa waktu tersebut dengan kedudukan skor terakhir tidak berubah.</li>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p13">
+                            <ol class="list-decimal pl-4 space-y-1.5">
+                                <li>Jika suatu pertandingan tidak dapat dilaksanakan sama sekali karena suatu sebab yang tidak dapat dihindarkan, maka pertandingan akan ditunda dengan kesepakatan kedua tim dan panitia pelaksana.</li>
+                                <li>Pertandingan terhenti oleh suatu sebab (banjir/cuaca buruk) sedangkan pertandingan tersisa waktu <strong>3 menit atau kurang</strong>, maka pertandingan akan dilanjutkan dengan sisa waktu tersebut. Hasil pertandingan tidak berubah seperti yang telah dihasilkan saat dihentikan.</li>
                             </ol>
                         </div>
                     </div>
 
                     <!-- Pasal 14 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="protes uang jaminan 200000 manager 24 jam bukti" data-article="14">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="protes uang jaminan 200000 manager 24 jam bukti" data-article="14">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p14')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Prosedur Keberatan</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 14 - Protes</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Prosedur Keberatan</span>
+                                <h3 class="text-base font-bold text-white">Pasal 14 - Protes</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p14">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p14">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-2" id="content-p14">
-                            <p>Protes teknis/administrasi terhadap tim lain hanya dapat diajukan dengan syarat:</p>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li>Diajukan secara tertulis oleh <strong>Manager Tim yang menghadiri Technical Meeting</strong> (Manager yang absen TM tidak berhak mengajukan protes).</li>
-                                <li>Menyerahkan <strong>Uang Jaminan Protes sebesar Rp 200.000,-</strong> (Dua Ratus Ribu Rupiah).</li>
-                                <li>Diajukan paling lambat <strong>24 jam</strong> setelah pertandingan selesai dengan bukti-bukti yang sah & kuat.</li>
-                            </ul>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p14">
+                            <p class="leading-relaxed">Apabila ada protes terhadap tim lain (diluar peraturan permainan), diajukan oleh Manager Tim yang menghadiri pertemuan teknik, disertai <strong>Uang Protes Rp 200.000,- (Dua Ratus Ribu Rupiah)</strong> paling lambat <strong>24 jam</strong> setelah pertandingan selesai dengan disertai bukti-bukti yang kuat dan meyakinkan.</p>
+                            <p class="text-[11px] text-amber-300 font-medium bg-amber-500/10 p-2 rounded-lg border border-amber-500/20">
+                                <strong>Catatan:</strong> Manager yang tidak menghadiri Pertemuan Teknik TIDAK DILAYANI dalam pengajuan protes.
+                            </p>
                         </div>
                     </div>
 
                     <!-- Pasal 15 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="pelanggaran sanksi tendangan bebas penalti miras rokok handsball tackle" data-article="15">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="pelanggaran sanksi tendangan bebas penalti miras rokok handsball tackle" data-article="15">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p15')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Detail Pelanggaran</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 15 - Pelanggaran dan Sanksi Disiplin</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Sanksi Disiplin</span>
+                                <h3 class="text-base font-bold text-white">Pasal 15 - Pelanggaran dan Sanksi</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p15">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p15">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-4" id="content-p15">
-                            <!-- 1. Tim & Pemain Illegal -->
-                            <div class="p-3 bg-slate-100 dark:bg-slate-800/80 rounded-xl">
-                                <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-1">1. Pemain Ilegal</h4>
-                                <p class="text-xs">Pemain yang sudah terdaftar tidak dapat digantikan pemain lain. Jika kedapatan memainkan pemain tidak terdaftar, tim tersebut <strong>LANGSUNG DIDISKUALIFIKASI</strong>.</p>
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-3" id="content-p15">
+                            <!-- Pemain Ilegal -->
+                            <div class="p-2.5 bg-navy-950 rounded-xl border border-navy-700">
+                                <h4 class="font-bold text-gold-400 mb-0.5">1. Skuad / Team</h4>
+                                <p>Pemain yang sudah terdaftar tidak dapat digantikan dengan alasan apapun. Apabila kedapatan tim menggantikan pemain terdaftar maka <strong>TIM TERSEBUT DISATAKAN GUGUR</strong>.</p>
                             </div>
 
-                            <!-- 2. Disiplin Ofisial -->
-                            <div>
-                                <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-2">2. Disiplin Ofisial Tim</h4>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                                    <div class="p-2.5 border rounded-lg bg-white dark:bg-slate-800">
-                                        <span class="font-semibold text-amber-600">Kartu Kuning:</span> Keluar bench tanpa izin, merokok saat laga, atau tidak memakai sepatu.
-                                    </div>
-                                    <div class="p-2.5 border rounded-lg bg-white dark:bg-slate-800">
-                                        <span class="font-semibold text-red-600">Kartu Merah / Pengusiran:</span> Tercium / berbau minuman beralkohol / miras.
-                                    </div>
-                                </div>
+                            <!-- Disiplin Ofisial -->
+                            <div class="p-2.5 bg-navy-950 rounded-xl border border-navy-700 space-y-1">
+                                <h4 class="font-bold text-gold-400 mb-1">2. Disiplin Official Team</h4>
+                                <ul class="list-disc pl-4 space-y-1 text-slate-300">
+                                    <li><strong>2.1</strong> Official keluar bench tanpa izin → <strong>Kartu Kuning</strong>.</li>
+                                    <li><strong>2.2</strong> Official tercium berbau minuman keras → <strong>Pengusiran (Kartu Merah)</strong>.</li>
+                                    <li><strong>2.3</strong> Official merokok di area bench saat laga → <strong>Kartu Kuning</strong>.</li>
+                                    <li><strong>2.4</strong> Official tidak memakai sepatu → <strong>Kartu Kuning</strong>.</li>
+                                    <li><strong>2.5</strong> Official tanpa ID Card → <strong>Dilarang mendampingi tim</strong>.</li>
+                                </ul>
                             </div>
 
-                            <!-- 3. Technical Foul Types -->
-                            <div class="space-y-3">
-                                <h4 class="font-bold text-slate-800 dark:text-slate-100">3. Jenis Pelanggaran & Hukuman Teknis</h4>
+                            <!-- Pelanggaran Teknis -->
+                            <div class="space-y-2">
+                                <h4 class="font-bold text-gold-400">3. Pelanggaran & Kelakuan Tidak Sopan</h4>
                                 
-                                <div class="border rounded-xl p-3 bg-white dark:bg-slate-800">
-                                    <div class="font-semibold text-brand-700 dark:text-brand-400 mb-1">3.1 Tendangan Bebas (Direct/Indirect)</div>
-                                    <p class="text-xs mb-2">Diberikan jika pemain sengaja melakukan:</p>
-                                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-1 text-xs text-slate-500 dark:text-slate-400">
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-navy-700">
+                                    <div class="font-bold text-gold-300 mb-1">3.1 Tendangan Bebas</div>
+                                    <p class="text-[11px] mb-1">Diberikan jika pemain sengaja melakukan:</p>
+                                    <div class="grid grid-cols-2 gap-1 text-[11px] text-slate-300">
                                         <span>• Menendang lawan</span>
-                                        <span>• Menjegal kasar</span>
-                                        <span>• Menabrak sengaja</span>
+                                        <span>• Menjegal lawan</span>
+                                        <span>• Menabrak lawan</span>
                                         <span>• Memukul lawan</span>
                                         <span>• Mendorong lawan</span>
-                                        <span>• Tackle berbahaya</span>
-                                        <span>• Memegang lawan</span>
+                                        <span>• Mentackle/menyerang</span>
+                                        <span>• Menahan/memegang</span>
                                         <span>• Meludahi lawan</span>
                                         <span>• Handsball sengaja</span>
                                     </div>
                                 </div>
 
-                                <div class="border rounded-xl p-3 bg-white dark:bg-slate-800">
-                                    <div class="font-semibold text-amber-600 dark:text-amber-400 mb-1">3.2 Tendangan Penalti</div>
-                                    <p class="text-xs mb-1">Diberikan jika pelanggaran teknis terjadi di area penalti sendiri, ATAU:</p>
-                                    <ul class="list-disc pl-5 text-xs text-slate-500 dark:text-slate-400 space-y-1">
-                                        <li>Pemain bertahan jatuh/jongkok di dalam daerah penalti sendiri.</li>
-                                        <li>Anggota tubuh/kaki pemain memasuki daerah terlarang gawang.</li>
-                                        <li>Anggota tubuh menyentuh gawang sendiri saat bertahan.</li>
+                                <div class="bg-navy-950 p-2.5 rounded-xl border border-navy-700">
+                                    <div class="font-bold text-amber-400 mb-1">3.2 Tendangan Penalti</div>
+                                    <p class="text-[11px] mb-1">Diberikan jika pelanggaran di atas dilakukan di area penalti sendiri, atau:</p>
+                                    <ul class="list-disc pl-4 text-[11px] text-slate-300 space-y-0.5">
+                                        <li>a) Pemain jatuh/jongkok di daerah penalti sendiri.</li>
+                                        <li>b) Kaki/anggota tubuh memasuki daerah terlarang.</li>
+                                        <li>c) Anggota tubuh mengenai gawang sendiri.</li>
                                     </ul>
                                 </div>
 
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <div class="border border-amber-200 dark:border-amber-800 rounded-xl p-3 bg-amber-50/50 dark:bg-amber-950/20">
-                                        <div class="font-semibold text-amber-700 dark:text-amber-400 mb-1">3.3 Pelanggaran Kartu Kuning</div>
-                                        <ul class="list-disc pl-4 text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                                            <li>Unsporting behavior (tidak sportif).</li>
-                                            <li>Protes berlebihan terhadap wasit.</li>
-                                            <li>Paul berulang (persistent infringement).</li>
-                                            <li>Mengulur-ulur waktu pertandingan.</li>
-                                            <li>Gagal menjaga jarak freekick.</li>
+                                <div class="grid grid-cols-1 gap-2">
+                                    <div class="bg-navy-950 p-2.5 rounded-xl border border-amber-500/30">
+                                        <div class="font-bold text-amber-400 mb-1">3.3 Kartu Kuning</div>
+                                        <ul class="list-disc pl-4 text-[11px] text-slate-300 space-y-0.5">
+                                            <li>a) Berkelakuan tidak sportif</li>
+                                            <li>b) Protes perkataan/tindakan</li>
+                                            <li>c) Terus-menerus melanggar</li>
+                                            <li>d) Memperlambat waktu</li>
+                                            <li>e) Gagal menjaga jarak freekick</li>
+                                            <li>f) Keluar/masuk lapangan tanpa izin</li>
                                         </ul>
                                     </div>
 
-                                    <div class="border border-red-200 dark:border-red-800 rounded-xl p-3 bg-red-50/50 dark:bg-red-950/20">
-                                        <div class="font-semibold text-red-700 dark:text-red-400 mb-1">3.4 Pelanggaran Kartu Merah</div>
-                                        <ul class="list-disc pl-4 text-xs text-slate-600 dark:text-slate-400 space-y-1">
-                                            <li>Bermain sangat kasar (serious foul play).</li>
-                                            <li>Violent conduct (tindakan brutal).</li>
-                                            <li>Sengaja handsball mencegah gol.</li>
-                                            <li>Kata-kata/isyarat kotor & menghina.</li>
-                                            <li>Dipengaruhi minuman beralkohol.</li>
+                                    <div class="bg-navy-950 p-2.5 rounded-xl border border-red-500/40">
+                                        <div class="font-bold text-red-400 mb-1">3.4 Kartu Merah (Pengusiran)</div>
+                                        <ul class="list-disc pl-4 text-[11px] text-slate-300 space-y-0.5">
+                                            <li>a) Bermain sangat kasar</li>
+                                            <li>b) Berkelakuan jahat/kasar</li>
+                                            <li>c) Meludahi pemain/orang lain</li>
+                                            <li>d) Handsball cegah gol</li>
+                                            <li>e) Cegah gol dengan pelanggaran</li>
+                                            <li>f) Kata-kata/isyarat menghina/kasar</li>
+                                            <li>g) Berbau minuman alkohol</li>
+                                            <li>h) Kartu kuning kedua</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -686,29 +721,29 @@
 
             <!-- ================= BAB III: LAIN-LAIN ================= -->
             <div class="bab-section" id="section-bab3">
-                <div class="flex items-center space-x-3 mb-4 pt-4">
-                    <div class="bg-brand-600 text-white font-heading text-xl px-3 py-1 rounded-lg">BAB III</div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">LAIN-LAIN</h2>
+                <div class="flex items-center space-x-2 mb-3 pt-2">
+                    <span class="bg-gold-500 text-navy-950 font-heading text-lg font-bold px-2.5 py-0.5 rounded-lg">BAB III</span>
+                    <h2 class="text-lg font-bold text-white uppercase tracking-wide">LAIN-LAIN</h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-3">
                     <!-- Pasal 16 -->
-                    <div class="article-card glass-card rounded-2xl border p-5 shadow-sm hover:shadow-md transition duration-150" data-tags="keamanan suporter kerusuhan kamtibmas diskualifikasi panitia" data-article="16">
+                    <div class="article-card navy-card rounded-2xl p-4 shadow-md transition duration-150" data-tags="keamanan suporter kerusuhan kamtibmas diskualifikasi panitia" data-article="16">
                         <div class="flex items-start justify-between cursor-pointer" onclick="toggleArticle('p16')">
-                            <div class="space-y-1">
-                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 tracking-wider uppercase">Ketertiban & Tambahan</span>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Pasal 16 - Keamanan dan Aturan Tambahan</h3>
+                            <div>
+                                <span class="text-[10px] font-bold text-gold-400 tracking-wider uppercase block mb-0.5">Ketertiban Umum</span>
+                                <h3 class="text-base font-bold text-white">Pasal 16 - Keamanan & Kebijakan</h3>
                             </div>
-                            <button class="text-slate-400 hover:text-slate-600 p-1" id="icon-p16">
-                                <i class="fa-solid fa-chevron-down"></i>
+                            <button class="text-gold-400 p-1" id="icon-p16">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
                             </button>
                         </div>
-                        <div class="article-content mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-3" id="content-p16">
-                            <div class="p-3 bg-red-500/10 border-l-4 border-red-500 text-red-900 dark:text-red-300 rounded-r-xl">
-                                <strong>1. Kerusuhan & Supporter:</strong> Apabila pemain, ofisial tim, maupun suporter membuat kegaduhan/kerusuhan sebelum, selama, atau sesudah pertandingan yang mengganggu Kamtibmas, maka tim bersangkutan akan <strong>LANGSUNG DIDISKUALIFIKASI</strong>.
+                        <div class="article-content mt-3 pt-3 border-t border-navy-700 text-xs text-slate-300 space-y-2" id="content-p16">
+                            <div class="p-2.5 bg-red-500/10 border-l-2 border-red-500 text-red-300 rounded-r-xl">
+                                <strong>1. Kerusuhan Supporter/Tim:</strong> Apabila pemain, official team, dan supporter membuat kegaduhan saat pertandingan berlangsung dan saat selesai pertandingan di area lapangan yang mengakibatkan gangguan kamtibmas maka <strong>TIM TERSEBUT DIDISKUALIFIKASI</strong>.
                             </div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">
-                                <strong>2. Hak Kebijakan Panitia:</strong> Hal-hal yang belum diatur atau belum cukup diatur dalam peraturan ini akan ditentukan kemudian melalui kebijakan resmi Panitia Pelaksana Gawang Mini Jong Canno Cup 2026.
+                            <p class="text-[11px] text-slate-400">
+                                <strong>2. Kebijakan Panitia:</strong> Hal-hal yang belum diatur dalam peraturan ini akan diatur dengan kebijakan tersendiri oleh panitia pelaksana.
                             </p>
                         </div>
                     </div>
@@ -718,141 +753,204 @@
         </div>
 
         <!-- No Results Fallback Card -->
-        <div id="noResults" class="hidden text-center py-16 px-4 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 my-6 no-print">
-            <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+        <div id="noResults" class="hidden text-center py-10 px-4 navy-card rounded-2xl border border-gold-500/30 my-4 no-print">
+            <div class="w-12 h-12 bg-navy-800 text-gold-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-1">Pasal Tidak Ditemukan</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-4">
-                Tidak ada aturan yang cocok dengan kata kunci pencarian Anda. Coba gunakan istilah umum seperti "kartu", "denda", "lapangan", atau "wo".
+            <h3 class="text-base font-bold text-white mb-1">Pasal Tidak Ditemukan</h3>
+            <p class="text-xs text-slate-400 max-w-xs mx-auto mb-3">
+                Coba gunakan kata kunci seperti "kartu", "denda", "lapangan", atau "wo".
             </p>
-            <button onclick="clearSearchInput()" class="px-4 py-2 bg-brand-600 text-white font-medium rounded-xl text-xs hover:bg-brand-700 transition">
-                Tampilkan Semua Peraturan
+            <button onclick="clearSearchInput()" class="px-3.5 py-1.5 bg-gold-500 text-navy-950 font-bold rounded-xl text-xs hover:bg-gold-400 transition">
+                Tampilkan Semua
             </button>
         </div>
 
     </main>
 
     <!-- ================= MODAL 1: KALKULATOR SANKSII & DENDA ================= -->
-    <div id="calcModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 p-4 no-print">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full border border-slate-200 dark:border-slate-800 shadow-2xl p-6 relative transform scale-95 transition-transform duration-200" id="calcModalBox">
-            <button onclick="toggleCalcModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
-                <i class="fa-solid fa-xmark text-lg"></i>
+    <div id="calcModal" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 p-0 sm:p-4 no-print">
+        <div class="bg-navy-900 rounded-t-3xl sm:rounded-3xl max-w-md w-full border-t sm:border border-gold-500/40 shadow-2xl p-5 relative transform translate-y-full sm:translate-y-0 sm:scale-95 transition-transform duration-200" id="calcModalBox">
+            <div class="w-12 h-1 bg-navy-700 rounded-full mx-auto mb-3 sm:hidden"></div>
+            <button onclick="toggleCalcModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-base"></i>
             </button>
-            <div class="flex items-center space-x-2 text-amber-600 dark:text-amber-400 mb-1">
-                <i class="fa-solid fa-calculator text-xl"></i>
-                <h3 class="text-xl font-bold font-heading uppercase tracking-wide">Kalkulator Denda & Skorsing</h3>
+            <div class="flex items-center space-x-2 text-gold-400 mb-1">
+                <i class="fa-solid fa-calculator text-lg"></i>
+                <h3 class="text-lg font-bold font-heading uppercase tracking-wide">Kalkulator Denda & Skorsing</h3>
             </div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">Hitung perkiraan total denda administrasi & sanksi pertandingan.</p>
+            <p class="text-[11px] text-slate-400 mb-4">Simulasi hitung denda administrasi & skorsing laga.</p>
 
-            <div class="space-y-4 text-sm">
-                <!-- Single Yellow Card -->
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border">
+            <div class="space-y-3 text-xs">
+                <!-- 1 Yellow Card -->
+                <div class="flex items-center justify-between p-2.5 bg-navy-950 rounded-xl border border-navy-700">
                     <div>
-                        <div class="font-semibold text-slate-800 dark:text-white">1 Kartu Kuning Terpisah</div>
-                        <div class="text-xs text-slate-400">Denda Rp 35.000 / kartu</div>
+                        <div class="font-bold text-white">1 Kartu Kuning</div>
+                        <div class="text-[10px] text-slate-400">Rp 35.000 / kartu</div>
                     </div>
-                    <input type="number" id="calcYellowSingle" min="0" value="0" onchange="calculateFines()" onkeyup="calculateFines()" class="w-16 p-2 border rounded-lg text-center font-bold dark:bg-slate-900 dark:border-slate-700">
+                    <input type="number" id="calcYellowSingle" min="0" value="0" onchange="calculateFines()" onkeyup="calculateFines()" class="w-14 p-1.5 bg-navy-800 border border-gold-500/30 rounded-lg text-center font-bold text-white text-xs focus:outline-none focus:border-gold-400">
                 </div>
 
-                <!-- 2 Yellow Cards in 1 Match -->
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border">
+                <!-- 2 Yellow Cards -->
+                <div class="flex items-center justify-between p-2.5 bg-navy-950 rounded-xl border border-navy-700">
                     <div>
-                        <div class="font-semibold text-slate-800 dark:text-white">2 Kartu Kuning (1 Laga)</div>
-                        <div class="text-xs text-slate-400">1 Laga Skorsing + Rp 70.000</div>
+                        <div class="font-bold text-white">2 Kartu Kuning (1 Laga)</div>
+                        <div class="text-[10px] text-slate-400">Skors 1 Laga + Rp 70.000</div>
                     </div>
-                    <input type="number" id="calcYellowDouble" min="0" value="0" onchange="calculateFines()" onkeyup="calculateFines()" class="w-16 p-2 border rounded-lg text-center font-bold dark:bg-slate-900 dark:border-slate-700">
+                    <input type="number" id="calcYellowDouble" min="0" value="0" onchange="calculateFines()" onkeyup="calculateFines()" class="w-14 p-1.5 bg-navy-800 border border-gold-500/30 rounded-lg text-center font-bold text-white text-xs focus:outline-none focus:border-gold-400">
                 </div>
 
                 <!-- Direct Red Card -->
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border">
+                <div class="flex items-center justify-between p-2.5 bg-navy-950 rounded-xl border border-navy-700">
                     <div>
-                        <div class="font-semibold text-slate-800 dark:text-white">Kartu Merah Langsung</div>
-                        <div class="text-xs text-slate-400">2 Laga Skorsing + Rp 70.000</div>
+                        <div class="font-bold text-white">Kartu Merah Langsung</div>
+                        <div class="text-[10px] text-slate-400">Skors 2 Laga + Rp 70.000</div>
                     </div>
-                    <input type="number" id="calcRedDirect" min="0" value="0" onchange="calculateFines()" onkeyup="calculateFines()" class="w-16 p-2 border rounded-lg text-center font-bold dark:bg-slate-900 dark:border-slate-700">
+                    <input type="number" id="calcRedDirect" min="0" value="0" onchange="calculateFines()" onkeyup="calculateFines()" class="w-14 p-1.5 bg-navy-800 border border-gold-500/30 rounded-lg text-center font-bold text-white text-xs focus:outline-none focus:border-gold-400">
                 </div>
 
-                <!-- Calculation Result Box -->
-                <div class="p-4 bg-brand-500/10 border border-brand-500/30 rounded-2xl space-y-2 mt-4">
+                <!-- Total Box -->
+                <div class="p-3 bg-navy-950 border border-gold-500/40 rounded-xl space-y-1.5 mt-3">
                     <div class="flex justify-between items-center">
-                        <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">Total Denda Administrasi:</span>
-                        <span class="text-xl font-black text-brand-600 dark:text-brand-400" id="resFineTotal">Rp 0</span>
+                        <span class="text-slate-300 font-medium">Total Denda Administrasi:</span>
+                        <span class="text-base font-black text-gold-400" id="resFineTotal">Rp 0</span>
                     </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-brand-500/20">
-                        <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">Total Skorsing Pertandingan:</span>
-                        <span class="text-sm font-bold text-red-600 dark:text-red-400" id="resSuspension">0 Pertandingan</span>
+                    <div class="flex justify-between items-center pt-1.5 border-t border-navy-800">
+                        <span class="text-slate-300 font-medium">Total Skorsing:</span>
+                        <span class="text-xs font-bold text-red-400" id="resSuspension">0 Pertandingan</span>
                     </div>
                 </div>
             </div>
 
-            <button onclick="toggleCalcModal()" class="w-full mt-5 py-2.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold rounded-xl text-xs hover:bg-slate-800 transition">
+            <button onclick="toggleCalcModal()" class="w-full mt-4 py-2 bg-gold-500 text-navy-950 font-bold rounded-xl text-xs hover:bg-gold-400 transition">
                 Tutup Simulasi
             </button>
         </div>
     </div>
 
-    <!-- ================= MODAL 3: MASCOT & TROPHY VIEW ================= -->
-    <div id="trophyModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 p-4 no-print">
-        <div class="bg-slate-900 text-white rounded-3xl max-w-md w-full border border-amber-500/40 shadow-2xl p-6 relative transform scale-95 transition-transform duration-200 text-center" id="trophyModalBox">
-            <button onclick="toggleTrophyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
-                <i class="fa-solid fa-xmark text-lg"></i>
+    <!-- ================= MODAL 2: FIELD SCHEMATIC ================= -->
+    <div id="fieldModal" class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 p-0 sm:p-4 no-print">
+        <div class="bg-navy-900 rounded-t-3xl sm:rounded-3xl max-w-md w-full border-t sm:border border-gold-500/40 shadow-2xl p-5 relative transform translate-y-full sm:translate-y-0 sm:scale-95 transition-transform duration-200" id="fieldModalBox">
+            <div class="w-12 h-1 bg-navy-700 rounded-full mx-auto mb-3 sm:hidden"></div>
+            <button onclick="toggleFieldModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-base"></i>
             </button>
-            
-            <span class="inline-block bg-amber-500/20 text-amber-300 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3 border border-amber-500/40">
-                <i class="fa-solid fa-trophy mr-1"></i> Maskot Resmi Turnamen
-            </span>
-            <h3 class="text-2xl font-bold font-heading uppercase text-amber-300 tracking-wider">PIALA BERGILIR JONG CANNO CUP 2026</h3>
-            <p class="text-xs text-slate-400 mb-4">Trofi Kehormatan Gawang Mini Haruru, Maluku Tengah</p>
+            <div class="flex items-center space-x-2 text-gold-400 mb-1">
+                <i class="fa-solid fa-vector-square text-lg"></i>
+                <h3 class="text-lg font-bold font-heading uppercase tracking-wide">Denah Lapangan Gawang Mini</h3>
+            </div>
+            <p class="text-[11px] text-slate-400 mb-3">Spesifikasi Lapangan Resmi (Pasal 4): 29 x 19 Meter</p>
 
-            <div class="bg-gradient-to-b from-slate-800/80 to-slate-900/90 rounded-2xl p-4 border border-amber-500/20 mb-4 flex justify-center">
-                <img src="input_file_0.png" alt="Piala Jong Canno Cup 2026" class="h-64 object-contain filter drop-shadow-[0_15px_30px_rgba(245,158,11,0.5)]">
+            <!-- SVG Schematic Field -->
+            <div class="bg-emerald-950/80 rounded-2xl p-3 border border-emerald-500/30 mb-3 relative overflow-hidden">
+                <svg viewBox="0 0 290 190" class="w-full h-auto drop-shadow-md">
+                    <!-- Outer Boundary -->
+                    <rect x="5" y="5" width="280" height="180" fill="#064e3b" stroke="#ffffff" stroke-width="2" rx="4"/>
+                    <!-- Halfway Line -->
+                    <line x1="145" y1="5" x2="145" y2="185" stroke="#ffffff" stroke-width="2"/>
+                    <!-- Center Circle -->
+                    <circle cx="145" cy="95" r="28" fill="none" stroke="#ffffff" stroke-width="2"/>
+                    <circle cx="145" cy="95" r="2.5" fill="#ffffff"/>
+                    
+                    <!-- Left Penalty Area -->
+                    <rect x="5" y="55" width="35" height="80" fill="none" stroke="#ffffff" stroke-width="2"/>
+                    <!-- Left Penalty Spot -->
+                    <circle cx="28" cy="95" r="2" fill="#ffffff"/>
+                    <!-- Left Goal -->
+                    <rect x="1" y="80" width="4" height="30" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+
+                    <!-- Right Penalty Area -->
+                    <rect x="250" y="55" width="35" height="80" fill="none" stroke="#ffffff" stroke-width="2"/>
+                    <!-- Right Penalty Spot -->
+                    <circle cx="262" cy="95" r="2" fill="#ffffff"/>
+                    <!-- Right Goal -->
+                    <rect x="285" y="80" width="4" height="30" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+                </svg>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <div class="space-y-1.5 text-[11px] text-slate-300">
+                <div class="flex justify-between bg-navy-950 p-2 rounded-lg border border-navy-700">
+                    <span>Panjang × Lebar:</span>
+                    <strong class="text-gold-400">29m × 19m</strong>
+                </div>
+                <div class="flex justify-between bg-navy-950 p-2 rounded-lg border border-navy-700">
+                    <span>Komposisi Lapangan:</span>
+                    <strong class="text-gold-400">5 Inti + 2 Cadangan</strong>
+                </div>
+            </div>
+
+            <button onclick="toggleFieldModal()" class="w-full mt-4 py-2 bg-gold-500 text-navy-950 font-bold rounded-xl text-xs hover:bg-gold-400 transition">
+                Tutup Skema
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 3: MASCOT & TROPHY VIEW ================= -->
+    <div id="trophyModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-200 p-4 no-print">
+        <div class="bg-navy-900 text-white rounded-3xl max-w-xs sm:max-w-md w-full border border-gold-500/50 shadow-2xl p-5 relative transform scale-95 transition-transform duration-200 text-center" id="trophyModalBox">
+            <button onclick="toggleTrophyModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+            
+            <span class="inline-block bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full mb-2 border border-gold-500/40">
+                <i class="fa-solid fa-trophy mr-1"></i> Maskot Resmi Turnamen
+            </span>
+            <h3 class="text-xl font-bold font-heading uppercase gold-gradient-text tracking-wider">PIALA BERGILIR JONG CANNO CUP 2026</h3>
+            <p class="text-[10px] text-slate-400 mb-3">Trofi Kehormatan Gawang Mini Haruru, Maluku Tengah</p>
+
+            <div class="bg-gradient-to-b from-navy-950 to-navy-900 rounded-2xl p-3 border border-gold-500/30 mb-3 flex justify-center trophy-glow">
+                <img src="https://iili.io/n5zC9Gn.png" alt="Piala Jong Canno Cup 2026" class="h-52 object-contain filter drop-shadow-[0_10px_20px_rgba(212,175,55,0.5)]">
+            </div>
+
+            <p class="text-[11px] text-slate-300 leading-relaxed mb-4">
                 Piala ini merepresentasikan kejujuran, perjuangan, serta persaudaraan pemuda-pemudi dalam ajang Turnamen Gawang Mini Jong Canno Cup 2026.
             </p>
 
-            <button onclick="toggleTrophyModal()" class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg">
+            <button onclick="toggleTrophyModal()" class="w-full py-2 bg-gold-500 text-navy-950 font-bold rounded-xl text-xs hover:bg-gold-400 transition shadow-lg">
                 Tutup Tampilan
             </button>
         </div>
     </div>
 
+    <!-- Fixed Mobile Bottom App Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-navy-900/95 backdrop-blur-md border-t border-gold-500/30 px-4 py-2 no-print shadow-2xl">
+        <div class="max-w-md mx-auto flex items-center justify-around text-center">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center text-gold-400">
+                <i class="fa-solid fa-book-open text-base mb-0.5"></i>
+                <span class="text-[10px] font-semibold tracking-tight">Peraturan</span>
+            </button>
+
+            <button onclick="toggleCalcModal()" class="flex flex-col items-center text-slate-400 hover:text-gold-400 transition">
+                <i class="fa-solid fa-calculator text-base mb-0.5"></i>
+                <span class="text-[10px] font-semibold tracking-tight">Kalkulator</span>
+            </button>
+
+            <button onclick="toggleFieldModal()" class="flex flex-col items-center text-slate-400 hover:text-gold-400 transition">
+                <i class="fa-solid fa-vector-square text-base mb-0.5"></i>
+                <span class="text-[10px] font-semibold tracking-tight">Lapangan</span>
+            </button>
+
+            <button onclick="toggleTrophyModal()" class="flex flex-col items-center text-slate-400 hover:text-gold-400 transition">
+                <i class="fa-solid fa-trophy text-base mb-0.5"></i>
+                <span class="text-[10px] font-semibold tracking-tight">Piala</span>
+            </button>
+        </div>
+    </nav>
+
     <!-- Footer Section -->
-    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 no-print mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
-            <div class="flex items-center justify-center space-x-3">
-                <img src="https://iili.io/n5zC9Gn.png" alt="Piala Jong Canno Cup" class="w-8 h-8 object-contain">
-                <span class="font-heading text-xl text-white tracking-widest uppercase">Panitia Pelaksana Jong Canno Cup 2026</span>
+    <footer class="bg-navy-950 text-slate-500 py-6 border-t border-navy-800 no-print mt-10 text-center">
+        <div class="max-w-md mx-auto px-4 space-y-2">
+            <div class="flex items-center justify-center space-x-2">
+                <img src="https://iili.io/n5zC9Gn.png" alt="Logo Jong Canno Cup" class="w-6 h-6 object-contain">
+                <span class="font-heading text-lg gold-gradient-text tracking-widest uppercase">PANITIA JONG CANNO CUP 2026</span>
             </div>
-            <p class="text-xs text-slate-500">
-                Haruru, Kecamatan Amahai, Kabupaten Maluku Tengah. Seluruh hak cipta dilindungi undang-undang.
+            <p class="text-[10px] text-slate-500">
+                Haruru, Kecamatan Amahai, Kabupaten Maluku Tengah.
             </p>
         </div>
     </footer>
 
-    <!-- JavaScript Application Logic -->
     <script>
-        // Dark Mode Toggle Logic
-        function initTheme() {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
-
-        function toggleTheme() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        }
-
         // Accordion Expand/Collapse
         function toggleArticle(id) {
             const content = document.getElementById('content-' + id);
@@ -860,25 +958,25 @@
             
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                icon.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
+                icon.innerHTML = '<i class="fa-solid fa-chevron-up text-sm"></i>';
             } else {
                 content.classList.add('hidden');
-                icon.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
+                icon.innerHTML = '<i class="fa-solid fa-chevron-down text-sm"></i>';
             }
         }
 
-        // BAB Filter Tabs
+        // BAB Filter Tabs Logic
         function filterBab(babId) {
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(t => {
-                t.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
-                t.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                t.classList.remove('bg-gold-500', 'text-navy-950', 'shadow');
+                t.classList.add('bg-navy-800', 'text-slate-300');
             });
 
             const activeTab = document.getElementById('tab-' + babId);
             if (activeTab) {
-                activeTab.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-                activeTab.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+                activeTab.classList.remove('bg-navy-800', 'text-slate-300');
+                activeTab.classList.add('bg-gold-500', 'text-navy-950', 'shadow');
             }
 
             const sections = document.querySelectorAll('.bab-section');
@@ -890,18 +988,17 @@
                 }
             });
 
-            // Reset search if any
+            // Reset search bar when filtering bab
             document.getElementById('searchInput').value = '';
             document.getElementById('clearSearch').classList.add('hidden');
             document.getElementById('searchCounter').classList.add('hidden');
             document.getElementById('noResults').classList.add('hidden');
             
-            // Show all cards
             const cards = document.querySelectorAll('.article-card');
             cards.forEach(c => c.style.display = 'block');
         }
 
-        // Live Search Handler
+        // Search Filter Logic
         function handleSearch() {
             const input = document.getElementById('searchInput').value.toLowerCase().trim();
             const clearBtn = document.getElementById('clearSearch');
@@ -922,7 +1019,6 @@
                 return;
             }
 
-            // Unhide all bab sections during active search
             sections.forEach(s => s.style.display = 'block');
 
             let visibleCount = 0;
@@ -934,7 +1030,7 @@
                 if (tags.toLowerCase().includes(input) || text.includes(input)) {
                     card.style.display = 'block';
                     visibleCount++;
-                    // Auto-open match content
+                    // Open article content automatically on match
                     const articleId = 'p' + card.getAttribute('data-article');
                     const content = document.getElementById('content-' + articleId);
                     if (content) content.classList.remove('hidden');
@@ -943,7 +1039,6 @@
                 }
             });
 
-            // Update counter
             matchCountElem.innerText = visibleCount;
             searchCounter.classList.remove('hidden');
 
@@ -958,7 +1053,7 @@
             const searchInput = document.getElementById('searchInput');
             searchInput.value = term;
             handleSearch();
-            window.scrollTo({ top: searchInput.offsetTop - 100, behavior: 'smooth' });
+            window.scrollTo({ top: searchInput.offsetTop - 80, behavior: 'smooth' });
         }
 
         function clearSearchInput() {
@@ -966,18 +1061,18 @@
             handleSearch();
         }
 
-        // Modal Controls
+        // Modal Handlers (Slide & Fade Animation)
         function toggleCalcModal() {
             const modal = document.getElementById('calcModal');
             const box = document.getElementById('calcModalBox');
             if (modal.classList.contains('opacity-0')) {
                 modal.classList.remove('opacity-0', 'pointer-events-none');
-                box.classList.remove('scale-95');
-                box.classList.add('scale-100');
+                box.classList.remove('translate-y-full', 'sm:scale-95');
+                box.classList.add('translate-y-0', 'sm:scale-100');
             } else {
                 modal.classList.add('opacity-0', 'pointer-events-none');
-                box.classList.remove('scale-100');
-                box.classList.add('scale-95');
+                box.classList.remove('translate-y-0', 'sm:scale-100');
+                box.classList.add('translate-y-full', 'sm:scale-95');
             }
         }
 
@@ -986,16 +1081,15 @@
             const box = document.getElementById('fieldModalBox');
             if (modal.classList.contains('opacity-0')) {
                 modal.classList.remove('opacity-0', 'pointer-events-none');
-                box.classList.remove('scale-95');
-                box.classList.add('scale-100');
+                box.classList.remove('translate-y-full', 'sm:scale-95');
+                box.classList.add('translate-y-0', 'sm:scale-100');
             } else {
                 modal.classList.add('opacity-0', 'pointer-events-none');
-                box.classList.remove('scale-100');
-                box.classList.add('scale-95');
+                box.classList.remove('translate-y-0', 'sm:scale-100');
+                box.classList.add('translate-y-full', 'sm:scale-95');
             }
         }
 
-        // Trophy Modal Logic
         function toggleTrophyModal() {
             const modal = document.getElementById('trophyModal');
             const box = document.getElementById('trophyModalBox');
@@ -1010,7 +1104,7 @@
             }
         }
 
-        // Sanction Fine Calculator Logic
+        // Sanction Fine Calculator
         function calculateFines() {
             const singleY = parseInt(document.getElementById('calcYellowSingle').value) || 0;
             const doubleY = parseInt(document.getElementById('calcYellowDouble').value) || 0;
@@ -1022,11 +1116,6 @@
             document.getElementById('resFineTotal').innerText = 'Rp ' + totalFine.toLocaleString('id-ID');
             document.getElementById('resSuspension').innerText = totalSuspension + ' Pertandingan';
         }
-
-        // Initialize Theme on Load
-        window.onload = function() {
-            initTheme();
-        };
     </script>
 </body>
 </html>
